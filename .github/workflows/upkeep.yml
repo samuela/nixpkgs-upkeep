@@ -36,6 +36,9 @@ jobs:
           . /home/runner/.nix-profile/etc/profile.d/nix.sh
           cd nixpkgs/pkgs/applications/editors/vscode
           ./update.sh
+          
+      - run: |
+          cd nixpkgs
           git status
 
       # Runs a set of commands using the runners shell
