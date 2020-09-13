@@ -38,9 +38,11 @@ jobs:
       - working-directory: ./nixpkgs
         run: git diff
       - working-directory: ./nixpkgs
-        run: git add .
-      - working-directory: ./nixpkgs
-        run: git commit -m "Update VSCode"
+        run: |
+          git config --global user.email "foo@bar.com"
+          git config --global user.name "nixpkgs-upkeep bot"
+          git add .
+          git commit -m "Update VSCode"
       - working-directory: ./nixpkgs
         run: git push
 
