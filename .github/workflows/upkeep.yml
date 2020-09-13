@@ -34,7 +34,7 @@ jobs:
         working-directory: ./nixpkgs
         run: |
           . /home/runner/.nix-profile/etc/profile.d/nix.sh
-          sh pkgs/applications/editors/vscode/update.sh || true
+          ./pkgs/applications/editors/vscode/update.sh || true
       - working-directory: ./nixpkgs
         run: git diff
       - working-directory: ./nixpkgs
