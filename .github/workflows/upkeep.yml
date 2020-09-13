@@ -31,14 +31,18 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
+        working-directory: ./nixpkgs
         run: |
           . /home/runner/.nix-profile/etc/profile.d/nix.sh
-          cd nixpkgs/pkgs/applications/editors/vscode
-          ./update.sh || true
-          git diff
-          git add .
-          git commit -m "Update VSCode"
-          git push
+          sh pkgs/applications/editors/vscode/update.sh || true
+      - working-directory: ./nixpkgs
+        run: git diff
+      - working-directory: ./nixpkgs
+        run: git add .
+      - working-directory: ./nixpkgs
+        run: git commit -m "Update VSCode"
+      - working-directory: ./nixpkgs
+        run: git push
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
