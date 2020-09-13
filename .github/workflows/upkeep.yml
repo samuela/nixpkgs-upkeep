@@ -15,15 +15,14 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - run: df
-        
       - name: Install Nix
         run: curl -L https://nixos.org/nix/install | sh
         
-      - run: df
-
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+        with:
+          repository: NixOS/nixpkgs
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
@@ -34,3 +33,5 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+          pwd
+          ls
