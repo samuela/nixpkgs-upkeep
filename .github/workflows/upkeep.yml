@@ -32,7 +32,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: |
-          cd nixpkgs/applications/editors/vscode
+          cd nixpkgs/pkgs/applications/editors/vscode
           ./update.sh
           git status
 
