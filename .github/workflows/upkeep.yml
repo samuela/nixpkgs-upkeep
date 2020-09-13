@@ -22,10 +22,12 @@ jobs:
         
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+        with:
+          path: nixpkgs-upkeep
       - uses: actions/checkout@v2
         with:
           repository: NixOS/nixpkgs
-          path: /home/runner/work/nixpkgs
+          path: nixpkgs
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
@@ -38,7 +40,5 @@ jobs:
           echo test, and deploy your project.
           pwd
           ls
-      - run: |
-          pushd /home/runner/work/nixpkgs
-          ls
-          popd
+      - run: ls nixpkgs-upkeep
+      - run: ls nixpkgs
