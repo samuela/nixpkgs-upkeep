@@ -25,6 +25,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           repository: NixOS/nixpkgs
+          path: /home/runner/work/nixpkgs
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
@@ -37,3 +38,7 @@ jobs:
           echo test, and deploy your project.
           pwd
           ls
+      - run: |
+          pushd /home/runner/work/nixpkgs
+          ls
+          popd
