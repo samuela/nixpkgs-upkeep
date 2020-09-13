@@ -16,8 +16,10 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Install Nix
-        run: curl -L https://nixos.org/nix/install | sh
-                
+        run: |
+          curl -L https://nixos.org/nix/install | sh
+          . /home/runner/.nix-profile/etc/profile.d/nix.sh
+
       - name: Checkout nixpkgs-upkeep
         uses: actions/checkout@v2
         with:
