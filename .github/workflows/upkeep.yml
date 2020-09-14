@@ -25,8 +25,9 @@ jobs:
           repository: NixOS/nixpkgs
           path: nixpkgs
           token: ${{ secrets.GH_TOKEN }}
-          # 0 means get everything. See https://github.community/t/automating-push-to-public-repo/17742/11?u=samuela
-          fetch-depth: 0
+
+      - run: git remote -v
+        working-directory: nixpkgs
 
       - name: Run custom update-script
         run: |

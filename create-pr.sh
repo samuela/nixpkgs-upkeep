@@ -32,6 +32,9 @@ fi
 git config --global user.email "foo@bar.com"
 git config --global user.name "upkeep-bot"
 
+# We need to get a complete unshallow checkout if we're going to push to another
+# repo. See See https://github.community/t/automating-push-to-public-repo/17742/11?u=samuela.
+
 # See https://serverfault.com/questions/151109/how-do-i-get-the-current-unix-time-in-milliseconds-in-bash.
 branch="upkeep-bot/$package-$newversion-$(date +%s)"
 git checkout -b $branch
