@@ -37,4 +37,6 @@ jobs:
 
       - name: Create PR
         working-directory: ./nixpkgs
-        run: ./../nixpkgs-upkeep/create-pr.sh vscode
+        run: |
+          . /home/runner/.nix-profile/etc/profile.d/nix.sh
+          ./../nixpkgs-upkeep/create-pr.sh vscode
