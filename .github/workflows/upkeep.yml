@@ -30,7 +30,7 @@ jobs:
           . /home/runner/.nix-profile/etc/profile.d/nix.sh
           cp nixpkgs-upkeep/custom-updaters/update-vscode.sh nixpkgs/pkgs/applications/editors/vscode/update-vscode.sh
           ./nixpkgs/pkgs/applications/editors/vscode/update-vscode.sh
-          rm pkgs/applications/editors/vscode/update-vscode.sh
+          rm nixpkgs/pkgs/applications/editors/vscode/update-vscode.sh
 
       - working-directory: ./nixpkgs
         run: git diff
