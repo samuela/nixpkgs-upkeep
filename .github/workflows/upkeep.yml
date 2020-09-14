@@ -25,7 +25,7 @@ jobs:
           repository: NixOS/nixpkgs
           path: nixpkgs
           token: ${{ secrets.GH_TOKEN }}
-          # 0 means get everything
+          # 0 means get everything. See https://github.community/t/automating-push-to-public-repo/17742/11?u=samuela
           fetch-depth: 0
 
       - name: Run custom update-script
@@ -37,10 +37,6 @@ jobs:
 
       - working-directory: ./nixpkgs
         run: git diff
-
-      - run: sha256sum <<< "$GH_TOKEN"
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
       - name: Create PR
         working-directory: ./nixpkgs
