@@ -31,7 +31,9 @@ fi
 # We need to set up our git user config in order to commit.
 git config --global user.email "foo@bar.com"
 git config --global user.name "upkeep-bot"
-git checkout -b upkeep-bot/$package-$newversion
+
+branch="upkeep-bot/$package-$newversion"
+git checkout -b $branch
 git add .
 git commit -m "Update $package to $newversion"
-git push https://samuela:$GH_TOKEN@github.com/samuela/nixpkgs.git
+git push --set-upstream https://samuela:$GH_TOKEN@github.com/samuela/nixpkgs.git $branch
