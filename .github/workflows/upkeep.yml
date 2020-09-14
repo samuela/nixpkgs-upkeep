@@ -40,3 +40,5 @@ jobs:
         run: |
           . /home/runner/.nix-profile/etc/profile.d/nix.sh
           GH_TOKEN=$GH_TOKEN ./../nixpkgs-upkeep/create-pr.sh vscode
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
