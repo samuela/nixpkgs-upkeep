@@ -35,6 +35,10 @@ jobs:
       - working-directory: ./nixpkgs
         run: git diff
 
+      - run: sha256sum <<< "$GH_TOKEN"
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
       - name: Create PR
         working-directory: ./nixpkgs
         run: |
