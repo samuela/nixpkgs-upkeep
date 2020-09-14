@@ -39,4 +39,4 @@ jobs:
         working-directory: ./nixpkgs
         run: |
           . /home/runner/.nix-profile/etc/profile.d/nix.sh
-          GH_TOKEN=GH_TOKEN ./../nixpkgs-upkeep/create-pr.sh vscode
+          GH_TOKEN=$GH_TOKEN ./../nixpkgs-upkeep/create-pr.sh vscode
