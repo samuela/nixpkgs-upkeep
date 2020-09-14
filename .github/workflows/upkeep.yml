@@ -25,6 +25,8 @@ jobs:
           repository: NixOS/nixpkgs
           path: nixpkgs
           token: ${{ secrets.GH_TOKEN }}
+          # 0 means get everything
+          fetch-depth: 0
 
       - name: Run custom update-script
         run: |
