@@ -26,9 +26,6 @@ jobs:
           path: nixpkgs
           token: ${{ secrets.GH_TOKEN }}
 
-      - run: git remote -v
-        working-directory: nixpkgs
-
       - name: Run custom update-script
         run: |
           . /home/runner/.nix-profile/etc/profile.d/nix.sh

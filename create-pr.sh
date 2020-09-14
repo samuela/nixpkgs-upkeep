@@ -33,7 +33,11 @@ git config --global user.email "foo@bar.com"
 git config --global user.name "upkeep-bot"
 
 # We need to get a complete unshallow checkout if we're going to push to another
-# repo. See See https://github.community/t/automating-push-to-public-repo/17742/11?u=samuela.
+# repo. See https://github.community/t/automating-push-to-public-repo/17742/11?u=samuela
+# and https://stackoverflow.com/questions/28983842/remote-rejected-shallow-update-not-allowed-after-changing-git-remote-url.
+# We start with only a shallow clone because it's far, far faster and it most
+# cases we don't ever need to push anything.
+git fetch --unshallow origin
 
 # See https://serverfault.com/questions/151109/how-do-i-get-the-current-unix-time-in-milliseconds-in-bash.
 branch="upkeep-bot/$package-$newversion-$(date +%s)"
