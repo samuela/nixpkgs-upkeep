@@ -39,7 +39,7 @@ git add .
 git commit -m "Update $package to $newversion"
 git push --set-upstream https://samuela:$GH_TOKEN@github.com/samuela/nixpkgs.git $branch
 
-# TODO: can we put the tag into a comment and still have the search work?
+# Note: we cannot put the tag into a comment because GitHub search apparently does not index them.
 message=$(cat <<-_EOM_
 Update ${package} to ${newversion}
 
