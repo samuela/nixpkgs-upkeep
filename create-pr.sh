@@ -32,7 +32,8 @@ fi
 git config --global user.email "foo@bar.com"
 git config --global user.name "upkeep-bot"
 
-branch="upkeep-bot/$package-$newversion"
+# See https://serverfault.com/questions/151109/how-do-i-get-the-current-unix-time-in-milliseconds-in-bash.
+branch="upkeep-bot/$package-$newversion-$(date +%s)"
 git checkout -b $branch
 git add .
 git commit -m "Update $package to $newversion"
