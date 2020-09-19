@@ -44,6 +44,7 @@ jobs:
       - name: Create PR
         working-directory: ./nixpkgs
         run: |
+          echo $GITHUB_RUN_NUMBER
           GH_TOKEN=$GH_TOKEN \
             PACKAGE=$PACKAGE \
             CURRENT_VERSION=$CURRENT_VERSION \
