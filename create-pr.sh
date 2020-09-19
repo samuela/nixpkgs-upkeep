@@ -1,7 +1,7 @@
 #!/usr/bin/env nix-shell
 #!nix-shell -i bash -p curl jq gitAndTools.hub
 
-set -eou pipefail
+set -veou pipefail
 
 echo $PACKAGE
 echo $CURRENT_VERSION
