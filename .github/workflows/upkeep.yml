@@ -28,9 +28,9 @@ jobs:
         working-directory: ./nixpkgs
         run: |
           PACKAGE="vscode"
-          current_version="$(nix eval --raw -f . $PACKAGE.version)"
-          echo '::set-env name=PACKAGE::$PACKAGE'
-          echo '::set-env name=CURRENT_VERSION::$CURRENT_VERSION'
+          CURRENT_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
+          echo "::set-env name=PACKAGE::$PACKAGE"
+          echo "::set-env name=CURRENT_VERSION::$CURRENT_VERSION"
 
       - name: Run custom update-script
         run: |
@@ -68,9 +68,9 @@ jobs:
         working-directory: ./nixpkgs
         run: |
           PACKAGE="vscodium"
-          current_version="$(nix eval --raw -f . $PACKAGE.version)"
-          echo '::set-env name=PACKAGE::$PACKAGE'
-          echo '::set-env name=CURRENT_VERSION::$CURRENT_VERSION'
+          CURRENT_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
+          echo "::set-env name=PACKAGE::$PACKAGE"
+          echo "::set-env name=CURRENT_VERSION::$CURRENT_VERSION"
 
       - name: Run custom update-script
         run: |
