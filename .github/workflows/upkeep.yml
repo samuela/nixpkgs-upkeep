@@ -25,6 +25,7 @@ jobs:
           token: ${{ secrets.GH_TOKEN }}
 
       - name: Check current package version
+        working-directory: ./nixpkgs
         run: |
           PACKAGE="vscode"
           current_version="$(nix eval --raw -f . $PACKAGE.version)"
@@ -64,6 +65,7 @@ jobs:
           token: ${{ secrets.GH_TOKEN }}
 
       - name: Check current package version
+        working-directory: ./nixpkgs
         run: |
           PACKAGE="vscodium"
           current_version="$(nix eval --raw -f . $PACKAGE.version)"
