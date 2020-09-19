@@ -49,6 +49,8 @@ git push --set-upstream https://samuela:$GH_TOKEN@github.com/samuela/nixpkgs.git
 
 # Note: we cannot put the tag into a comment because GitHub search apparently does not index them.
 message=$(cat <<-_EOM_
+${PACKAGE}: $CURRENT_VERSION -> ${newversion}
+
 ###### Motivation for this change
 Upgrades ${PACKAGE} from ${CURRENT_VERSION} to ${newversion}
 
