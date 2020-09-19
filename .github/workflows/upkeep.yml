@@ -6,14 +6,10 @@ on:
   push:
     branches: [main]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   vscode:
     runs-on: ubuntu-latest
     steps:
-      # - name: Install Nix
-      #   run: curl -L https://nixos.org/nix/install | sh
-
       - uses: cachix/install-nix-action@v10
 
       - name: Checkout nixpkgs-upkeep
@@ -28,9 +24,15 @@ jobs:
           path: nixpkgs
           token: ${{ secrets.GH_TOKEN }}
 
+      - name: Check current package version
+        run: |
+          PACKAGE="vscode"
+          current_version="$(nix eval --raw -f . $PACKAGE.version)"
+          echo '::set-env name=PACKAGE::$PACKAGE'
+          echo '::set-env name=CURRENT_VERSION::$CURRENT_VERSION'
+
       - name: Run custom update-script
         run: |
-          # . /home/runner/.nix-profile/etc/profile.d/nix.sh
           cp nixpkgs-upkeep/custom-updaters/update-vscode.sh nixpkgs/pkgs/applications/editors/vscode/update-vscode.sh
           ./nixpkgs/pkgs/applications/editors/vscode/update-vscode.sh
           rm nixpkgs/pkgs/applications/editors/vscode/update-vscode.sh
@@ -40,17 +42,14 @@ jobs:
 
       - name: Create PR
         working-directory: ./nixpkgs
-        run: |
-          # . /home/runner/.nix-profile/etc/profile.d/nix.sh
-          GH_TOKEN=$GH_TOKEN ./../nixpkgs-upkeep/create-pr.sh vscode
+        run: GH_TOKEN=$GH_TOKEN PACKAGE=$PACKAGE CURRENT_VERSION=$CURRENT_VERSION ./../nixpkgs-upkeep/create-pr.sh
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
   vscodium:
     runs-on: ubuntu-latest
     steps:
-      - name: Install Nix
-        run: curl -L https://nixos.org/nix/install | sh
+      - uses: cachix/install-nix-action@v10
 
       - name: Checkout nixpkgs-upkeep
         uses: actions/checkout@v2
@@ -64,9 +63,15 @@ jobs:
           path: nixpkgs
           token: ${{ secrets.GH_TOKEN }}
 
+      - name: Check current package version
+        run: |
+          PACKAGE="vscodium"
+          current_version="$(nix eval --raw -f . $PACKAGE.version)"
+          echo '::set-env name=PACKAGE::$PACKAGE'
+          echo '::set-env name=CURRENT_VERSION::$CURRENT_VERSION'
+
       - name: Run custom update-script
         run: |
-          . /home/runner/.nix-profile/etc/profile.d/nix.sh
           cp nixpkgs-upkeep/custom-updaters/update-vscodium.sh nixpkgs/pkgs/applications/editors/vscode/update-vscodium.sh
           ./nixpkgs/pkgs/applications/editors/vscode/update-vscodium.sh
           rm nixpkgs/pkgs/applications/editors/vscode/update-vscodium.sh
@@ -76,8 +81,6 @@ jobs:
 
       - name: Create PR
         working-directory: ./nixpkgs
-        run: |
-          . /home/runner/.nix-profile/etc/profile.d/nix.sh
-          GH_TOKEN=$GH_TOKEN ./../nixpkgs-upkeep/create-pr.sh vscodium
+        run: GH_TOKEN=$GH_TOKEN PACKAGE=$PACKAGE CURRENT_VERSION=$CURRENT_VERSION ./../nixpkgs-upkeep/create-pr.sh
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
