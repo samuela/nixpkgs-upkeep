@@ -4,7 +4,7 @@
 set -eou pipefail
 
 echo $PACKAGE
-echo $CURRENT_VERISON
+echo $CURRENT_VERSION
 
 # Check that there's a diff from the updater script. See https://stackoverflow.com/questions/3878624/how-do-i-programmatically-determine-if-there-are-uncommitted-changes.
 if git diff-index --quiet HEAD --; then
