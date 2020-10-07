@@ -10,7 +10,7 @@ jobs:
   vscode:
     runs-on: ubuntu-latest
     steps:
-      - uses: cachix/install-nix-action@v10
+      - uses: cachix/install-nix-action@v11
 
       - name: Checkout nixpkgs-upkeep
         uses: actions/checkout@v2
@@ -56,7 +56,7 @@ jobs:
   vscodium:
     runs-on: ubuntu-latest
     steps:
-      - uses: cachix/install-nix-action@v10
+      - uses: cachix/install-nix-action@v11
 
       - name: Checkout nixpkgs-upkeep
         uses: actions/checkout@v2
@@ -101,7 +101,7 @@ jobs:
   spotify:
     runs-on: ubuntu-latest
     steps:
-      - uses: cachix/install-nix-action@v10
+      - uses: cachix/install-nix-action@v11
 
       - name: Checkout nixpkgs-upkeep
         uses: actions/checkout@v2
