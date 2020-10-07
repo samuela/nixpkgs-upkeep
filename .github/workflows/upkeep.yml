@@ -115,7 +115,10 @@ jobs:
           path: nixpkgs
           token: ${{ secrets.GH_TOKEN }}
 
-      - run: echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
+      # Spotify is unfree, so we need to ok that in our Nix config.
+      - run: |
+        mkdir -p ~/.config/nixpkgs/
+        echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
 
       - name: Check current package version
         working-directory: ./nixpkgs
