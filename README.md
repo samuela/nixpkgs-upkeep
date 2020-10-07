@@ -4,6 +4,7 @@ Auto-updates bot for Nixpkgs. Updating packages in Nixpkgs is important but tedi
 
 Currently the following packages are updated:
 
+- spotify
 - vscode
 - vscodium
 
