@@ -133,6 +133,8 @@ jobs:
         # The spotify update script creates a commit at the end, which conflicts
         # with create-pr.sh. See https://stackoverflow.com/questions/15772134/can-i-delete-a-git-commit-but-keep-the-changes.
         run: |
+          git config --global user.email "foo@bar.com"
+          git config --global user.name "upkeep-bot"
           before_commit=$(git rev-parse HEAD)
           ./pkgs/applications/audio/spotify/update.sh
           after_commit=$(git rev-parse HEAD)
