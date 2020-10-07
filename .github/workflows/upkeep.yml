@@ -115,7 +115,7 @@ jobs:
           path: nixpkgs
           token: ${{ secrets.GH_TOKEN }}
 
-      - run: cat "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
+      - run: echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
 
       - name: Check current package version
         working-directory: ./nixpkgs
