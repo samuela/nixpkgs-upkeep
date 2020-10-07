@@ -97,3 +97,56 @@ jobs:
             ./../nixpkgs-upkeep/create-pr.sh
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+  spotify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: cachix/install-nix-action@v10
+
+      - name: Checkout nixpkgs-upkeep
+        uses: actions/checkout@v2
+        with:
+          path: nixpkgs-upkeep
+
+      - name: Checkout nixpkgs
+        uses: actions/checkout@v2
+        with:
+          repository: NixOS/nixpkgs
+          path: nixpkgs
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Check current package version
+        working-directory: ./nixpkgs
+        run: |
+          PACKAGE="spotify-unwrapped"
+          CURRENT_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
+          echo "::set-env name=PACKAGE::$PACKAGE"
+          echo "::set-env name=CURRENT_VERSION::$CURRENT_VERSION"
+
+      - name: Run custom update-script
+        working-directory: ./nixpkgs
+        # The spotify update script creates a commit at the end, which conflicts
+        # with create-pr.sh. See https://stackoverflow.com/questions/15772134/can-i-delete-a-git-commit-but-keep-the-changes.
+        run: |
+          before_commit=$(git rev-parse HEAD)
+          ./pkgs/applications/audio/spotify/update.sh
+          after_commit=$(git rev-parse HEAD)
+          if [ $before_commit != $after_commit ]; then
+            git reset "HEAD^"
+          fi
+
+      - working-directory: ./nixpkgs
+        run: git diff
+
+      - name: Create PR
+        working-directory: ./nixpkgs
+        # Note that the update script builds the derivation.
+        run: |
+          GH_TOKEN=$GH_TOKEN \
+            PACKAGE=$PACKAGE \
+            CURRENT_VERSION=$CURRENT_VERSION \
+            TESTED_OTHER_LINUX="true" \
+            GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
+            ./../nixpkgs-upkeep/create-pr.sh
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
