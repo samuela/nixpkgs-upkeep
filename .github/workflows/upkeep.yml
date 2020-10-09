@@ -50,6 +50,7 @@ jobs:
           GH_TOKEN=$GH_TOKEN \
             PACKAGE=$PACKAGE \
             CURRENT_VERSION=$CURRENT_VERSION \
+            TESTED_OTHER_LINUX="false" \
             GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
             ./../nixpkgs-upkeep/create-pr.sh
         env:
@@ -97,6 +98,7 @@ jobs:
           GH_TOKEN=$GH_TOKEN \
             PACKAGE=$PACKAGE \
             CURRENT_VERSION=$CURRENT_VERSION \
+            TESTED_OTHER_LINUX="false" \
             GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
             ./../nixpkgs-upkeep/create-pr.sh
         env:
