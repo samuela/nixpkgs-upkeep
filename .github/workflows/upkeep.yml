@@ -36,6 +36,7 @@ jobs:
 
       - name: Run custom update-script
         run: |
+          chmod +x ./nixpkgs/pkgs/applications/editors/vscode/update-vscode.sh
           ./nixpkgs/pkgs/applications/editors/vscode/update-vscode.sh
 
       - working-directory: ./nixpkgs
@@ -83,6 +84,7 @@ jobs:
 
       - name: Run custom update-script
         run: |
+          chmod +x ./nixpkgs/pkgs/applications/editors/vscode/update-vscodium.sh
           ./nixpkgs/pkgs/applications/editors/vscode/update-vscodium.sh
 
       - working-directory: ./nixpkgs
