@@ -36,9 +36,7 @@ jobs:
 
       - name: Run custom update-script
         run: |
-          cp nixpkgs-upkeep/custom-updaters/update-vscode.sh nixpkgs/pkgs/applications/editors/vscode/update-vscode.sh
           ./nixpkgs/pkgs/applications/editors/vscode/update-vscode.sh
-          rm nixpkgs/pkgs/applications/editors/vscode/update-vscode.sh
 
       - working-directory: ./nixpkgs
         run: git diff
@@ -85,9 +83,7 @@ jobs:
 
       - name: Run custom update-script
         run: |
-          cp nixpkgs-upkeep/custom-updaters/update-vscodium.sh nixpkgs/pkgs/applications/editors/vscode/update-vscodium.sh
           ./nixpkgs/pkgs/applications/editors/vscode/update-vscodium.sh
-          rm nixpkgs/pkgs/applications/editors/vscode/update-vscodium.sh
 
       - working-directory: ./nixpkgs
         run: git diff
