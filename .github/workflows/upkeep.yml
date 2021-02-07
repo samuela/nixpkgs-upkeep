@@ -38,9 +38,7 @@ jobs:
       - name: Run custom update-script
         working-directory: ./nixpkgs
         run: |
-          chmod +x ./pkgs/applications/editors/vscode/update-vscode.sh
           ./pkgs/applications/editors/vscode/update-vscode.sh
-          git restore ./pkgs/applications/editors/vscode/update-vscode.sh
 
       - working-directory: ./nixpkgs
         run: git diff
