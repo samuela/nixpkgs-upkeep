@@ -163,3 +163,51 @@ jobs:
             ./../nixpkgs-upkeep/create-pr.sh
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+  julia:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: cachix/install-nix-action@v12
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+
+      - name: Checkout nixpkgs-upkeep
+        uses: actions/checkout@v2
+        with:
+          path: nixpkgs-upkeep
+
+      - name: Checkout nixpkgs
+        uses: actions/checkout@v2
+        with:
+          repository: NixOS/nixpkgs
+          path: nixpkgs
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Check current package version
+        working-directory: ./nixpkgs
+        run: |
+          PACKAGE="julia_15"
+          CURRENT_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
+          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+          echo "CURRENT_VERSION=$CURRENT_VERSION" >> $GITHUB_ENV
+
+      - name: Run custom update-script
+        run: |
+          cp nixpkgs-upkeep/update-julia-1.5.py nixpkgs/pkgs/development/compilers/julia/update-julia-1.5.py
+          ./nixpkgs/pkgs/development/compilers/julia/update-julia-1.5.py
+          rm nixpkgs/pkgs/development/compilers/julia/update-julia-1.5.py
+
+      - working-directory: ./nixpkgs
+        run: git diff
+
+      - name: Create PR
+        working-directory: ./nixpkgs
+        run: |
+          GH_TOKEN=$GH_TOKEN \
+            PACKAGE=$PACKAGE \
+            CURRENT_VERSION=$CURRENT_VERSION \
+            TESTED_OTHER_LINUX="false" \
+            GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
+            ./../nixpkgs-upkeep/create-pr.sh
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
