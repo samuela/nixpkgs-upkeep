@@ -9,7 +9,7 @@ if git diff-index --quiet HEAD --; then
     exit 0
 fi
 
-newversion="$(nix eval --raw -f . $PACKAGE.version)"
+newversion="$(nix-instantiate --eval -E 'with import ./. {}; lib.getVersion $PACKAGE' --json | jq -r)"
 echo "Updating $PACKAGE from version $CURRENT_VERSION to version $newversion"
 
 # GitHub doesn't support exact matches in its Search thingy (https://stackoverflow.com/questions/26433561/how-to-search-on-github-to-get-exact-matches-like-what-quotes-do-for-google).
