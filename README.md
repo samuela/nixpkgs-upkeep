@@ -8,6 +8,7 @@ Currently the following packages are updated:
 - vscode
 - vscodium
 - julia_15
+- symfony-cli
 
 Submit a PR to get your favorite Nix packages added to this list!
 
@@ -15,9 +16,7 @@ All the activity goes down in the form of GitHub Actions, so go check those out 
 
 ## FAQ
 
-```
-refusing to allow a Personal Access Token to create or update workflow `.github/workflows/editorconfig.yml` without `workflow` scope
-```
+> Refusing to allow a Personal Access Token to create or update workflow `.github/workflows editorconfig.yml` without `workflow` scope
 
 Sometimes we get errors like this when pushing to samuela/nixpkgs, because samuela/nixpkgs is behind the upstream fork. When the fork is missing changes to sensitive files like `.github/...` stuff the push is rejected.
 
