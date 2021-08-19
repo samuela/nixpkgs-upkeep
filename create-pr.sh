@@ -19,10 +19,10 @@ tag=$(echo "nixpkgs-upkeep $PACKAGE $newversion" | md5sum | cut -d ' ' -f 1)
 
 # Search to see if we've already created a PR for this version of the package.
 existing_prs=$(curl --silent --get -H "Accept: application/vnd.github.v3+json" --data-urlencode "q=$tag org:NixOS repo:nixpkgs type:pr author:samuela" https://api.github.com/search/issues)
-existing_prs_count=$(echo $existing_prs | jq .total_count)
-if [ $existing_prs_count -gt 0 ]; then
+existing_prs_count=$(echo "$existing_prs" | jq .total_count)
+if [ "$existing_prs_count" -gt 0 ]; then
     echo "There seems to be an existing PR for this change already:"
-    echo $existing_prs | jq .items[].pull_request.html_url
+    echo "$existing_prs" | jq .items[].pull_request.html_url
     exit 0
 fi
 
@@ -39,13 +39,13 @@ git fetch --unshallow origin
 
 # See https://serverfault.com/questions/151109/how-do-i-get-the-current-unix-time-in-milliseconds-in-bash.
 branch="upkeep-bot/$PACKAGE-$newversion-$(date +%s)"
-git checkout -b $branch
+git checkout -b "$branch"
 git add .
 git commit -m "$PACKAGE: $CURRENT_VERSION -> $newversion"
-git push --set-upstream https://samuela:$GH_TOKEN@github.com/samuela/nixpkgs.git $branch
+git push --set-upstream "https://samuela:$GH_TOKEN@github.com/samuela/nixpkgs.git" "$branch"
 
 tested_box=" "
-if [ $TESTED_OTHER_LINUX == "true" ]; then
+if [ "$TESTED_OTHER_LINUX" == "true" ]; then
     tested_box="x"
 fi
 
@@ -83,6 +83,6 @@ _EOM_
 
 echo "Creating a new PR on NixOS/nixpkgs..."
 GITHUB_USER=samuela GITHUB_PASSWORD=$GH_TOKEN hub pull-request \
-    --head samuela:$branch \
+    --head samuela:"$branch" \
     --base NixOS:master \
     --message "$message"
