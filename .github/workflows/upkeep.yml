@@ -50,6 +50,7 @@ jobs:
           GH_TOKEN=$GH_TOKEN \
             PACKAGE=$PACKAGE \
             CURRENT_VERSION=$CURRENT_VERSION \
+            TARGET_BRANCH="master" \
             TESTED_OTHER_LINUX="false" \
             GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
             ./../nixpkgs-upkeep/create-pr.sh
@@ -96,6 +97,7 @@ jobs:
           GH_TOKEN=$GH_TOKEN \
             PACKAGE=$PACKAGE \
             CURRENT_VERSION=$CURRENT_VERSION \
+            TARGET_BRANCH="master" \
             TESTED_OTHER_LINUX="false" \
             GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
             ./../nixpkgs-upkeep/create-pr.sh
@@ -158,6 +160,7 @@ jobs:
           GH_TOKEN=$GH_TOKEN \
             PACKAGE=$PACKAGE \
             CURRENT_VERSION=$CURRENT_VERSION \
+            TARGET_BRANCH="master" \
             TESTED_OTHER_LINUX="true" \
             GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
             ./../nixpkgs-upkeep/create-pr.sh
@@ -209,6 +212,7 @@ jobs:
           GH_TOKEN=$GH_TOKEN \
             PACKAGE=$PACKAGE \
             CURRENT_VERSION=$CURRENT_VERSION \
+            TARGET_BRANCH="master" \
             TESTED_OTHER_LINUX="false" \
             GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
             ./../nixpkgs-upkeep/create-pr.sh
@@ -258,6 +262,7 @@ jobs:
           GH_TOKEN=$GH_TOKEN \
             PACKAGE=$PACKAGE \
             CURRENT_VERSION=$CURRENT_VERSION \
+            TARGET_BRANCH="staging" \
             TESTED_OTHER_LINUX="false" \
             GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
             ./../nixpkgs-upkeep/create-pr.sh

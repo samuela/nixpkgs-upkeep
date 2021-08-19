@@ -15,7 +15,7 @@ echo "Updating $PACKAGE from version $CURRENT_VERSION to version $newversion"
 # GitHub doesn't support exact matches in its Search thingy (https://stackoverflow.com/questions/26433561/how-to-search-on-github-to-get-exact-matches-like-what-quotes-do-for-google).
 # As a workaround we tag each PR with a unique string we can search later to
 # check if we've already created a PR for the same update.
-tag=$(echo "nixpkgs-upkeep $PACKAGE $newversion" | md5sum | cut -d ' ' -f 1)
+tag=$(echo "nixpkgs-upkeep $PACKAGE $newversion $TARGET_BRANCH" | md5sum | cut -d ' ' -f 1)
 
 # Search to see if we've already created a PR for this version of the package.
 existing_prs=$(curl --silent --get -H "Accept: application/vnd.github.v3+json" --data-urlencode "q=$tag org:NixOS repo:nixpkgs type:pr author:samuela" https://api.github.com/search/issues)
@@ -36,6 +36,9 @@ git config --global user.name "nixpkgs-upkeep-bot"
 # We start with only a shallow clone because it's far, far faster and it most
 # cases we don't ever need to push anything.
 git fetch --unshallow origin
+
+# Checkout the target branch first so that our commit has the right parent.
+git checkout "$TARGET_BRANCH"
 
 # See https://serverfault.com/questions/151109/how-do-i-get-the-current-unix-time-in-milliseconds-in-bash.
 branch="upkeep-bot/$PACKAGE-$newversion-$(date +%s)"
@@ -84,5 +87,5 @@ _EOM_
 echo "Creating a new PR on NixOS/nixpkgs..."
 GITHUB_USER=samuela GITHUB_PASSWORD=$GH_TOKEN hub pull-request \
     --head samuela:"$branch" \
-    --base NixOS:master \
+    --base NixOS:"$TARGET_BRANCH" \
     --message "$message"
