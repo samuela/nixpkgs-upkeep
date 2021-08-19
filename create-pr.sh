@@ -27,8 +27,8 @@ if [ "$existing_prs_count" -gt 0 ]; then
 fi
 
 # We need to set up our git user config in order to commit.
-git config --global user.email "foo@bar.com"
-git config --global user.name "upkeep-bot"
+git config --global user.email "skainsworth@gmail.com"
+git config --global user.name "nixpkgs-upkeep-bot"
 
 # We need to get a complete unshallow checkout if we're going to push to another
 # repo. See https://github.community/t/automating-push-to-public-repo/17742/11?u=samuela
