@@ -4,10 +4,11 @@ Auto-updates bot for Nixpkgs. Updating packages in Nixpkgs is important but tedi
 
 Currently the following packages are updated:
 
+- plexamp
+- python3Packages.matplotlib
 - spotify
 - vscode
 - vscodium
-- julia_15
 
 Submit a PR to get your favorite Nix packages added to this list!
 
