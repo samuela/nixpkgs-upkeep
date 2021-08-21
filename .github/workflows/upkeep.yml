@@ -187,8 +187,9 @@ jobs:
 
       - name: Check current package version before update script
         working-directory: ./nixpkgs
+        # Note plexamp doesn't work with "nix eval -f . plexamp.version" for some reason.
         run: |
-          PRE_VERSION="$(nix eval --raw -f . plexamp.version)"
+          PRE_VERSION="$(nix-instantiate --eval -E "with import ./. {}; lib.getVersion plexamp" --json | jq -r)"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
 
       - name: Run custom update-script
