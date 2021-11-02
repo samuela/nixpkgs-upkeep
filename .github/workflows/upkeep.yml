@@ -10,7 +10,7 @@ jobs:
   vscode:
     runs-on: ubuntu-latest
     steps:
-      - uses: cachix/install-nix-action@v12
+      - uses: cachix/install-nix-action@v14
         with:
           nix_path: nixpkgs=channel:nixos-unstable
 
@@ -58,7 +58,7 @@ jobs:
   vscodium:
     runs-on: ubuntu-latest
     steps:
-      - uses: cachix/install-nix-action@v12
+      - uses: cachix/install-nix-action@v14
         with:
           nix_path: nixpkgs=channel:nixos-unstable
 
@@ -103,7 +103,7 @@ jobs:
   spotify:
     runs-on: ubuntu-latest
     steps:
-      - uses: cachix/install-nix-action@v12
+      - uses: cachix/install-nix-action@v14
         with:
           nix_path: nixpkgs=channel:nixos-unstable
 
@@ -164,7 +164,7 @@ jobs:
   plexamp:
     runs-on: ubuntu-latest
     steps:
-      - uses: cachix/install-nix-action@v12
+      - uses: cachix/install-nix-action@v14
         with:
           nix_path: nixpkgs=channel:nixos-unstable
 
@@ -215,7 +215,7 @@ jobs:
   matplotlib:
     runs-on: ubuntu-latest
     steps:
-      - uses: cachix/install-nix-action@v12
+      - uses: cachix/install-nix-action@v14
         with:
           nix_path: nixpkgs=channel:nixos-unstable
 
@@ -263,7 +263,7 @@ jobs:
   # julia:
   #   runs-on: ubuntu-latest
   #   steps:
-  #     - uses: cachix/install-nix-action@v12
+  #     - uses: cachix/install-nix-action@v14
   #       with:
   #         nix_path: nixpkgs=channel:nixos-unstable
 
