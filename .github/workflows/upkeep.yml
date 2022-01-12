@@ -315,6 +315,7 @@ jobs:
         working-directory: ./nixpkgs
         run: |
           GH_TOKEN=$GH_TOKEN \
+            TARGET_BRANCH="master" \
             PACKAGE=$PACKAGE \
             PRE_VERSION=$PRE_VERSION \
             TESTED_OTHER_LINUX="true" \
@@ -368,6 +369,7 @@ jobs:
         working-directory: ./nixpkgs
         run: |
           GH_TOKEN=$GH_TOKEN \
+            TARGET_BRANCH="master" \
             PACKAGE=$PACKAGE \
             PRE_VERSION=$PRE_VERSION \
             TESTED_OTHER_LINUX="true" \
@@ -421,6 +423,7 @@ jobs:
         working-directory: ./nixpkgs
         run: |
           GH_TOKEN=$GH_TOKEN \
+            TARGET_BRANCH="master" \
             PACKAGE=$PACKAGE \
             PRE_VERSION=$PRE_VERSION \
             TESTED_OTHER_LINUX="true" \
