@@ -155,12 +155,15 @@ jobs:
       - working-directory: ./nixpkgs
         run: git diff
 
+      - working-directory: ./nixpkgs
+        run: nix-build -A $PACKAGE
+
       - name: Create PR
         working-directory: ./nixpkgs
         run: |
           PACKAGE="plexamp" \
             TARGET_BRANCH="master" \
-            TESTED_OTHER_LINUX="false" \
+            TESTED_OTHER_LINUX="true" \
             PRE_VERSION=$PRE_VERSION \
             GH_TOKEN=$GH_TOKEN \
             GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
@@ -217,9 +220,12 @@ jobs:
       - working-directory: ./nixpkgs
         run: git diff
 
+      # Note that the update script builds the derivation already, but we do this for consistency.
+      - working-directory: ./nixpkgs
+        run: nix-build -A $PACKAGE
+
       - name: Create PR
         working-directory: ./nixpkgs
-        # Note that the update script builds the derivation, hence we set TESTED_OTHER_LINUX="true".
         run: |
           PACKAGE="spotify-unwrapped" \
             TARGET_BRANCH="master" \
@@ -268,12 +274,15 @@ jobs:
       - working-directory: ./nixpkgs
         run: git diff
 
+      - working-directory: ./nixpkgs
+        run: nix-build -A $PACKAGE
+
       - name: Create PR
         working-directory: ./nixpkgs
         run: |
           PACKAGE="python3Packages.matplotlib" \
             TARGET_BRANCH="staging" \
-            TESTED_OTHER_LINUX="false" \
+            TESTED_OTHER_LINUX="true" \
             PRE_VERSION=$PRE_VERSION \
             GH_TOKEN=$GH_TOKEN \
             GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
@@ -317,13 +326,16 @@ jobs:
       - working-directory: ./nixpkgs
         run: git diff
 
+      - working-directory: ./nixpkgs
+        run: nix-build -A $PACKAGE
+
       # It doesn't seem possible to get the URL of the current running job, only the current RUN_ID. See https://github.community/t/github-actions-url-to-run/16029/14.
       - name: Create PR
         working-directory: ./nixpkgs
         run: |
           PACKAGE="vscode" \
             TARGET_BRANCH="master" \
-            TESTED_OTHER_LINUX="false" \
+            TESTED_OTHER_LINUX="true" \
             PRE_VERSION=$PRE_VERSION \
             GH_TOKEN=$GH_TOKEN \
             GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
@@ -365,12 +377,15 @@ jobs:
       - working-directory: ./nixpkgs
         run: git diff
 
+      - working-directory: ./nixpkgs
+        run: nix-build -A $PACKAGE
+
       - name: Create PR
         working-directory: ./nixpkgs
         run: |
           PACKAGE="vscodium" \
             TARGET_BRANCH="master" \
-            TESTED_OTHER_LINUX="false" \
+            TESTED_OTHER_LINUX="true" \
             PRE_VERSION=$PRE_VERSION \
             GH_TOKEN=$GH_TOKEN \
             GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
