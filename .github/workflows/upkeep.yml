@@ -16,6 +16,12 @@ jobs:
           extra_nix_config: |
             experimental-features = nix-command flakes
 
+      # See https://nix.dev/tutorials/continuous-integration-github-actions
+      - uses: cachix/cachix-action@v10
+        with:
+          name: ploop
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+
       - name: Checkout nixpkgs
         uses: actions/checkout@v2
         with:
@@ -24,28 +30,33 @@ jobs:
           token: ${{ secrets.GH_TOKEN }}
 
       - working-directory: ./nixpkgs
+        run: git log -1
+
+      - name: nix-build ALL THE THINGZZZZ
+        working-directory: ./nixpkgs
         run: |
-          nix-build -A julia_17-bin
-          nix-build -A python3
-          nix-build -A python3Packages.dm-haiku
-          nix-build -A python3Packages.elegy
-          nix-build -A python3Packages.flax
-          nix-build -A python3Packages.ipython
-          nix-build -A python3Packages.jax
-          nix-build -A python3Packages.jaxlib
-          nix-build -A python3Packages.jmp
-          nix-build -A python3Packages.optax
-          nix-build -A python3Packages.matplotlib
-          nix-build -A python3Packages.plotly
-          nix-build -A python3Packages.tensorflow
-          nix-build -A python3Packages.tensorflow-datasets
-          nix-build -A python3Packages.tqdm
-          nix-build -A python3Packages.treeo
-          nix-build -A python3Packages.treex
-          nix-build -A plexamp
-          nix-build -A spotify
-          nix-build -A vscode
-          nix-build -A vscodium
+          nix-build \
+            -A julia_17-bin \
+            -A python3 \
+            -A python3Packages.dm-haiku \
+            -A python3Packages.elegy \
+            -A python3Packages.flax \
+            -A python3Packages.ipython \
+            -A python3Packages.jax \
+            -A python3Packages.jaxlib \
+            -A python3Packages.jmp \
+            -A python3Packages.optax \
+            -A python3Packages.matplotlib \
+            -A python3Packages.plotly \
+            -A python3Packages.tensorflow \
+            -A python3Packages.tensorflow-datasets \
+            -A python3Packages.tqdm \
+            -A python3Packages.treeo \
+            -A python3Packages.treex \
+            -A plexamp \
+            -A spotify \
+            -A vscode \
+            -A vscodium \
 
   jax:
     runs-on: ubuntu-latest
