@@ -86,7 +86,7 @@ jobs:
         run: git diff
 
       - working-directory: ./nixpkgs
-        run: nix-build -A $PACKAGE
+        run: nix-build -A python3Packages.jax
 
       - name: Create PR
         working-directory: ./nixpkgs
@@ -140,7 +140,7 @@ jobs:
         run: git diff
 
       - working-directory: ./nixpkgs
-        run: nix-build -A $PACKAGE
+        run: nix-build -A julia_17-bin
 
       - name: Create PR
         working-directory: ./nixpkgs
@@ -196,7 +196,7 @@ jobs:
         run: git diff
 
       - working-directory: ./nixpkgs
-        run: nix-build -A $PACKAGE
+        run: nix-build -A plexamp
 
       - name: Create PR
         working-directory: ./nixpkgs
@@ -262,7 +262,7 @@ jobs:
 
       # Note that the update script builds the derivation already, but we do this for consistency.
       - working-directory: ./nixpkgs
-        run: nix-build -A $PACKAGE
+        run: nix-build -A spotify
 
       - name: Create PR
         working-directory: ./nixpkgs
@@ -315,7 +315,7 @@ jobs:
         run: git diff
 
       - working-directory: ./nixpkgs
-        run: nix-build -A $PACKAGE
+        run: nix-build -A python3Packages.matplotlib
 
       - name: Create PR
         working-directory: ./nixpkgs
@@ -367,7 +367,7 @@ jobs:
         run: git diff
 
       - working-directory: ./nixpkgs
-        run: nix-build -A $PACKAGE
+        run: nix-build -A vscode
 
       # It doesn't seem possible to get the URL of the current running job, only the current RUN_ID. See https://github.community/t/github-actions-url-to-run/16029/14.
       - name: Create PR
@@ -418,7 +418,7 @@ jobs:
         run: git diff
 
       - working-directory: ./nixpkgs
-        run: nix-build -A $PACKAGE
+        run: nix-build -A vscodium
 
       - name: Create PR
         working-directory: ./nixpkgs
@@ -472,7 +472,7 @@ jobs:
         run: git diff
 
       - working-directory: ./nixpkgs
-        run: nix-build -A $PACKAGE
+        run: nix-build -A python3Packages.wandb
 
       - name: Create PR
         working-directory: ./nixpkgs
