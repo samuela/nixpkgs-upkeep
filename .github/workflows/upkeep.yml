@@ -368,6 +368,9 @@ jobs:
           PRE_VERSION="$(nix eval --raw -f . vscode.version)"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
 
+      - name: allow unfree
+        run: echo "{ allowUnfree = true; }" >> ~/.config/nixpkgs/config.nix
+
       # See https://github.com/NixOS/nixpkgs/pull/100461.
       - name: Run custom update-script
         working-directory: ./nixpkgs
