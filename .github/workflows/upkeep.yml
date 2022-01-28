@@ -32,6 +32,10 @@ jobs:
       - working-directory: ./nixpkgs
         run: git log -1
 
+      - run: |
+          mkdir -p ~/.config/nixpkgs/
+          echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
+
       - name: nix-build ALL THE THINGZZZZ
         working-directory: ./nixpkgs
         run: |
