@@ -1,3 +1,5 @@
+# TODO: generate this with dhall?
+
 name: upkeep
 
 on:
@@ -7,7 +9,7 @@ on:
     branches: [main]
 
 jobs:
-  build-canary:
+  dm-haiku:
     runs-on: ubuntu-latest
     steps:
       - uses: cachix/install-nix-action@v16
@@ -16,11 +18,10 @@ jobs:
           extra_nix_config: |
             experimental-features = nix-command flakes
 
-      # See https://nix.dev/tutorials/continuous-integration-github-actions
-      - uses: cachix/cachix-action@v10
+      - name: Checkout nixpkgs-upkeep
+        uses: actions/checkout@v2
         with:
-          name: ploop
-          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          path: nixpkgs-upkeep
 
       - name: Checkout nixpkgs
         uses: actions/checkout@v2
@@ -29,38 +30,128 @@ jobs:
           path: nixpkgs
           token: ${{ secrets.GH_TOKEN }}
 
-      - working-directory: ./nixpkgs
-        run: git log -1
-
-      - run: |
-          mkdir -p ~/.config/nixpkgs/
-          echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
-
-      - name: nix-build ALL THE THINGZZZZ
+      - name: Check current package version
         working-directory: ./nixpkgs
         run: |
-          nix-build \
-            -A julia_17-bin \
-            -A python3 \
-            -A python3Packages.dm-haiku \
-            -A python3Packages.elegy \
-            -A python3Packages.flax \
-            -A python3Packages.ipython \
-            -A python3Packages.jax \
-            -A python3Packages.jaxlib \
-            -A python3Packages.jmp \
-            -A python3Packages.optax \
-            -A python3Packages.matplotlib \
-            -A python3Packages.plotly \
-            -A python3Packages.tensorflow \
-            -A python3Packages.tensorflow-datasets \
-            -A python3Packages.tqdm \
-            -A python3Packages.treeo \
-            -A python3Packages.treex \
-            -A plexamp \
-            -A spotify \
-            -A vscode \
-            -A vscodium \
+          PACKAGE="python3Packages.dm-haiku"
+          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
+          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+          echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
+
+      - name: build canary
+        working-directory: ./nixpkgs-upkeep
+        run: |
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+  elegy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: cachix/install-nix-action@v16
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+
+      - name: Checkout nixpkgs-upkeep
+        uses: actions/checkout@v2
+        with:
+          path: nixpkgs-upkeep
+
+      - name: Checkout nixpkgs
+        uses: actions/checkout@v2
+        with:
+          repository: NixOS/nixpkgs
+          path: nixpkgs
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Check current package version
+        working-directory: ./nixpkgs
+        run: |
+          PACKAGE="python3Packages.elegy"
+          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
+          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+          echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
+
+      - name: build canary
+        working-directory: ./nixpkgs-upkeep
+        run: |
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+  flax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: cachix/install-nix-action@v16
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+
+      - name: Checkout nixpkgs-upkeep
+        uses: actions/checkout@v2
+        with:
+          path: nixpkgs-upkeep
+
+      - name: Checkout nixpkgs
+        uses: actions/checkout@v2
+        with:
+          repository: NixOS/nixpkgs
+          path: nixpkgs
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Check current package version
+        working-directory: ./nixpkgs
+        run: |
+          PACKAGE="python3Packages.flax"
+          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
+          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+          echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
+
+      - name: build canary
+        working-directory: ./nixpkgs-upkeep
+        run: |
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+  ipython:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: cachix/install-nix-action@v16
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+
+      - name: Checkout nixpkgs-upkeep
+        uses: actions/checkout@v2
+        with:
+          path: nixpkgs-upkeep
+
+      - name: Checkout nixpkgs
+        uses: actions/checkout@v2
+        with:
+          repository: NixOS/nixpkgs
+          path: nixpkgs
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Check current package version
+        working-directory: ./nixpkgs
+        run: |
+          PACKAGE="python3Packages.ipython"
+          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
+          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+          echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
+
+      - name: build canary
+        working-directory: ./nixpkgs-upkeep
+        run: |
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
   jax:
     runs-on: ubuntu-latest
@@ -91,6 +182,13 @@ jobs:
           echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
 
+      - name: build canary
+        working-directory: ./nixpkgs-upkeep
+        run: |
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
       - name: Run custom update-script
         run: |
           cp nixpkgs-upkeep/update-jax.py nixpkgs/pkgs/development/python-modules/jax/update-jax.py
@@ -113,6 +211,114 @@ jobs:
             TESTED_OTHER_LINUX="true" \
             GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
             ./../nixpkgs-upkeep/create-pr.sh
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+  jaxlib:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: cachix/install-nix-action@v16
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+
+      - name: Checkout nixpkgs-upkeep
+        uses: actions/checkout@v2
+        with:
+          path: nixpkgs-upkeep
+
+      - name: Checkout nixpkgs
+        uses: actions/checkout@v2
+        with:
+          repository: NixOS/nixpkgs
+          path: nixpkgs
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Check current package version
+        working-directory: ./nixpkgs
+        run: |
+          PACKAGE="python3Packages.jaxlib"
+          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
+          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+          echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
+
+      - name: build canary
+        working-directory: ./nixpkgs-upkeep
+        run: |
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+  jaxlibWithCuda:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: cachix/install-nix-action@v16
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+
+      - name: Checkout nixpkgs-upkeep
+        uses: actions/checkout@v2
+        with:
+          path: nixpkgs-upkeep
+
+      - name: Checkout nixpkgs
+        uses: actions/checkout@v2
+        with:
+          repository: NixOS/nixpkgs
+          path: nixpkgs
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Check current package version
+        working-directory: ./nixpkgs
+        run: |
+          PACKAGE="python3Packages.jaxlibWithCuda"
+          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
+          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+          echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
+
+      - name: build canary
+        working-directory: ./nixpkgs-upkeep
+        run: |
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+  jmp:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: cachix/install-nix-action@v16
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+
+      - name: Checkout nixpkgs-upkeep
+        uses: actions/checkout@v2
+        with:
+          path: nixpkgs-upkeep
+
+      - name: Checkout nixpkgs
+        uses: actions/checkout@v2
+        with:
+          repository: NixOS/nixpkgs
+          path: nixpkgs
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Check current package version
+        working-directory: ./nixpkgs
+        run: |
+          PACKAGE="python3Packages.jmp"
+          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
+          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+          echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
+
+      - name: build canary
+        working-directory: ./nixpkgs-upkeep
+        run: |
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
@@ -145,6 +351,13 @@ jobs:
           echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
 
+      - name: build canary
+        working-directory: ./nixpkgs-upkeep
+        run: |
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
       - name: Run custom update-script
         run: |
           cp nixpkgs-upkeep/update-julia-1.7.py nixpkgs/pkgs/development/compilers/julia/update-julia-1.7.py
@@ -167,6 +380,104 @@ jobs:
             TESTED_OTHER_LINUX="true" \
             GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
             ./../nixpkgs-upkeep/create-pr.sh
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+  matplotlib:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: cachix/install-nix-action@v16
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+
+      - name: Checkout nixpkgs-upkeep
+        uses: actions/checkout@v2
+        with:
+          path: nixpkgs-upkeep
+
+      - name: Checkout nixpkgs
+        uses: actions/checkout@v2
+        with:
+          repository: NixOS/nixpkgs
+          path: nixpkgs
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Check current package version before update script
+        working-directory: ./nixpkgs
+        run: |
+          PACKAGE="python3Packages.matplotlib"
+          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
+          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+          echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
+
+      - name: build canary
+        working-directory: ./nixpkgs-upkeep
+        run: |
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+      - name: Run custom update-script
+        run: |
+          cp ./nixpkgs-upkeep/update-matplotlib.py ./nixpkgs/pkgs/development/python-modules/matplotlib
+          chmod +x ./nixpkgs/pkgs/development/python-modules/matplotlib/update-matplotlib.py
+          ./nixpkgs/pkgs/development/python-modules/matplotlib/update-matplotlib.py
+          rm ./nixpkgs/pkgs/development/python-modules/matplotlib/update-matplotlib.py
+
+      - working-directory: ./nixpkgs
+        run: git diff
+
+      - working-directory: ./nixpkgs
+        run: nix-build -A python3Packages.matplotlib
+
+      - name: Create PR
+        working-directory: ./nixpkgs
+        run: |
+          PACKAGE="python3Packages.matplotlib" \
+            TARGET_BRANCH="staging" \
+            TESTED_OTHER_LINUX="true" \
+            PRE_VERSION=$PRE_VERSION \
+            GH_TOKEN=$GH_TOKEN \
+            GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
+            ./../nixpkgs-upkeep/create-pr.sh
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+  optax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: cachix/install-nix-action@v16
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+
+      - name: Checkout nixpkgs-upkeep
+        uses: actions/checkout@v2
+        with:
+          path: nixpkgs-upkeep
+
+      - name: Checkout nixpkgs
+        uses: actions/checkout@v2
+        with:
+          repository: NixOS/nixpkgs
+          path: nixpkgs
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Check current package version
+        working-directory: ./nixpkgs
+        run: |
+          PACKAGE="python3Packages.optax"
+          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
+          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+          echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
+
+      - name: build canary
+        working-directory: ./nixpkgs-upkeep
+        run: |
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
@@ -223,6 +534,42 @@ jobs:
             GH_TOKEN=$GH_TOKEN \
             GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
             ./../nixpkgs-upkeep/create-pr.sh
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+  plotly:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: cachix/install-nix-action@v16
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+
+      - name: Checkout nixpkgs-upkeep
+        uses: actions/checkout@v2
+        with:
+          path: nixpkgs-upkeep
+
+      - name: Checkout nixpkgs
+        uses: actions/checkout@v2
+        with:
+          repository: NixOS/nixpkgs
+          path: nixpkgs
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Check current package version
+        working-directory: ./nixpkgs
+        run: |
+          PACKAGE="python3Packages.plotly"
+          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
+          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+          echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
+
+      - name: build canary
+        working-directory: ./nixpkgs-upkeep
+        run: |
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
@@ -292,7 +639,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
-  matplotlib:
+  tensorflow:
     runs-on: ubuntu-latest
     steps:
       - uses: cachix/install-nix-action@v16
@@ -313,35 +660,162 @@ jobs:
           path: nixpkgs
           token: ${{ secrets.GH_TOKEN }}
 
-      - name: Check current package version before update script
+      - name: Check current package version
         working-directory: ./nixpkgs
         run: |
-          PRE_VERSION="$(nix eval --raw -f . python3Packages.matplotlib.version)"
+          PACKAGE="python3Packages.tensorflow"
+          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
+          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
 
-      - name: Run custom update-script
+      - name: build canary
+        working-directory: ./nixpkgs-upkeep
         run: |
-          cp ./nixpkgs-upkeep/update-matplotlib.py ./nixpkgs/pkgs/development/python-modules/matplotlib
-          chmod +x ./nixpkgs/pkgs/development/python-modules/matplotlib/update-matplotlib.py
-          ./nixpkgs/pkgs/development/python-modules/matplotlib/update-matplotlib.py
-          rm ./nixpkgs/pkgs/development/python-modules/matplotlib/update-matplotlib.py
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
-      - working-directory: ./nixpkgs
-        run: git diff
+  tensorflow-datasets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: cachix/install-nix-action@v16
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+          extra_nix_config: |
+            experimental-features = nix-command flakes
 
-      - working-directory: ./nixpkgs
-        run: nix-build -A python3Packages.matplotlib
+      - name: Checkout nixpkgs-upkeep
+        uses: actions/checkout@v2
+        with:
+          path: nixpkgs-upkeep
 
-      - name: Create PR
+      - name: Checkout nixpkgs
+        uses: actions/checkout@v2
+        with:
+          repository: NixOS/nixpkgs
+          path: nixpkgs
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Check current package version
         working-directory: ./nixpkgs
         run: |
-          PACKAGE="python3Packages.matplotlib" \
-            TARGET_BRANCH="staging" \
-            TESTED_OTHER_LINUX="true" \
-            PRE_VERSION=$PRE_VERSION \
-            GH_TOKEN=$GH_TOKEN \
-            GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
-            ./../nixpkgs-upkeep/create-pr.sh
+          PACKAGE="python3Packages.tensorflow-datasets"
+          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
+          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+          echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
+
+      - name: build canary
+        working-directory: ./nixpkgs-upkeep
+        run: |
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+  tqdm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: cachix/install-nix-action@v16
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+
+      - name: Checkout nixpkgs-upkeep
+        uses: actions/checkout@v2
+        with:
+          path: nixpkgs-upkeep
+
+      - name: Checkout nixpkgs
+        uses: actions/checkout@v2
+        with:
+          repository: NixOS/nixpkgs
+          path: nixpkgs
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Check current package version
+        working-directory: ./nixpkgs
+        run: |
+          PACKAGE="python3Packages.tqdm"
+          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
+          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+          echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
+
+      - name: build canary
+        working-directory: ./nixpkgs-upkeep
+        run: |
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+  treeo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: cachix/install-nix-action@v16
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+
+      - name: Checkout nixpkgs-upkeep
+        uses: actions/checkout@v2
+        with:
+          path: nixpkgs-upkeep
+
+      - name: Checkout nixpkgs
+        uses: actions/checkout@v2
+        with:
+          repository: NixOS/nixpkgs
+          path: nixpkgs
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Check current package version
+        working-directory: ./nixpkgs
+        run: |
+          PACKAGE="python3Packages.treeo"
+          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
+          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+          echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
+
+      - name: build canary
+        working-directory: ./nixpkgs-upkeep
+        run: |
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+  treex:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: cachix/install-nix-action@v16
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+
+      - name: Checkout nixpkgs-upkeep
+        uses: actions/checkout@v2
+        with:
+          path: nixpkgs-upkeep
+
+      - name: Checkout nixpkgs
+        uses: actions/checkout@v2
+        with:
+          repository: NixOS/nixpkgs
+          path: nixpkgs
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Check current package version
+        working-directory: ./nixpkgs
+        run: |
+          PACKAGE="python3Packages.treex"
+          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
+          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+          echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
+
+      - name: build canary
+        working-directory: ./nixpkgs-upkeep
+        run: |
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
@@ -484,9 +958,7 @@ jobs:
       - name: build canary
         working-directory: ./nixpkgs-upkeep
         run: |
-          GH_TOKEN=$GH_TOKEN ./canary.py \
-            --nixpkgs ../nixpkgs \
-            --attr python3Packages.wandb
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
@@ -499,6 +971,7 @@ jobs:
       - working-directory: ./nixpkgs
         run: git diff
 
+      # We need to build again since the update script may have changed things.
       - working-directory: ./nixpkgs
         run: nix-build -A python3Packages.wandb
 
