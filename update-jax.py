@@ -4,15 +4,21 @@
 import os
 import re
 import subprocess
+from datetime import datetime
 
 import requests
 
 gh_owner = "google"
 gh_repo = "jax"
 
-release = requests.get(
-    f"https://api.github.com/repos/{gh_owner}/{gh_repo}/releases/latest").json(
-    )
+# jax and jaxlib are both released from the same GitHub repo, so we need to
+# filter out only the jax releases.
+all_releases = requests.get(
+    f"https://api.github.com/repos/{gh_owner}/{gh_repo}/releases").json()
+jax_releases = [r for r in all_releases if r["tag_name"].startswith("jax-v")]
+release = max(
+    jax_releases,
+    key=lambda r: datetime.strptime(r["published_at"], "%Y-%m-%dT%H:%M:%SZ"))
 tarball_url = release["tarball_url"]
 tag_name = release["tag_name"]
 print(f"Found release {tag_name}")
