@@ -481,6 +481,15 @@ jobs:
           echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
 
+      - name: build canary
+        working-directory: ./nixpkgs-upkeep
+        run: |
+          GH_TOKEN=$GH_TOKEN ./canary.py \
+            --nixpkgs ../nixpkgs \
+            --attr python3Packages.wandb
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
       - name: Run custom update-script
         run: |
           cp nixpkgs-upkeep/update-wandb.py nixpkgs/pkgs/development/python-modules/wandb/update-wandb.py
