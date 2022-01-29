@@ -1,14 +1,37 @@
 # nixpkgs-upkeep
 
-Auto-updates bot for Nixpkgs. Updating packages in Nixpkgs is important but tedious work. nixpkgs-upkeep is a simple bot that checks for updates every 12 hours and creates PRs so you don't have to.
+nixpkgs-upkeep is an auto-update and CI bot for nixpkgs.
 
-Currently the following packages are updated:
+**Auto-updating:** Updating packages in Nixpkgs is important but tedious work. nixpkgs-upkeep is a simple bot that checks for updates every 12 hours and creates PRs so you don't have to.
 
-- plexamp
-- python3Packages.matplotlib
-- spotify
-- vscode
-- vscodium
+**CI:** nixpkgs-upkeep builds a set of packages on nixpkgs master every 12 hours, and automatically creates GitHub issues when there are failures.
+
+Currently the following packages are support:
+
+| Package             | Update | CI  |
+| ------------------- | ------ | --- |
+| dm-haiku            |        | y   |
+| elegy               |        | y   |
+| flax                |        | y   |
+| ipython             |        | y   |
+| jax                 | y      | y   |
+| jaxlib              |        | y   |
+| jaxlibWithCuda      |        | y   |
+| jmp                 |        | y   |
+| julia_17-bin        | y      | y   |
+| matplotlib          | y      | y   |
+| optax               |        | y   |
+| plexamp             | y      |     |
+| plotly              |        | y   |
+| spotify             | y      |     |
+| tensorflow          |        | y   |
+| tensorflow-datasets |        | y   |
+| tqdm                |        | y   |
+| treeo               |        | y   |
+| treex               |        | y   |
+| vscode              | y      |     |
+| vscodium            | y      |     |
+| wandb               | y      | y   |
 
 Submit a PR to get your favorite Nix packages added to this list!
 
