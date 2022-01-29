@@ -6,7 +6,7 @@ nixpkgs-upkeep is an auto-update and CI bot for nixpkgs.
 
 **CI:** nixpkgs-upkeep builds a set of packages on nixpkgs master every 12 hours, and automatically creates GitHub issues when there are failures.
 
-Currently the following packages are support:
+Currently the following packages are supported:
 
 | Package             | Update | CI  |
 | ------------------- | ------ | --- |
