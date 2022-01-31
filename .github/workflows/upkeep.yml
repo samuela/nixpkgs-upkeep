@@ -180,10 +180,10 @@ jobs:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
         name: Create PR
         run: |
-          GH_TOKEN=$GH_TOKEN \
+          GH_TOKEN="$GH_TOKEN" \
             TARGET_BRANCH="master" \
-            PACKAGE=$PACKAGE \
-            PRE_VERSION=$PRE_VERSION \
+            PACKAGE="python3Packages.jax" \
+            PRE_VERSION="$PRE_VERSION" \
             TESTED_OTHER_LINUX="true" \
             GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
             ./../nixpkgs-upkeep/create-pr.sh
@@ -334,10 +334,10 @@ jobs:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
         name: Create PR
         run: |
-          GH_TOKEN=$GH_TOKEN \
+          GH_TOKEN="$GH_TOKEN" \
             TARGET_BRANCH="master" \
-            PACKAGE=$PACKAGE \
-            PRE_VERSION=$PRE_VERSION \
+            PACKAGE="julia_17-bin" \
+            PRE_VERSION="$PRE_VERSION" \
             TESTED_OTHER_LINUX="true" \
             GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
             ./../nixpkgs-upkeep/create-pr.sh
@@ -386,11 +386,11 @@ jobs:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
         name: Create PR
         run: |
-          PACKAGE="python3Packages.matplotlib" \
+          GH_TOKEN="$GH_TOKEN" \
             TARGET_BRANCH="staging" \
+            PACKAGE="python3Packages.matplotlib" \
+            PRE_VERSION="$PRE_VERSION" \
             TESTED_OTHER_LINUX="true" \
-            PRE_VERSION=$PRE_VERSION \
-            GH_TOKEN=$GH_TOKEN \
             GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
             ./../nixpkgs-upkeep/create-pr.sh
         working-directory: "./nixpkgs"
@@ -463,11 +463,11 @@ jobs:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
         name: Create PR
         run: |
-          PACKAGE="plexamp" \
+          GH_TOKEN="$GH_TOKEN" \
             TARGET_BRANCH="master" \
+            PACKAGE="plexamp" \
+            PRE_VERSION="$PRE_VERSION" \
             TESTED_OTHER_LINUX="true" \
-            PRE_VERSION=$PRE_VERSION \
-            GH_TOKEN=$GH_TOKEN \
             GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
             ./../nixpkgs-upkeep/create-pr.sh
         working-directory: "./nixpkgs"
@@ -550,11 +550,11 @@ jobs:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
         name: Create PR
         run: |
-          PACKAGE="spotify-unwrapped" \
+          GH_TOKEN="$GH_TOKEN" \
             TARGET_BRANCH="master" \
+            PACKAGE="spotify-unwrapped" \
+            PRE_VERSION="$PRE_VERSION" \
             TESTED_OTHER_LINUX="true" \
-            PRE_VERSION=$PRE_VERSION \
-            GH_TOKEN=$GH_TOKEN \
             GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
             ./../nixpkgs-upkeep/create-pr.sh
         working-directory: "./nixpkgs"
@@ -745,6 +745,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Allow unfree
+        run: |
+          mkdir -p ~/.config/nixpkgs/
+          echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PACKAGE="vscode"
@@ -752,10 +756,6 @@ jobs:
           echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
-      - name: Allow unfree
-        run: |
-          mkdir -p ~/.config/nixpkgs/
-          echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - run: "./nixpkgs/pkgs/applications/editors/vscode/update-vscode.sh"
       - run: git diff
         working-directory: "./nixpkgs"
@@ -765,11 +765,11 @@ jobs:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
         name: Create PR
         run: |
-          PACKAGE="vscode" \
+          GH_TOKEN="$GH_TOKEN" \
             TARGET_BRANCH="master" \
+            PACKAGE="vscode" \
+            PRE_VERSION="$PRE_VERSION" \
             TESTED_OTHER_LINUX="true" \
-            PRE_VERSION=$PRE_VERSION \
-            GH_TOKEN=$GH_TOKEN \
             GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
             ./../nixpkgs-upkeep/create-pr.sh
         working-directory: "./nixpkgs"
@@ -806,11 +806,11 @@ jobs:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
         name: Create PR
         run: |
-          PACKAGE="vscodium" \
+          GH_TOKEN="$GH_TOKEN" \
             TARGET_BRANCH="master" \
+            PACKAGE="vscodium" \
+            PRE_VERSION="$PRE_VERSION" \
             TESTED_OTHER_LINUX="true" \
-            PRE_VERSION=$PRE_VERSION \
-            GH_TOKEN=$GH_TOKEN \
             GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
             ./../nixpkgs-upkeep/create-pr.sh
         working-directory: "./nixpkgs"
@@ -858,10 +858,10 @@ jobs:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
         name: Create PR
         run: |
-          GH_TOKEN=$GH_TOKEN \
+          GH_TOKEN="$GH_TOKEN" \
             TARGET_BRANCH="master" \
-            PACKAGE=$PACKAGE \
-            PRE_VERSION=$PRE_VERSION \
+            PACKAGE="python3Packages.wandb" \
+            PRE_VERSION="$PRE_VERSION" \
             TESTED_OTHER_LINUX="true" \
             GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
             ./../nixpkgs-upkeep/create-pr.sh

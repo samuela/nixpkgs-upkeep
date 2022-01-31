@@ -138,6 +138,25 @@ let customUpdateScript =
             ''
         }
 
+let createPR =
+      \(attr : Text) ->
+      \(targetBranch : Text) ->
+        Step::{
+        , name = Some "Create PR"
+        , run = Some
+            ''
+            GH_TOKEN="$GH_TOKEN" \
+              TARGET_BRANCH="${targetBranch}" \
+              PACKAGE="${attr}" \
+              PRE_VERSION="$PRE_VERSION" \
+              TESTED_OTHER_LINUX="true" \
+              GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
+              ./../nixpkgs-upkeep/create-pr.sh
+            ''
+        , env = Some { GH_TOKEN = "\${{ secrets.GH_TOKEN }}" }
+        , working-directory = Some "./nixpkgs"
+        }
+
 in  { jobs =
       { dm-haiku = basicCanary "python3Packages.dm-haiku"
       , elegy = basicCanary "python3Packages.elegy"
@@ -155,21 +174,7 @@ in  { jobs =
               "pkgs/development/python-modules/jax"
           , gitDiff
           , nixBuild "python3Packages.jax"
-          , Step::{
-            , name = Some "Create PR"
-            , run = Some
-                ''
-                GH_TOKEN=$GH_TOKEN \
-                  TARGET_BRANCH="master" \
-                  PACKAGE=$PACKAGE \
-                  PRE_VERSION=$PRE_VERSION \
-                  TESTED_OTHER_LINUX="true" \
-                  GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
-                  ./../nixpkgs-upkeep/create-pr.sh
-                ''
-            , env = Some { GH_TOKEN = "\${{ secrets.GH_TOKEN }}" }
-            , working-directory = Some "./nixpkgs"
-            }
+          , createPR "python3Packages.jax" "master"
           ]
         }
       , jaxlib = basicCanary "python3Packages.jaxlib"
@@ -187,21 +192,7 @@ in  { jobs =
               "pkgs/development/compilers/julia"
           , gitDiff
           , nixBuild "julia_17-bin"
-          , Step::{
-            , name = Some "Create PR"
-            , run = Some
-                ''
-                GH_TOKEN=$GH_TOKEN \
-                  TARGET_BRANCH="master" \
-                  PACKAGE=$PACKAGE \
-                  PRE_VERSION=$PRE_VERSION \
-                  TESTED_OTHER_LINUX="true" \
-                  GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
-                  ./../nixpkgs-upkeep/create-pr.sh
-                ''
-            , env = Some { GH_TOKEN = "\${{ secrets.GH_TOKEN }}" }
-            , working-directory = Some "./nixpkgs"
-            }
+          , createPR "julia_17-bin" "master"
           ]
         }
       , matplotlib = Job::{
@@ -216,21 +207,7 @@ in  { jobs =
               "pkgs/development/python-modules/matplotlib"
           , gitDiff
           , nixBuild "python3Packages.matplotlib"
-          , Step::{
-            , name = Some "Create PR"
-            , run = Some
-                ''
-                PACKAGE="python3Packages.matplotlib" \
-                  TARGET_BRANCH="staging" \
-                  TESTED_OTHER_LINUX="true" \
-                  PRE_VERSION=$PRE_VERSION \
-                  GH_TOKEN=$GH_TOKEN \
-                  GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
-                  ./../nixpkgs-upkeep/create-pr.sh
-                ''
-            , env = Some { GH_TOKEN = "\${{ secrets.GH_TOKEN }}" }
-            , working-directory = Some "./nixpkgs"
-            }
+          , createPR "python3Packages.matplotlib" "staging"
           ]
         }
       , optax = basicCanary "python3Packages.optax"
@@ -255,21 +232,7 @@ in  { jobs =
             }
           , gitDiff
           , nixBuild "plexamp"
-          , Step::{
-            , name = Some "Create PR"
-            , run = Some
-                ''
-                PACKAGE="plexamp" \
-                  TARGET_BRANCH="master" \
-                  TESTED_OTHER_LINUX="true" \
-                  PRE_VERSION=$PRE_VERSION \
-                  GH_TOKEN=$GH_TOKEN \
-                  GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
-                  ./../nixpkgs-upkeep/create-pr.sh
-                ''
-            , env = Some { GH_TOKEN = "\${{ secrets.GH_TOKEN }}" }
-            , working-directory = Some "./nixpkgs"
-            }
+          , createPR "plexamp" "master"
           ]
         }
       , plotly = basicCanary "python3Packages.plotly"
@@ -305,21 +268,7 @@ in  { jobs =
             }
           , gitDiff
           , nixBuild "spotify"
-          , Step::{
-            , name = Some "Create PR"
-            , run = Some
-                ''
-                PACKAGE="spotify-unwrapped" \
-                  TARGET_BRANCH="master" \
-                  TESTED_OTHER_LINUX="true" \
-                  PRE_VERSION=$PRE_VERSION \
-                  GH_TOKEN=$GH_TOKEN \
-                  GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
-                  ./../nixpkgs-upkeep/create-pr.sh
-                ''
-            , env = Some { GH_TOKEN = "\${{ secrets.GH_TOKEN }}" }
-            , working-directory = Some "./nixpkgs"
-            }
+          , createPR "spotify-unwrapped" "master"
           ]
         }
       , tensorflow = basicCanary "python3Packages.tensorflow"
@@ -332,29 +281,15 @@ in  { jobs =
           [ installNix
           , checkoutNixpkgsUpkeep
           , checkoutNixpkgs
-          , checkVersion "vscode"
           , allowUnfree
+          , checkVersion "vscode"
           , Step::{
             , run = Some
                 "./nixpkgs/pkgs/applications/editors/vscode/update-vscode.sh"
             }
           , gitDiff
           , nixBuild "vscode"
-          , Step::{
-            , name = Some "Create PR"
-            , run = Some
-                ''
-                PACKAGE="vscode" \
-                  TARGET_BRANCH="master" \
-                  TESTED_OTHER_LINUX="true" \
-                  PRE_VERSION=$PRE_VERSION \
-                  GH_TOKEN=$GH_TOKEN \
-                  GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
-                  ./../nixpkgs-upkeep/create-pr.sh
-                ''
-            , env = Some { GH_TOKEN = "\${{ secrets.GH_TOKEN }}" }
-            , working-directory = Some "./nixpkgs"
-            }
+          , createPR "vscode" "master"
           ]
         }
       , vscodium = Job::{
@@ -369,21 +304,7 @@ in  { jobs =
             }
           , gitDiff
           , nixBuild "vscodium"
-          , Step::{
-            , name = Some "Create PR"
-            , run = Some
-                ''
-                PACKAGE="vscodium" \
-                  TARGET_BRANCH="master" \
-                  TESTED_OTHER_LINUX="true" \
-                  PRE_VERSION=$PRE_VERSION \
-                  GH_TOKEN=$GH_TOKEN \
-                  GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
-                  ./../nixpkgs-upkeep/create-pr.sh
-                ''
-            , env = Some { GH_TOKEN = "\${{ secrets.GH_TOKEN }}" }
-            , working-directory = Some "./nixpkgs"
-            }
+          , createPR "vscodium" "master"
           ]
         }
       , wandb = Job::{
@@ -398,21 +319,7 @@ in  { jobs =
               "pkgs/development/python-modules/wandb"
           , gitDiff
           , nixBuild "python3Packages.wandb"
-          , Step::{
-            , name = Some "Create PR"
-            , run = Some
-                ''
-                GH_TOKEN=$GH_TOKEN \
-                  TARGET_BRANCH="master" \
-                  PACKAGE=$PACKAGE \
-                  PRE_VERSION=$PRE_VERSION \
-                  TESTED_OTHER_LINUX="true" \
-                  GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
-                  ./../nixpkgs-upkeep/create-pr.sh
-                ''
-            , env = Some { GH_TOKEN = "\${{ secrets.GH_TOKEN }}" }
-            , working-directory = Some "./nixpkgs"
-            }
+          , createPR "python3Packages.wandb" "master"
           ]
         }
       }
