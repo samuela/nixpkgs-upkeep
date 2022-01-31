@@ -111,43 +111,24 @@ let Job =
       , default.runs-on = "ubuntu-latest"
       }
 
+let basicCanary =
+      \(attr : Text) ->
+        Job::{
+        , steps =
+          [ installNix
+          , checkoutNixpkgsUpkeep
+          , checkoutNixpkgs
+          , allowUnfree
+          , checkVersion attr
+          , canary
+          ]
+        }
+
 in  { jobs =
-      { dm-haiku = Job::{
-        , steps =
-          [ installNix
-          , checkoutNixpkgsUpkeep
-          , checkoutNixpkgs
-          , checkVersion "python3Packages.dm-haiku"
-          , canary
-          ]
-        }
-      , elegy = Job::{
-        , steps =
-          [ installNix
-          , checkoutNixpkgsUpkeep
-          , checkoutNixpkgs
-          , checkVersion "python3Packages.elegy"
-          , canary
-          ]
-        }
-      , flax = Job::{
-        , steps =
-          [ installNix
-          , checkoutNixpkgsUpkeep
-          , checkoutNixpkgs
-          , checkVersion "python3Packages.flax"
-          , canary
-          ]
-        }
-      , ipython = Job::{
-        , steps =
-          [ installNix
-          , checkoutNixpkgsUpkeep
-          , checkoutNixpkgs
-          , checkVersion "python3Packages.ipython"
-          , canary
-          ]
-        }
+      { dm-haiku = basicCanary "python3Packages.dm-haiku"
+      , elegy = basicCanary "python3Packages.elegy"
+      , flax = basicCanary "python3Packages.flax"
+      , ipython = basicCanary "python3Packages.ipython"
       , jax = Job::{
         , steps =
           [ installNix
@@ -168,7 +149,6 @@ in  { jobs =
           , nixBuild "python3Packages.jax"
           , Step::{
             , name = Some "Create PR"
-            , working-directory = Some "./nixpkgs"
             , run = Some
                 ''
                 GH_TOKEN=$GH_TOKEN \
@@ -180,37 +160,13 @@ in  { jobs =
                   ./../nixpkgs-upkeep/create-pr.sh
                 ''
             , env = Some { GH_TOKEN = "\${{ secrets.GH_TOKEN }}" }
+            , working-directory = Some "./nixpkgs"
             }
           ]
         }
-      , jaxlib = Job::{
-        , steps =
-          [ installNix
-          , checkoutNixpkgsUpkeep
-          , checkoutNixpkgs
-          , checkVersion "python3Packages.jaxlib"
-          , canary
-          ]
-        }
-      , jaxlibWithCuda = Job::{
-        , steps =
-          [ installNix
-          , checkoutNixpkgsUpkeep
-          , checkoutNixpkgs
-          , allowUnfree
-          , checkVersion "python3Packages.jaxlibWithCuda"
-          , canary
-          ]
-        }
-      , jmp = Job::{
-        , steps =
-          [ installNix
-          , checkoutNixpkgsUpkeep
-          , checkoutNixpkgs
-          , checkVersion "python3Packages.jmp"
-          , canary
-          ]
-        }
+      , jaxlib = basicCanary "python3Packages.jaxlib"
+      , jaxlibWithCuda = basicCanary "python3Packages.jaxlibWithCuda"
+      , jmp = basicCanary "python3Packages.jmp"
       , julia_17-bin = Job::{
         , steps =
           [ installNix
@@ -231,7 +187,6 @@ in  { jobs =
           , nixBuild "julia_17-bin"
           , Step::{
             , name = Some "Create PR"
-            , env = Some { GH_TOKEN = "\${{ secrets.GH_TOKEN }}" }
             , run = Some
                 ''
                 GH_TOKEN=$GH_TOKEN \
@@ -242,6 +197,7 @@ in  { jobs =
                   GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
                   ./../nixpkgs-upkeep/create-pr.sh
                 ''
+            , env = Some { GH_TOKEN = "\${{ secrets.GH_TOKEN }}" }
             , working-directory = Some "./nixpkgs"
             }
           ]
@@ -267,7 +223,6 @@ in  { jobs =
           , nixBuild "python3Packages.matplotlib"
           , Step::{
             , name = Some "Create PR"
-            , env = Some { GH_TOKEN = "\${{ secrets.GH_TOKEN }}" }
             , run = Some
                 ''
                 PACKAGE="python3Packages.matplotlib" \
@@ -278,19 +233,12 @@ in  { jobs =
                   GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
                   ./../nixpkgs-upkeep/create-pr.sh
                 ''
+            , env = Some { GH_TOKEN = "\${{ secrets.GH_TOKEN }}" }
             , working-directory = Some "./nixpkgs"
             }
           ]
         }
-      , optax = Job::{
-        , steps =
-          [ installNix
-          , checkoutNixpkgsUpkeep
-          , checkoutNixpkgs
-          , checkVersion "python3Packages.optax"
-          , canary
-          ]
-        }
+      , optax = basicCanary "python3Packages.optax"
       , plexamp = Job::{
         , steps =
           [ installNix
@@ -316,7 +264,6 @@ in  { jobs =
           , gitDiff
           , nixBuild "plexamp"
           , Step::{
-            , env = Some { GH_TOKEN = "\${{ secrets.GH_TOKEN }}" }
             , name = Some "Create PR"
             , run = Some
                 ''
@@ -328,19 +275,12 @@ in  { jobs =
                   GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
                   ./../nixpkgs-upkeep/create-pr.sh
                 ''
+            , env = Some { GH_TOKEN = "\${{ secrets.GH_TOKEN }}" }
             , working-directory = Some "./nixpkgs"
             }
           ]
         }
-      , plotly = Job::{
-        , steps =
-          [ installNix
-          , checkoutNixpkgsUpkeep
-          , checkoutNixpkgs
-          , checkVersion "python3Packages.plotly"
-          , canary
-          ]
-        }
+      , plotly = basicCanary "python3Packages.plotly"
       , spotify = Job::{
         , steps =
           [ installNix
@@ -390,51 +330,11 @@ in  { jobs =
             }
           ]
         }
-      , tensorflow = Job::{
-        , steps =
-          [ installNix
-          , checkoutNixpkgsUpkeep
-          , checkoutNixpkgs
-          , checkVersion "python3Packages.tensorflow"
-          , canary
-          ]
-        }
-      , tensorflow-datasets = Job::{
-        , steps =
-          [ installNix
-          , checkoutNixpkgsUpkeep
-          , checkoutNixpkgs
-          , checkVersion "python3Packages.tensorflow-datasets"
-          , canary
-          ]
-        }
-      , tqdm = Job::{
-        , steps =
-          [ installNix
-          , checkoutNixpkgsUpkeep
-          , checkoutNixpkgs
-          , checkVersion "python3Packages.tqdm"
-          , canary
-          ]
-        }
-      , treeo = Job::{
-        , steps =
-          [ installNix
-          , checkoutNixpkgsUpkeep
-          , checkoutNixpkgs
-          , checkVersion "python3Packages.treeo"
-          , canary
-          ]
-        }
-      , treex = Job::{
-        , steps =
-          [ installNix
-          , checkoutNixpkgsUpkeep
-          , checkoutNixpkgs
-          , checkVersion "python3Packages.treex"
-          , canary
-          ]
-        }
+      , tensorflow = basicCanary "python3Packages.tensorflow"
+      , tensorflow-datasets = basicCanary "python3Packages.tensorflow-datasets"
+      , tqdm = basicCanary "python3Packages.tqdm"
+      , treeo = basicCanary "python3Packages.treeo"
+      , treex = basicCanary "python3Packages.treex"
       , vscode = Job::{
         , steps =
           [ installNix

@@ -17,6 +17,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Allow unfree
+        run: |
+          mkdir -p ~/.config/nixpkgs/
+          echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PACKAGE="python3Packages.dm-haiku"
@@ -47,6 +51,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Allow unfree
+        run: |
+          mkdir -p ~/.config/nixpkgs/
+          echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PACKAGE="python3Packages.elegy"
@@ -77,6 +85,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Allow unfree
+        run: |
+          mkdir -p ~/.config/nixpkgs/
+          echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PACKAGE="python3Packages.flax"
@@ -107,6 +119,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Allow unfree
+        run: |
+          mkdir -p ~/.config/nixpkgs/
+          echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PACKAGE="python3Packages.ipython"
@@ -188,6 +204,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Allow unfree
+        run: |
+          mkdir -p ~/.config/nixpkgs/
+          echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PACKAGE="python3Packages.jaxlib"
@@ -252,6 +272,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Allow unfree
+        run: |
+          mkdir -p ~/.config/nixpkgs/
+          echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PACKAGE="python3Packages.jmp"
@@ -385,6 +409,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Allow unfree
+        run: |
+          mkdir -p ~/.config/nixpkgs/
+          echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PACKAGE="python3Packages.optax"
@@ -460,6 +488,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Allow unfree
+        run: |
+          mkdir -p ~/.config/nixpkgs/
+          echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PACKAGE="python3Packages.plotly"
@@ -543,6 +575,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Allow unfree
+        run: |
+          mkdir -p ~/.config/nixpkgs/
+          echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PACKAGE="python3Packages.tensorflow"
@@ -573,6 +609,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Allow unfree
+        run: |
+          mkdir -p ~/.config/nixpkgs/
+          echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PACKAGE="python3Packages.tensorflow-datasets"
@@ -603,6 +643,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Allow unfree
+        run: |
+          mkdir -p ~/.config/nixpkgs/
+          echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PACKAGE="python3Packages.tqdm"
@@ -633,6 +677,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Allow unfree
+        run: |
+          mkdir -p ~/.config/nixpkgs/
+          echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PACKAGE="python3Packages.treeo"
@@ -663,6 +711,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Allow unfree
+        run: |
+          mkdir -p ~/.config/nixpkgs/
+          echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PACKAGE="python3Packages.treex"
