@@ -5,8 +5,7 @@ jobs:
     steps:
       - uses: "cachix/install-nix-action@v16"
         with:
-          extra_nix_config: |
-            experimental-features = nix-command flakes
+          extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
@@ -36,8 +35,7 @@ jobs:
     steps:
       - uses: "cachix/install-nix-action@v16"
         with:
-          extra_nix_config: |
-            experimental-features = nix-command flakes
+          extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
@@ -67,8 +65,7 @@ jobs:
     steps:
       - uses: "cachix/install-nix-action@v16"
         with:
-          extra_nix_config: |
-            experimental-features = nix-command flakes
+          extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
@@ -98,8 +95,7 @@ jobs:
     steps:
       - uses: "cachix/install-nix-action@v16"
         with:
-          extra_nix_config: |
-            experimental-features = nix-command flakes
+          extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
@@ -129,8 +125,7 @@ jobs:
     steps:
       - uses: "cachix/install-nix-action@v16"
         with:
-          extra_nix_config: |
-            experimental-features = nix-command flakes
+          extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
@@ -181,8 +176,7 @@ jobs:
     steps:
       - uses: "cachix/install-nix-action@v16"
         with:
-          extra_nix_config: |
-            experimental-features = nix-command flakes
+          extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
@@ -212,8 +206,7 @@ jobs:
     steps:
       - uses: "cachix/install-nix-action@v16"
         with:
-          extra_nix_config: |
-            experimental-features = nix-command flakes
+          extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
@@ -246,8 +239,7 @@ jobs:
     steps:
       - uses: "cachix/install-nix-action@v16"
         with:
-          extra_nix_config: |
-            experimental-features = nix-command flakes
+          extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
@@ -277,8 +269,7 @@ jobs:
     steps:
       - uses: "cachix/install-nix-action@v16"
         with:
-          extra_nix_config: |
-            experimental-features = nix-command flakes
+          extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
@@ -329,8 +320,7 @@ jobs:
     steps:
       - uses: "cachix/install-nix-action@v16"
         with:
-          extra_nix_config: |
-            experimental-features = nix-command flakes
+          extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
@@ -342,7 +332,7 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
-      - name: Check current package version before update script
+      - name: Check current package version
         run: |
           PACKAGE="python3Packages.matplotlib"
           PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
@@ -382,8 +372,7 @@ jobs:
     steps:
       - uses: "cachix/install-nix-action@v16"
         with:
-          extra_nix_config: |
-            experimental-features = nix-command flakes
+          extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
@@ -413,8 +402,7 @@ jobs:
     steps:
       - uses: "cachix/install-nix-action@v16"
         with:
-          extra_nix_config: |
-            experimental-features = nix-command flakes
+          extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
@@ -458,8 +446,7 @@ jobs:
     steps:
       - uses: "cachix/install-nix-action@v16"
         with:
-          extra_nix_config: |
-            experimental-features = nix-command flakes
+          extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
@@ -489,8 +476,7 @@ jobs:
     steps:
       - uses: "cachix/install-nix-action@v16"
         with:
-          extra_nix_config: |
-            experimental-features = nix-command flakes
+          extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
@@ -542,8 +528,7 @@ jobs:
     steps:
       - uses: "cachix/install-nix-action@v16"
         with:
-          extra_nix_config: |
-            experimental-features = nix-command flakes
+          extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
@@ -573,8 +558,7 @@ jobs:
     steps:
       - uses: "cachix/install-nix-action@v16"
         with:
-          extra_nix_config: |
-            experimental-features = nix-command flakes
+          extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
@@ -604,8 +588,7 @@ jobs:
     steps:
       - uses: "cachix/install-nix-action@v16"
         with:
-          extra_nix_config: |
-            experimental-features = nix-command flakes
+          extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
@@ -635,8 +618,7 @@ jobs:
     steps:
       - uses: "cachix/install-nix-action@v16"
         with:
-          extra_nix_config: |
-            experimental-features = nix-command flakes
+          extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
@@ -666,8 +648,7 @@ jobs:
     steps:
       - uses: "cachix/install-nix-action@v16"
         with:
-          extra_nix_config: |
-            experimental-features = nix-command flakes
+          extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
@@ -697,8 +678,7 @@ jobs:
     steps:
       - uses: "cachix/install-nix-action@v16"
         with:
-          extra_nix_config: |
-            experimental-features = nix-command flakes
+          extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
@@ -710,9 +690,11 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
-      - name: Check current package version before update script
+      - name: Check current package version
         run: |
-          PRE_VERSION="$(nix eval --raw -f . vscode.version)"
+          PACKAGE="vscode"
+          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
+          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
       - run: |
@@ -743,8 +725,7 @@ jobs:
     steps:
       - uses: "cachix/install-nix-action@v16"
         with:
-          extra_nix_config: |
-            experimental-features = nix-command flakes
+          extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
@@ -756,9 +737,11 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
-      - name: Check current package version before update script
+      - name: Check current package version
         run: |
-          PRE_VERSION="$(nix eval --raw -f . vscodium.version)"
+          PACKAGE="vscodium"
+          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
+          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
       - name: Run custom update-script
@@ -785,8 +768,7 @@ jobs:
     steps:
       - uses: "cachix/install-nix-action@v16"
         with:
-          extra_nix_config: |
-            experimental-features = nix-command flakes
+          extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
