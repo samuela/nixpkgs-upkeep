@@ -131,9 +131,9 @@ let customUpdateScript =
         , run = Some
             ''
             cp ./nixpkgs-upkeep/${scriptName} ./nixpkgs/${cwd}
-            chmod +x ./nixpkgs/${cwd}/update-matplotlib.py
-            ./nixpkgs/${cwd}/update-matplotlib.py
-            rm ./nixpkgs/${cwd}/update-matplotlib.py
+            chmod +x ./nixpkgs/${cwd}/${scriptName}
+            ./nixpkgs/${cwd}/${scriptName}
+            rm ./nixpkgs/${cwd}/${scriptName}
             ''
         }
 

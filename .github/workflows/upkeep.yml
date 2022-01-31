@@ -159,9 +159,9 @@ jobs:
       - name: Run custom update-script
         run: |
           cp ./nixpkgs-upkeep/update-jax.py ./nixpkgs/pkgs/development/python-modules/jax
-          chmod +x ./nixpkgs/pkgs/development/python-modules/jax/update-matplotlib.py
-          ./nixpkgs/pkgs/development/python-modules/jax/update-matplotlib.py
-          rm ./nixpkgs/pkgs/development/python-modules/jax/update-matplotlib.py
+          chmod +x ./nixpkgs/pkgs/development/python-modules/jax/update-jax.py
+          ./nixpkgs/pkgs/development/python-modules/jax/update-jax.py
+          rm ./nixpkgs/pkgs/development/python-modules/jax/update-jax.py
       - run: git diff
         working-directory: "./nixpkgs"
       - run: nix-build -A python3Packages.jax
@@ -305,9 +305,9 @@ jobs:
       - name: Run custom update-script
         run: |
           cp ./nixpkgs-upkeep/update-julia-1.7.py ./nixpkgs/pkgs/development/compilers/julia
-          chmod +x ./nixpkgs/pkgs/development/compilers/julia/update-matplotlib.py
-          ./nixpkgs/pkgs/development/compilers/julia/update-matplotlib.py
-          rm ./nixpkgs/pkgs/development/compilers/julia/update-matplotlib.py
+          chmod +x ./nixpkgs/pkgs/development/compilers/julia/update-julia-1.7.py
+          ./nixpkgs/pkgs/development/compilers/julia/update-julia-1.7.py
+          rm ./nixpkgs/pkgs/development/compilers/julia/update-julia-1.7.py
       - run: git diff
         working-directory: "./nixpkgs"
       - run: nix-build -A julia_17-bin
@@ -807,9 +807,9 @@ jobs:
       - name: Run custom update-script
         run: |
           cp ./nixpkgs-upkeep/update-wandb.py ./nixpkgs/pkgs/development/python-modules/wandb
-          chmod +x ./nixpkgs/pkgs/development/python-modules/wandb/update-matplotlib.py
-          ./nixpkgs/pkgs/development/python-modules/wandb/update-matplotlib.py
-          rm ./nixpkgs/pkgs/development/python-modules/wandb/update-matplotlib.py
+          chmod +x ./nixpkgs/pkgs/development/python-modules/wandb/update-wandb.py
+          ./nixpkgs/pkgs/development/python-modules/wandb/update-wandb.py
+          rm ./nixpkgs/pkgs/development/python-modules/wandb/update-wandb.py
       - run: git diff
         working-directory: "./nixpkgs"
       - run: nix-build -A python3Packages.wandb
