@@ -124,6 +124,20 @@ let basicCanary =
           ]
         }
 
+let customUpdateScript =
+      \(scriptName : Text) ->
+      \(cwd : Text) ->
+        Step::{
+        , name = Some "Run custom update-script"
+        , run = Some
+            ''
+            cp ./nixpkgs-upkeep/${scriptName} ./nixpkgs/${cwd}
+            chmod +x ./nixpkgs/${cwd}/update-matplotlib.py
+            ./nixpkgs/${cwd}/update-matplotlib.py
+            rm ./nixpkgs/${cwd}/update-matplotlib.py
+            ''
+        }
+
 in  { jobs =
       { dm-haiku = basicCanary "python3Packages.dm-haiku"
       , elegy = basicCanary "python3Packages.elegy"
@@ -136,15 +150,9 @@ in  { jobs =
           , checkoutNixpkgs
           , checkVersion "python3Packages.jax"
           , canary
-          , Step::{
-            , name = Some "Run custom update-script"
-            , run = Some
-                ''
-                cp nixpkgs-upkeep/update-jax.py nixpkgs/pkgs/development/python-modules/jax/update-jax.py
-                ./nixpkgs/pkgs/development/python-modules/jax/update-jax.py
-                rm nixpkgs/pkgs/development/python-modules/jax/update-jax.py
-                ''
-            }
+          , customUpdateScript
+              "update-jax.py"
+              "pkgs/development/python-modules/jax"
           , gitDiff
           , nixBuild "python3Packages.jax"
           , Step::{
@@ -174,15 +182,9 @@ in  { jobs =
           , checkoutNixpkgs
           , checkVersion "julia_17-bin"
           , canary
-          , Step::{
-            , name = Some "Run custom update-script"
-            , run = Some
-                ''
-                cp nixpkgs-upkeep/update-julia-1.7.py nixpkgs/pkgs/development/compilers/julia/update-julia-1.7.py
-                ./nixpkgs/pkgs/development/compilers/julia/update-julia-1.7.py
-                rm nixpkgs/pkgs/development/compilers/julia/update-julia-1.7.py
-                ''
-            }
+          , customUpdateScript
+              "update-julia-1.7.py"
+              "pkgs/development/compilers/julia"
           , gitDiff
           , nixBuild "julia_17-bin"
           , Step::{
@@ -209,16 +211,9 @@ in  { jobs =
           , checkoutNixpkgs
           , checkVersion "python3Packages.matplotlib"
           , canary
-          , Step::{
-            , name = Some "Run custom update-script"
-            , run = Some
-                ''
-                cp ./nixpkgs-upkeep/update-matplotlib.py ./nixpkgs/pkgs/development/python-modules/matplotlib
-                chmod +x ./nixpkgs/pkgs/development/python-modules/matplotlib/update-matplotlib.py
-                ./nixpkgs/pkgs/development/python-modules/matplotlib/update-matplotlib.py
-                rm ./nixpkgs/pkgs/development/python-modules/matplotlib/update-matplotlib.py
-                ''
-            }
+          , customUpdateScript
+              "update-matplotlib.py"
+              "pkgs/development/python-modules/matplotlib"
           , gitDiff
           , nixBuild "python3Packages.matplotlib"
           , Step::{
@@ -255,11 +250,8 @@ in  { jobs =
             , working-directory = Some "./nixpkgs"
             }
           , Step::{
-            , name = Some "Run custom update-script"
             , run = Some
-                ''
-                ./nixpkgs/pkgs/applications/audio/plexamp/update-plexamp.sh
-                ''
+                "./nixpkgs/pkgs/applications/audio/plexamp/update-plexamp.sh"
             }
           , gitDiff
           , nixBuild "plexamp"
@@ -343,12 +335,8 @@ in  { jobs =
           , checkVersion "vscode"
           , allowUnfree
           , Step::{
-            , name = Some "Run custom update-script"
             , run = Some
-                ''
-                ./pkgs/applications/editors/vscode/update-vscode.sh
-                ''
-            , working-directory = Some "./nixpkgs"
+                "./nixpkgs/pkgs/applications/editors/vscode/update-vscode.sh"
             }
           , gitDiff
           , nixBuild "vscode"
@@ -376,11 +364,8 @@ in  { jobs =
           , checkoutNixpkgs
           , checkVersion "vscodium"
           , Step::{
-            , name = Some "Run custom update-script"
             , run = Some
-                ''
-                ./nixpkgs/pkgs/applications/editors/vscode/update-vscodium.sh
-                ''
+                "./nixpkgs/pkgs/applications/editors/vscode/update-vscodium.sh"
             }
           , gitDiff
           , nixBuild "vscodium"
@@ -408,15 +393,9 @@ in  { jobs =
           , checkoutNixpkgs
           , checkVersion "python3Packages.wandb"
           , canary
-          , Step::{
-            , name = Some "Run custom update-script"
-            , run = Some
-                ''
-                cp nixpkgs-upkeep/update-wandb.py nixpkgs/pkgs/development/python-modules/wandb/update-wandb.py
-                ./nixpkgs/pkgs/development/python-modules/wandb/update-wandb.py
-                rm nixpkgs/pkgs/development/python-modules/wandb/update-wandb.py
-                ''
-            }
+          , customUpdateScript
+              "update-wandb.py"
+              "pkgs/development/python-modules/wandb"
           , gitDiff
           , nixBuild "python3Packages.wandb"
           , Step::{

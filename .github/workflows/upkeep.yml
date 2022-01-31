@@ -168,9 +168,10 @@ jobs:
         working-directory: "./nixpkgs-upkeep"
       - name: Run custom update-script
         run: |
-          cp nixpkgs-upkeep/update-jax.py nixpkgs/pkgs/development/python-modules/jax/update-jax.py
-          ./nixpkgs/pkgs/development/python-modules/jax/update-jax.py
-          rm nixpkgs/pkgs/development/python-modules/jax/update-jax.py
+          cp ./nixpkgs-upkeep/update-jax.py ./nixpkgs/pkgs/development/python-modules/jax
+          chmod +x ./nixpkgs/pkgs/development/python-modules/jax/update-matplotlib.py
+          ./nixpkgs/pkgs/development/python-modules/jax/update-matplotlib.py
+          rm ./nixpkgs/pkgs/development/python-modules/jax/update-matplotlib.py
       - run: git diff
         working-directory: "./nixpkgs"
       - run: nix-build -A python3Packages.jax
@@ -321,9 +322,10 @@ jobs:
         working-directory: "./nixpkgs-upkeep"
       - name: Run custom update-script
         run: |
-          cp nixpkgs-upkeep/update-julia-1.7.py nixpkgs/pkgs/development/compilers/julia/update-julia-1.7.py
-          ./nixpkgs/pkgs/development/compilers/julia/update-julia-1.7.py
-          rm nixpkgs/pkgs/development/compilers/julia/update-julia-1.7.py
+          cp ./nixpkgs-upkeep/update-julia-1.7.py ./nixpkgs/pkgs/development/compilers/julia
+          chmod +x ./nixpkgs/pkgs/development/compilers/julia/update-matplotlib.py
+          ./nixpkgs/pkgs/development/compilers/julia/update-matplotlib.py
+          rm ./nixpkgs/pkgs/development/compilers/julia/update-matplotlib.py
       - run: git diff
         working-directory: "./nixpkgs"
       - run: nix-build -A julia_17-bin
@@ -452,9 +454,7 @@ jobs:
           PRE_VERSION="$(nix-instantiate --eval -E "with import ./. {}; lib.getVersion plexamp" --json | jq -r)"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
-      - name: Run custom update-script
-        run: |
-          ./nixpkgs/pkgs/applications/audio/plexamp/update-plexamp.sh
+      - run: "./nixpkgs/pkgs/applications/audio/plexamp/update-plexamp.sh"
       - run: git diff
         working-directory: "./nixpkgs"
       - run: nix-build -A plexamp
@@ -756,10 +756,7 @@ jobs:
         run: |
           mkdir -p ~/.config/nixpkgs/
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
-      - name: Run custom update-script
-        run: |
-          ./pkgs/applications/editors/vscode/update-vscode.sh
-        working-directory: "./nixpkgs"
+      - run: "./nixpkgs/pkgs/applications/editors/vscode/update-vscode.sh"
       - run: git diff
         working-directory: "./nixpkgs"
       - run: nix-build -A vscode
@@ -800,9 +797,7 @@ jobs:
           echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
-      - name: Run custom update-script
-        run: |
-          ./nixpkgs/pkgs/applications/editors/vscode/update-vscodium.sh
+      - run: "./nixpkgs/pkgs/applications/editors/vscode/update-vscodium.sh"
       - run: git diff
         working-directory: "./nixpkgs"
       - run: nix-build -A vscodium
@@ -851,9 +846,10 @@ jobs:
         working-directory: "./nixpkgs-upkeep"
       - name: Run custom update-script
         run: |
-          cp nixpkgs-upkeep/update-wandb.py nixpkgs/pkgs/development/python-modules/wandb/update-wandb.py
-          ./nixpkgs/pkgs/development/python-modules/wandb/update-wandb.py
-          rm nixpkgs/pkgs/development/python-modules/wandb/update-wandb.py
+          cp ./nixpkgs-upkeep/update-wandb.py ./nixpkgs/pkgs/development/python-modules/wandb
+          chmod +x ./nixpkgs/pkgs/development/python-modules/wandb/update-matplotlib.py
+          ./nixpkgs/pkgs/development/python-modules/wandb/update-matplotlib.py
+          rm ./nixpkgs/pkgs/development/python-modules/wandb/update-matplotlib.py
       - run: git diff
         working-directory: "./nixpkgs"
       - run: nix-build -A python3Packages.wandb
