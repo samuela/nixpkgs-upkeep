@@ -242,15 +242,7 @@ in  { jobs =
           , checkoutNixpkgsUpkeep
           , checkoutNixpkgs
           , allowUnfree
-          , Step::{
-            , name = Some "Check current package version before update script"
-            , run = Some
-                ''
-                PRE_VERSION="$(nix eval --raw -f . spotify-unwrapped.version)"
-                echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
-                ''
-            , working-directory = Some "./nixpkgs"
-            }
+          , checkVersion "spotify-unwrapped"
           , Step::{
             , name = Some "Run custom update-script"
             , run = Some

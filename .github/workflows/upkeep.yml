@@ -526,9 +526,11 @@ jobs:
         run: |
           mkdir -p ~/.config/nixpkgs/
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
-      - name: Check current package version before update script
+      - name: Check current package version
         run: |
-          PRE_VERSION="$(nix eval --raw -f . spotify-unwrapped.version)"
+          PACKAGE="spotify-unwrapped"
+          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
+          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
       - name: Run custom update-script
