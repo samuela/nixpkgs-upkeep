@@ -5,6 +5,8 @@ let WithClause =
           , path : Optional Text
           , repository : Optional Text
           , token : Optional Text
+          , name : Optional Text
+          , authToken : Optional Text
           }
       , default =
         { extra_nix_config = None Text
@@ -12,6 +14,8 @@ let WithClause =
         , path = None Text
         , repository = None Text
         , token = None Text
+        , name = None Text
+        , authToken = None Text
         }
       }
 
@@ -110,11 +114,21 @@ let Job =
       , default.runs-on = "ubuntu-latest"
       }
 
+let cachix =
+      Step::{
+      , uses = Some "cachix/cachix-action@v10"
+      , `with` = Some WithClause::{
+        , name = Some "ploop"
+        , authToken = Some "\${{ secrets.CACHIX_AUTH_TOKEN }}"
+        }
+      }
+
 let basicCanary =
       \(attr : Text) ->
         Job::{
         , steps =
           [ installNix
+          , cachix
           , checkoutNixpkgsUpkeep
           , checkoutNixpkgs
           , allowUnfree
@@ -164,6 +178,7 @@ in  { jobs =
       , jax = Job::{
         , steps =
           [ installNix
+          , cachix
           , checkoutNixpkgsUpkeep
           , checkoutNixpkgs
           , checkVersion "python3Packages.jax"
@@ -182,6 +197,7 @@ in  { jobs =
       , julia_17-bin = Job::{
         , steps =
           [ installNix
+          , cachix
           , checkoutNixpkgsUpkeep
           , checkoutNixpkgs
           , checkVersion "julia_17-bin"
@@ -197,6 +213,7 @@ in  { jobs =
       , matplotlib = Job::{
         , steps =
           [ installNix
+          , cachix
           , checkoutNixpkgsUpkeep
           , checkoutNixpkgs
           , checkVersion "python3Packages.matplotlib"
@@ -213,6 +230,7 @@ in  { jobs =
       , plexamp = Job::{
         , steps =
           [ installNix
+          , cachix
           , checkoutNixpkgsUpkeep
           , checkoutNixpkgs
           , allowUnfree
@@ -238,6 +256,7 @@ in  { jobs =
       , spotify = Job::{
         , steps =
           [ installNix
+          , cachix
           , checkoutNixpkgsUpkeep
           , checkoutNixpkgs
           , allowUnfree
@@ -270,6 +289,7 @@ in  { jobs =
       , vscode = Job::{
         , steps =
           [ installNix
+          , cachix
           , checkoutNixpkgsUpkeep
           , checkoutNixpkgs
           , allowUnfree
@@ -286,6 +306,7 @@ in  { jobs =
       , vscodium = Job::{
         , steps =
           [ installNix
+          , cachix
           , checkoutNixpkgsUpkeep
           , checkoutNixpkgs
           , checkVersion "vscodium"
@@ -301,6 +322,7 @@ in  { jobs =
       , wandb = Job::{
         , steps =
           [ installNix
+          , cachix
           , checkoutNixpkgsUpkeep
           , checkoutNixpkgs
           , checkVersion "python3Packages.wandb"

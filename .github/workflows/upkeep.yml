@@ -7,6 +7,10 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - uses: "cachix/cachix-action@v10"
+        with:
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          name: ploop
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
         with:
@@ -39,6 +43,10 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - uses: "cachix/cachix-action@v10"
+        with:
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          name: ploop
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
         with:
@@ -71,6 +79,10 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - uses: "cachix/cachix-action@v10"
+        with:
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          name: ploop
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
         with:
@@ -103,6 +115,10 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - uses: "cachix/cachix-action@v10"
+        with:
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          name: ploop
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
         with:
@@ -135,6 +151,10 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - uses: "cachix/cachix-action@v10"
+        with:
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          name: ploop
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
         with:
@@ -185,6 +205,10 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - uses: "cachix/cachix-action@v10"
+        with:
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          name: ploop
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
         with:
@@ -217,6 +241,10 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - uses: "cachix/cachix-action@v10"
+        with:
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          name: ploop
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
         with:
@@ -249,6 +277,10 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - uses: "cachix/cachix-action@v10"
+        with:
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          name: ploop
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
         with:
@@ -281,6 +313,10 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - uses: "cachix/cachix-action@v10"
+        with:
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          name: ploop
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
         with:
@@ -331,6 +367,10 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - uses: "cachix/cachix-action@v10"
+        with:
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          name: ploop
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
         with:
@@ -381,6 +421,10 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - uses: "cachix/cachix-action@v10"
+        with:
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          name: ploop
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
         with:
@@ -413,6 +457,10 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - uses: "cachix/cachix-action@v10"
+        with:
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          name: ploop
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
         with:
@@ -456,6 +504,10 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - uses: "cachix/cachix-action@v10"
+        with:
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          name: ploop
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
         with:
@@ -488,6 +540,10 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - uses: "cachix/cachix-action@v10"
+        with:
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          name: ploop
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
         with:
@@ -541,6 +597,10 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - uses: "cachix/cachix-action@v10"
+        with:
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          name: ploop
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
         with:
@@ -573,6 +633,10 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - uses: "cachix/cachix-action@v10"
+        with:
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          name: ploop
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
         with:
@@ -605,6 +669,10 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - uses: "cachix/cachix-action@v10"
+        with:
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          name: ploop
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
         with:
@@ -637,6 +705,10 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - uses: "cachix/cachix-action@v10"
+        with:
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          name: ploop
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
         with:
@@ -669,6 +741,10 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - uses: "cachix/cachix-action@v10"
+        with:
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          name: ploop
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
         with:
@@ -701,6 +777,10 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - uses: "cachix/cachix-action@v10"
+        with:
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          name: ploop
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
         with:
@@ -744,6 +824,10 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - uses: "cachix/cachix-action@v10"
+        with:
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          name: ploop
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
         with:
@@ -783,6 +867,10 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - uses: "cachix/cachix-action@v10"
+        with:
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          name: ploop
       - name: Checkout nixpkgs-upkeep
         uses: "actions/checkout@v2"
         with:
