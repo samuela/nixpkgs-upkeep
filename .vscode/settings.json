@@ -1,0 +1,5 @@
+{
+  "python.formatting.provider": "yapf",
+  "nixEnvSelector.suggestion": false,
+  "nixEnvSelector.nixFile": "${workspaceRoot}/shell.nix"
+}
