@@ -23,16 +23,14 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PACKAGE="python3Packages.dm-haiku"
-          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
-          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+          PRE_VERSION="$(nix eval --raw -f . python3Packages.dm-haiku.version)"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
       - env:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
         name: build canary
         run: |
-          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.dm-haiku
         working-directory: "./nixpkgs-upkeep"
   elegy:
     runs-on: ubuntu-latest
@@ -57,16 +55,14 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PACKAGE="python3Packages.elegy"
-          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
-          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+          PRE_VERSION="$(nix eval --raw -f . python3Packages.elegy.version)"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
       - env:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
         name: build canary
         run: |
-          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.elegy
         working-directory: "./nixpkgs-upkeep"
   flax:
     runs-on: ubuntu-latest
@@ -91,16 +87,14 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PACKAGE="python3Packages.flax"
-          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
-          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+          PRE_VERSION="$(nix eval --raw -f . python3Packages.flax.version)"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
       - env:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
         name: build canary
         run: |
-          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.flax
         working-directory: "./nixpkgs-upkeep"
   ipython:
     runs-on: ubuntu-latest
@@ -125,16 +119,14 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PACKAGE="python3Packages.ipython"
-          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
-          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+          PRE_VERSION="$(nix eval --raw -f . python3Packages.ipython.version)"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
       - env:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
         name: build canary
         run: |
-          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.ipython
         working-directory: "./nixpkgs-upkeep"
   jax:
     runs-on: ubuntu-latest
@@ -155,16 +147,14 @@ jobs:
           token: "${{ secrets.GH_TOKEN }}"
       - name: Check current package version
         run: |
-          PACKAGE="python3Packages.jax"
-          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
-          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+          PRE_VERSION="$(nix eval --raw -f . python3Packages.jax.version)"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
       - env:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
         name: build canary
         run: |
-          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.jax
         working-directory: "./nixpkgs-upkeep"
       - name: Run custom update-script
         run: |
@@ -211,16 +201,14 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PACKAGE="python3Packages.jaxlib"
-          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
-          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+          PRE_VERSION="$(nix eval --raw -f . python3Packages.jaxlib.version)"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
       - env:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
         name: build canary
         run: |
-          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.jaxlib
         working-directory: "./nixpkgs-upkeep"
   jaxlibWithCuda:
     runs-on: ubuntu-latest
@@ -245,16 +233,14 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PACKAGE="python3Packages.jaxlibWithCuda"
-          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
-          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+          PRE_VERSION="$(nix eval --raw -f . python3Packages.jaxlibWithCuda.version)"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
       - env:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
         name: build canary
         run: |
-          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.jaxlibWithCuda
         working-directory: "./nixpkgs-upkeep"
   jmp:
     runs-on: ubuntu-latest
@@ -279,16 +265,14 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PACKAGE="python3Packages.jmp"
-          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
-          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+          PRE_VERSION="$(nix eval --raw -f . python3Packages.jmp.version)"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
       - env:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
         name: build canary
         run: |
-          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.jmp
         working-directory: "./nixpkgs-upkeep"
   julia_17-bin:
     runs-on: ubuntu-latest
@@ -309,16 +293,14 @@ jobs:
           token: "${{ secrets.GH_TOKEN }}"
       - name: Check current package version
         run: |
-          PACKAGE="julia_17-bin"
-          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
-          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+          PRE_VERSION="$(nix eval --raw -f . julia_17-bin.version)"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
       - env:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
         name: build canary
         run: |
-          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr julia_17-bin
         working-directory: "./nixpkgs-upkeep"
       - name: Run custom update-script
         run: |
@@ -361,16 +343,14 @@ jobs:
           token: "${{ secrets.GH_TOKEN }}"
       - name: Check current package version
         run: |
-          PACKAGE="python3Packages.matplotlib"
-          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
-          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+          PRE_VERSION="$(nix eval --raw -f . python3Packages.matplotlib.version)"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
       - env:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
         name: build canary
         run: |
-          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.matplotlib
         working-directory: "./nixpkgs-upkeep"
       - name: Run custom update-script
         run: |
@@ -417,16 +397,14 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PACKAGE="python3Packages.optax"
-          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
-          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+          PRE_VERSION="$(nix eval --raw -f . python3Packages.optax.version)"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
       - env:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
         name: build canary
         run: |
-          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.optax
         working-directory: "./nixpkgs-upkeep"
   plexamp:
     runs-on: ubuntu-latest
@@ -494,16 +472,14 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PACKAGE="python3Packages.plotly"
-          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
-          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+          PRE_VERSION="$(nix eval --raw -f . python3Packages.plotly.version)"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
       - env:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
         name: build canary
         run: |
-          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.plotly
         working-directory: "./nixpkgs-upkeep"
   spotify:
     runs-on: ubuntu-latest
@@ -528,9 +504,7 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PACKAGE="spotify-unwrapped"
-          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
-          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+          PRE_VERSION="$(nix eval --raw -f . spotify-unwrapped.version)"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
       - name: Run custom update-script
@@ -583,16 +557,14 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PACKAGE="python3Packages.tensorflow"
-          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
-          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+          PRE_VERSION="$(nix eval --raw -f . python3Packages.tensorflow.version)"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
       - env:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
         name: build canary
         run: |
-          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.tensorflow
         working-directory: "./nixpkgs-upkeep"
   tensorflow-datasets:
     runs-on: ubuntu-latest
@@ -617,16 +589,14 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PACKAGE="python3Packages.tensorflow-datasets"
-          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
-          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+          PRE_VERSION="$(nix eval --raw -f . python3Packages.tensorflow-datasets.version)"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
       - env:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
         name: build canary
         run: |
-          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.tensorflow-datasets
         working-directory: "./nixpkgs-upkeep"
   tqdm:
     runs-on: ubuntu-latest
@@ -651,16 +621,14 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PACKAGE="python3Packages.tqdm"
-          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
-          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+          PRE_VERSION="$(nix eval --raw -f . python3Packages.tqdm.version)"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
       - env:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
         name: build canary
         run: |
-          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.tqdm
         working-directory: "./nixpkgs-upkeep"
   treeo:
     runs-on: ubuntu-latest
@@ -685,16 +653,14 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PACKAGE="python3Packages.treeo"
-          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
-          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+          PRE_VERSION="$(nix eval --raw -f . python3Packages.treeo.version)"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
       - env:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
         name: build canary
         run: |
-          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.treeo
         working-directory: "./nixpkgs-upkeep"
   treex:
     runs-on: ubuntu-latest
@@ -719,16 +685,14 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PACKAGE="python3Packages.treex"
-          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
-          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+          PRE_VERSION="$(nix eval --raw -f . python3Packages.treex.version)"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
       - env:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
         name: build canary
         run: |
-          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.treex
         working-directory: "./nixpkgs-upkeep"
   vscode:
     runs-on: ubuntu-latest
@@ -753,9 +717,7 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PACKAGE="vscode"
-          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
-          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+          PRE_VERSION="$(nix eval --raw -f . vscode.version)"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
       - run: "./nixpkgs/pkgs/applications/editors/vscode/update-vscode.sh"
@@ -794,9 +756,7 @@ jobs:
           token: "${{ secrets.GH_TOKEN }}"
       - name: Check current package version
         run: |
-          PACKAGE="vscodium"
-          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
-          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+          PRE_VERSION="$(nix eval --raw -f . vscodium.version)"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
       - run: "./nixpkgs/pkgs/applications/editors/vscode/update-vscodium.sh"
@@ -835,16 +795,14 @@ jobs:
           token: "${{ secrets.GH_TOKEN }}"
       - name: Check current package version
         run: |
-          PACKAGE="python3Packages.wandb"
-          PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
-          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+          PRE_VERSION="$(nix eval --raw -f . python3Packages.wandb.version)"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
       - env:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
         name: build canary
         run: |
-          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.wandb
         working-directory: "./nixpkgs-upkeep"
       - name: Run custom update-script
         run: |

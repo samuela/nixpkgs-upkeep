@@ -67,9 +67,7 @@ let checkVersion =
         , name = Some "Check current package version"
         , run = Some
             ''
-            PACKAGE="${attr}"
-            PRE_VERSION="$(nix eval --raw -f . $PACKAGE.version)"
-            echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+            PRE_VERSION="$(nix eval --raw -f . ${attr}.version)"
             echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
             ''
         , working-directory = Some "./nixpkgs"
@@ -83,15 +81,16 @@ let nixBuild =
         }
 
 let canary =
-      Step::{
-      , name = Some "build canary"
-      , run = Some
-          ''
-          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
-          ''
-      , env = Some { GH_TOKEN = "\${{ secrets.GH_TOKEN }}" }
-      , working-directory = Some "./nixpkgs-upkeep"
-      }
+      \(attr : Text) ->
+        Step::{
+        , name = Some "build canary"
+        , run = Some
+            ''
+            GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr ${attr}
+            ''
+        , env = Some { GH_TOKEN = "\${{ secrets.GH_TOKEN }}" }
+        , working-directory = Some "./nixpkgs-upkeep"
+        }
 
 let gitDiff =
       Step::{ run = Some "git diff", working-directory = Some "./nixpkgs" }
@@ -120,7 +119,7 @@ let basicCanary =
           , checkoutNixpkgs
           , allowUnfree
           , checkVersion attr
-          , canary
+          , canary attr
           ]
         }
 
@@ -168,7 +167,7 @@ in  { jobs =
           , checkoutNixpkgsUpkeep
           , checkoutNixpkgs
           , checkVersion "python3Packages.jax"
-          , canary
+          , canary "python3Packages.jax"
           , customUpdateScript
               "update-jax.py"
               "pkgs/development/python-modules/jax"
@@ -186,7 +185,7 @@ in  { jobs =
           , checkoutNixpkgsUpkeep
           , checkoutNixpkgs
           , checkVersion "julia_17-bin"
-          , canary
+          , canary "julia_17-bin"
           , customUpdateScript
               "update-julia-1.7.py"
               "pkgs/development/compilers/julia"
@@ -201,7 +200,7 @@ in  { jobs =
           , checkoutNixpkgsUpkeep
           , checkoutNixpkgs
           , checkVersion "python3Packages.matplotlib"
-          , canary
+          , canary "python3Packages.matplotlib"
           , customUpdateScript
               "update-matplotlib.py"
               "pkgs/development/python-modules/matplotlib"
@@ -305,7 +304,7 @@ in  { jobs =
           , checkoutNixpkgsUpkeep
           , checkoutNixpkgs
           , checkVersion "python3Packages.wandb"
-          , canary
+          , canary "python3Packages.wandb"
           , customUpdateScript
               "update-wandb.py"
               "pkgs/development/python-modules/wandb"
