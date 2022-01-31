@@ -123,19 +123,17 @@ let cachix =
         }
       }
 
+let intro =
+      [ installNix
+      , cachix
+      , checkoutNixpkgsUpkeep
+      , checkoutNixpkgs
+      , allowUnfree
+      ]
+
 let basicCanary =
       \(attr : Text) ->
-        Job::{
-        , steps =
-          [ installNix
-          , cachix
-          , checkoutNixpkgsUpkeep
-          , checkoutNixpkgs
-          , allowUnfree
-          , checkVersion attr
-          , canary attr
-          ]
-        }
+        Job::{ steps = intro # [ checkVersion attr, canary attr ] }
 
 let customUpdateScript =
       \(scriptName : Text) ->
@@ -177,109 +175,93 @@ in  { jobs =
       , ipython = basicCanary "python3Packages.ipython"
       , jax = Job::{
         , steps =
-          [ installNix
-          , cachix
-          , checkoutNixpkgsUpkeep
-          , checkoutNixpkgs
-          , checkVersion "python3Packages.jax"
-          , canary "python3Packages.jax"
-          , customUpdateScript
-              "update-jax.py"
-              "pkgs/development/python-modules/jax"
-          , gitDiff
-          , nixBuild "python3Packages.jax"
-          , createPR "python3Packages.jax" "master"
-          ]
+              intro
+            # [ checkVersion "python3Packages.jax"
+              , canary "python3Packages.jax"
+              , customUpdateScript
+                  "update-jax.py"
+                  "pkgs/development/python-modules/jax"
+              , gitDiff
+              , nixBuild "python3Packages.jax"
+              , createPR "python3Packages.jax" "master"
+              ]
         }
       , jaxlib = basicCanary "python3Packages.jaxlib"
       , jaxlibWithCuda = basicCanary "python3Packages.jaxlibWithCuda"
       , jmp = basicCanary "python3Packages.jmp"
       , julia_17-bin = Job::{
         , steps =
-          [ installNix
-          , cachix
-          , checkoutNixpkgsUpkeep
-          , checkoutNixpkgs
-          , checkVersion "julia_17-bin"
-          , canary "julia_17-bin"
-          , customUpdateScript
-              "update-julia-1.7.py"
-              "pkgs/development/compilers/julia"
-          , gitDiff
-          , nixBuild "julia_17-bin"
-          , createPR "julia_17-bin" "master"
-          ]
+              intro
+            # [ checkVersion "julia_17-bin"
+              , canary "julia_17-bin"
+              , customUpdateScript
+                  "update-julia-1.7.py"
+                  "pkgs/development/compilers/julia"
+              , gitDiff
+              , nixBuild "julia_17-bin"
+              , createPR "julia_17-bin" "master"
+              ]
         }
       , matplotlib = Job::{
         , steps =
-          [ installNix
-          , cachix
-          , checkoutNixpkgsUpkeep
-          , checkoutNixpkgs
-          , checkVersion "python3Packages.matplotlib"
-          , canary "python3Packages.matplotlib"
-          , customUpdateScript
-              "update-matplotlib.py"
-              "pkgs/development/python-modules/matplotlib"
-          , gitDiff
-          , nixBuild "python3Packages.matplotlib"
-          , createPR "python3Packages.matplotlib" "staging"
-          ]
+              intro
+            # [ checkVersion "python3Packages.matplotlib"
+              , canary "python3Packages.matplotlib"
+              , customUpdateScript
+                  "update-matplotlib.py"
+                  "pkgs/development/python-modules/matplotlib"
+              , gitDiff
+              , nixBuild "python3Packages.matplotlib"
+              , createPR "python3Packages.matplotlib" "staging"
+              ]
         }
       , optax = basicCanary "python3Packages.optax"
       , plexamp = Job::{
         , steps =
-          [ installNix
-          , cachix
-          , checkoutNixpkgsUpkeep
-          , checkoutNixpkgs
-          , allowUnfree
-          , Step::{
-            , name = Some "Check current package version before update script"
-            , run = Some
-                ''
-                PRE_VERSION="$(nix-instantiate --eval -E "with import ./. {}; lib.getVersion plexamp" --json | jq -r)"
-                echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
-                ''
-            , working-directory = Some "./nixpkgs"
-            }
-          , Step::{
-            , run = Some
-                "./nixpkgs/pkgs/applications/audio/plexamp/update-plexamp.sh"
-            }
-          , gitDiff
-          , nixBuild "plexamp"
-          , createPR "plexamp" "master"
-          ]
+              intro
+            # [ Step::{
+                , name = Some
+                    "Check current package version before update script"
+                , run = Some
+                    ''
+                    PRE_VERSION="$(nix-instantiate --eval -E "with import ./. {}; lib.getVersion plexamp" --json | jq -r)"
+                    echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
+                    ''
+                , working-directory = Some "./nixpkgs"
+                }
+              , Step::{
+                , run = Some
+                    "./nixpkgs/pkgs/applications/audio/plexamp/update-plexamp.sh"
+                }
+              , gitDiff
+              , nixBuild "plexamp"
+              , createPR "plexamp" "master"
+              ]
         }
       , plotly = basicCanary "python3Packages.plotly"
       , spotify = Job::{
         , steps =
-          [ installNix
-          , cachix
-          , checkoutNixpkgsUpkeep
-          , checkoutNixpkgs
-          , allowUnfree
-          , checkVersion "spotify-unwrapped"
-          , Step::{
-            , name = Some "Run custom update-script"
-            , run = Some
-                ''
-                git config --global user.email "foo@bar.com"
-                git config --global user.name "upkeep-bot"
-                before_commit=$(git rev-parse HEAD)
-                ./pkgs/applications/audio/spotify/update.sh
-                after_commit=$(git rev-parse HEAD)
-                if [ $before_commit != $after_commit ]; then
-                  git reset "HEAD^"
-                fi
-                ''
-            , working-directory = Some "./nixpkgs"
-            }
-          , gitDiff
-          , nixBuild "spotify"
-          , createPR "spotify-unwrapped" "master"
-          ]
+              intro
+            # [ checkVersion "spotify-unwrapped"
+              , Step::{
+                , name = Some "Run custom update-script"
+                , run = Some
+                    ''
+                    git config --global user.email "foo@bar.com"
+                    git config --global user.name "upkeep-bot"
+                    before_commit=$(git rev-parse HEAD)
+                    ./pkgs/applications/audio/spotify/update.sh
+                    after_commit=$(git rev-parse HEAD)
+                    if [ $before_commit != $after_commit ]; then
+                      git reset "HEAD^"
+                    fi
+                    ''
+                , working-directory = Some "./nixpkgs"
+                }
+              , gitDiff
+              , nixBuild "spotify"
+              , createPR "spotify-unwrapped" "master"
+              ]
         }
       , tensorflow = basicCanary "python3Packages.tensorflow"
       , tensorflow-datasets = basicCanary "python3Packages.tensorflow-datasets"
@@ -288,52 +270,42 @@ in  { jobs =
       , treex = basicCanary "python3Packages.treex"
       , vscode = Job::{
         , steps =
-          [ installNix
-          , cachix
-          , checkoutNixpkgsUpkeep
-          , checkoutNixpkgs
-          , allowUnfree
-          , checkVersion "vscode"
-          , Step::{
-            , run = Some
-                "./nixpkgs/pkgs/applications/editors/vscode/update-vscode.sh"
-            }
-          , gitDiff
-          , nixBuild "vscode"
-          , createPR "vscode" "master"
-          ]
+              intro
+            # [ checkVersion "vscode"
+              , Step::{
+                , run = Some
+                    "./nixpkgs/pkgs/applications/editors/vscode/update-vscode.sh"
+                }
+              , gitDiff
+              , nixBuild "vscode"
+              , createPR "vscode" "master"
+              ]
         }
       , vscodium = Job::{
         , steps =
-          [ installNix
-          , cachix
-          , checkoutNixpkgsUpkeep
-          , checkoutNixpkgs
-          , checkVersion "vscodium"
-          , Step::{
-            , run = Some
-                "./nixpkgs/pkgs/applications/editors/vscode/update-vscodium.sh"
-            }
-          , gitDiff
-          , nixBuild "vscodium"
-          , createPR "vscodium" "master"
-          ]
+              intro
+            # [ checkVersion "vscodium"
+              , Step::{
+                , run = Some
+                    "./nixpkgs/pkgs/applications/editors/vscode/update-vscodium.sh"
+                }
+              , gitDiff
+              , nixBuild "vscodium"
+              , createPR "vscodium" "master"
+              ]
         }
       , wandb = Job::{
         , steps =
-          [ installNix
-          , cachix
-          , checkoutNixpkgsUpkeep
-          , checkoutNixpkgs
-          , checkVersion "python3Packages.wandb"
-          , canary "python3Packages.wandb"
-          , customUpdateScript
-              "update-wandb.py"
-              "pkgs/development/python-modules/wandb"
-          , gitDiff
-          , nixBuild "python3Packages.wandb"
-          , createPR "python3Packages.wandb" "master"
-          ]
+              intro
+            # [ checkVersion "python3Packages.wandb"
+              , canary "python3Packages.wandb"
+              , customUpdateScript
+                  "update-wandb.py"
+                  "pkgs/development/python-modules/wandb"
+              , gitDiff
+              , nixBuild "python3Packages.wandb"
+              , createPR "python3Packages.wandb" "master"
+              ]
         }
       }
     , name = "upkeep"

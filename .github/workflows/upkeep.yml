@@ -165,6 +165,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Allow unfree
+        run: |
+          mkdir -p ~/.config/nixpkgs/
+          echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PRE_VERSION="$(nix eval --raw -f . python3Packages.jax.version)"
@@ -327,6 +331,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Allow unfree
+        run: |
+          mkdir -p ~/.config/nixpkgs/
+          echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PRE_VERSION="$(nix eval --raw -f . julia_17-bin.version)"
@@ -381,6 +389,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Allow unfree
+        run: |
+          mkdir -p ~/.config/nixpkgs/
+          echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PRE_VERSION="$(nix eval --raw -f . python3Packages.matplotlib.version)"
@@ -838,6 +850,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Allow unfree
+        run: |
+          mkdir -p ~/.config/nixpkgs/
+          echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PRE_VERSION="$(nix eval --raw -f . vscodium.version)"
@@ -881,6 +897,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Allow unfree
+        run: |
+          mkdir -p ~/.config/nixpkgs/
+          echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PRE_VERSION="$(nix eval --raw -f . python3Packages.wandb.version)"
