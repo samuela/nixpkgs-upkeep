@@ -218,7 +218,8 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
-      - run: |
+      - name: Allow unfree
+        run: |
           mkdir -p ~/.config/nixpkgs/
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
@@ -414,7 +415,8 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
-      - run: |
+      - name: Allow unfree
+        run: |
           mkdir -p ~/.config/nixpkgs/
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version before update script
@@ -488,7 +490,8 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
-      - run: |
+      - name: Allow unfree
+        run: |
           mkdir -p ~/.config/nixpkgs/
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version before update script
@@ -697,7 +700,8 @@ jobs:
           echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
-      - run: |
+      - name: Allow unfree
+        run: |
           mkdir -p ~/.config/nixpkgs/
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Run custom update-script

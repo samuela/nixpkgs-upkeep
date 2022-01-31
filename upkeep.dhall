@@ -91,6 +91,7 @@ let gitDiff =
 
 let allowUnfree =
       Step::{
+      , name = Some "Allow unfree"
       , run = Some
           ''
           mkdir -p ~/.config/nixpkgs/
