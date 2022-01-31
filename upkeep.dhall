@@ -75,14 +75,21 @@ let checkVersion =
         , working-directory = Some "./nixpkgs"
         }
 
+let nixBuild =
+      \(attr : Text) ->
+        Step::{
+        , run = Some "nix-build -A ${attr}"
+        , working-directory = Some "./nixpkgs"
+        }
+
 let canary =
       Step::{
-      , env = Some { GH_TOKEN = "\${{ secrets.GH_TOKEN }}" }
       , name = Some "build canary"
       , run = Some
           ''
           GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr $PACKAGE
           ''
+      , env = Some { GH_TOKEN = "\${{ secrets.GH_TOKEN }}" }
       , working-directory = Some "./nixpkgs-upkeep"
       }
 
@@ -158,10 +165,7 @@ in  { jobs =
                 ''
             }
           , gitDiff
-          , Step::{
-            , run = Some "nix-build -A python3Packages.jax"
-            , working-directory = Some "./nixpkgs"
-            }
+          , nixBuild "python3Packages.jax"
           , Step::{
             , name = Some "Create PR"
             , working-directory = Some "./nixpkgs"
@@ -224,10 +228,7 @@ in  { jobs =
                 ''
             }
           , gitDiff
-          , Step::{
-            , run = Some "nix-build -A julia_17-bin"
-            , working-directory = Some "./nixpkgs"
-            }
+          , nixBuild "julia_17-bin"
           , Step::{
             , name = Some "Create PR"
             , env = Some { GH_TOKEN = "\${{ secrets.GH_TOKEN }}" }
@@ -263,10 +264,7 @@ in  { jobs =
                 ''
             }
           , gitDiff
-          , Step::{
-            , run = Some "nix-build -A python3Packages.matplotlib"
-            , working-directory = Some "./nixpkgs"
-            }
+          , nixBuild "python3Packages.matplotlib"
           , Step::{
             , name = Some "Create PR"
             , env = Some { GH_TOKEN = "\${{ secrets.GH_TOKEN }}" }
@@ -316,10 +314,7 @@ in  { jobs =
                 ''
             }
           , gitDiff
-          , Step::{
-            , run = Some "nix-build -A plexamp"
-            , working-directory = Some "./nixpkgs"
-            }
+          , nixBuild "plexamp"
           , Step::{
             , env = Some { GH_TOKEN = "\${{ secrets.GH_TOKEN }}" }
             , name = Some "Create PR"
@@ -377,12 +372,8 @@ in  { jobs =
             , working-directory = Some "./nixpkgs"
             }
           , gitDiff
+          , nixBuild "spotify"
           , Step::{
-            , run = Some "nix-build -A spotify"
-            , working-directory = Some "./nixpkgs"
-            }
-          , Step::{
-            , env = Some { GH_TOKEN = "\${{ secrets.GH_TOKEN }}" }
             , name = Some "Create PR"
             , run = Some
                 ''
@@ -394,6 +385,7 @@ in  { jobs =
                   GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
                   ./../nixpkgs-upkeep/create-pr.sh
                 ''
+            , env = Some { GH_TOKEN = "\${{ secrets.GH_TOKEN }}" }
             , working-directory = Some "./nixpkgs"
             }
           ]
@@ -459,12 +451,8 @@ in  { jobs =
             , working-directory = Some "./nixpkgs"
             }
           , gitDiff
+          , nixBuild "vscode"
           , Step::{
-            , run = Some "nix-build -A vscode"
-            , working-directory = Some "./nixpkgs"
-            }
-          , Step::{
-            , env = Some { GH_TOKEN = "\${{ secrets.GH_TOKEN }}" }
             , name = Some "Create PR"
             , run = Some
                 ''
@@ -476,6 +464,7 @@ in  { jobs =
                   GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
                   ./../nixpkgs-upkeep/create-pr.sh
                 ''
+            , env = Some { GH_TOKEN = "\${{ secrets.GH_TOKEN }}" }
             , working-directory = Some "./nixpkgs"
             }
           ]
@@ -494,12 +483,8 @@ in  { jobs =
                 ''
             }
           , gitDiff
+          , nixBuild "vscodium"
           , Step::{
-            , run = Some "nix-build -A vscodium"
-            , working-directory = Some "./nixpkgs"
-            }
-          , Step::{
-            , env = Some { GH_TOKEN = "\${{ secrets.GH_TOKEN }}" }
             , name = Some "Create PR"
             , run = Some
                 ''
@@ -511,6 +496,7 @@ in  { jobs =
                   GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
                   ./../nixpkgs-upkeep/create-pr.sh
                 ''
+            , env = Some { GH_TOKEN = "\${{ secrets.GH_TOKEN }}" }
             , working-directory = Some "./nixpkgs"
             }
           ]
@@ -532,12 +518,8 @@ in  { jobs =
                 ''
             }
           , gitDiff
+          , nixBuild "python3Packages.wandb"
           , Step::{
-            , run = Some "nix-build -A python3Packages.wandb"
-            , working-directory = Some "./nixpkgs"
-            }
-          , Step::{
-            , env = Some { GH_TOKEN = "\${{ secrets.GH_TOKEN }}" }
             , name = Some "Create PR"
             , run = Some
                 ''
@@ -549,6 +531,7 @@ in  { jobs =
                   GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
                   ./../nixpkgs-upkeep/create-pr.sh
                 ''
+            , env = Some { GH_TOKEN = "\${{ secrets.GH_TOKEN }}" }
             , working-directory = Some "./nixpkgs"
             }
           ]
