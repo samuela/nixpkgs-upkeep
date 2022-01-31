@@ -25,6 +25,7 @@ Currently the following packages are supported:
 | plotly              |        | y   |
 | spotify             | y      |     |
 | tensorflow          |        | y   |
+| tensorflowWithCuda  |        | y   |
 | tensorflow-datasets |        | y   |
 | tqdm                |        | y   |
 | treeo               |        | y   |

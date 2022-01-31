@@ -264,6 +264,7 @@ in  { jobs =
               ]
         }
       , tensorflow = basicCanary "python3Packages.tensorflow"
+      , tensorflowWithCuda = basicCanary "python3Packages.tensorflowWithCuda"
       , tensorflow-datasets = basicCanary "python3Packages.tensorflow-datasets"
       , tqdm = basicCanary "python3Packages.tqdm"
       , treeo = basicCanary "python3Packages.treeo"
