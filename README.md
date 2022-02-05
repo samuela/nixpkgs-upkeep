@@ -8,31 +8,35 @@ nixpkgs-upkeep is an auto-update and CI bot for nixpkgs.
 
 Currently the following packages are supported:
 
-| Package             | Update | CI  |
-| ------------------- | ------ | --- |
-| dm-haiku            |        | y   |
-| elegy               |        | y   |
-| flax                |        | y   |
-| ipython             |        | y   |
-| jax                 | y      | y   |
-| jaxlib              |        | y   |
-| jaxlibWithCuda      |        | y   |
-| jmp                 |        | y   |
-| julia_17-bin        | y      | y   |
-| matplotlib          | y      | y   |
-| optax               |        | y   |
-| plexamp             | y      |     |
-| plotly              |        | y   |
-| spotify             | y      |     |
-| tensorflow          |        | y   |
-| tensorflowWithCuda  |        | y   |
-| tensorflow-datasets |        | y   |
-| tqdm                |        | y   |
-| treeo               |        | y   |
-| treex               |        | y   |
-| vscode              | y      |     |
-| vscodium            | y      |     |
-| wandb               | y      | y   |
+| Package                  | Update | CI                                                                                                         |
+| ------------------------ | ------ | ---------------------------------------------------------------------------------------------------------- |
+| dm-haiku                 |        | y                                                                                                          |
+| elegy                    |        | y                                                                                                          |
+| flax                     |        | y                                                                                                          |
+| ipython                  |        | y                                                                                                          |
+| jax                      | y      | y                                                                                                          |
+| jaxlib                   |        | y                                                                                                          |
+| jaxlib-bin               |        | y                                                                                                          |
+| jaxlib-bin (w. CUDA)     |        | y                                                                                                          |
+| jaxlibWithCuda           |        | y                                                                                                          |
+| jmp                      |        | y                                                                                                          |
+| julia_17-bin             | y      | y                                                                                                          |
+| matplotlib               | y      | y                                                                                                          |
+| optax                    |        | y                                                                                                          |
+| plexamp                  | y      |                                                                                                            |
+| plotly                   |        | y                                                                                                          |
+| spotify                  | y      |                                                                                                            |
+| tensorflow               |        | y                                                                                                          |
+| tensorflow-bin           |        | y                                                                                                          |
+| tensorflow-bin (w. CUDA) |        | y                                                                                                          |
+| tensorflow-datasets      |        | y                                                                                                          |
+| tensorflowWithCuda       |        | [N](https://discourse.nixos.org/t/petition-to-build-and-cache-unfree-packages-on-cache-nixos-org/17440/12) |
+| tqdm                     |        | y                                                                                                          |
+| treeo                    |        | y                                                                                                          |
+| treex                    |        | y                                                                                                          |
+| vscode                   | y      |                                                                                                            |
+| vscodium                 | y      |                                                                                                            |
+| wandb                    | y      | y                                                                                                          |
 
 Submit a PR to get your favorite Nix packages added to this list!
 

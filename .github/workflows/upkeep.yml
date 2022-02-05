@@ -238,6 +238,70 @@ jobs:
         run: |
           GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.jaxlib
         working-directory: "./nixpkgs-upkeep"
+  jaxlib-bin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: "cachix/install-nix-action@v16"
+        with:
+          extra_nix_config: experimental-features = nix-command flakes
+          nix_path: nixpkgs=channel:nixos-unstable
+      - uses: "cachix/cachix-action@v10"
+        with:
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          name: ploop
+      - name: Checkout nixpkgs-upkeep
+        uses: "actions/checkout@v2"
+        with:
+          path: nixpkgs-upkeep
+      - name: Checkout nixpkgs
+        uses: "actions/checkout@v2"
+        with:
+          path: nixpkgs
+          repository: NixOS/nixpkgs
+          token: "${{ secrets.GH_TOKEN }}"
+      - name: Allow unfree
+        run: |
+          mkdir -p ~/.config/nixpkgs/
+          echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
+      - name: Check current package version
+        run: |
+          PRE_VERSION="$(nix eval --raw -f . python3Packages.jaxlib-bin.version)"
+          echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
+        working-directory: "./nixpkgs"
+      - env:
+          GH_TOKEN: "${{ secrets.GH_TOKEN }}"
+        name: build canary
+        run: |
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.jaxlib-bin
+        working-directory: "./nixpkgs-upkeep"
+  jaxlib-bin-cuda:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: "cachix/install-nix-action@v16"
+        with:
+          extra_nix_config: experimental-features = nix-command flakes
+          nix_path: nixpkgs=channel:nixos-unstable
+      - uses: "cachix/cachix-action@v10"
+        with:
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          name: ploop
+      - name: Checkout nixpkgs-upkeep
+        uses: "actions/checkout@v2"
+        with:
+          path: nixpkgs-upkeep
+      - name: Checkout nixpkgs
+        uses: "actions/checkout@v2"
+        with:
+          path: nixpkgs
+          repository: NixOS/nixpkgs
+          token: "${{ secrets.GH_TOKEN }}"
+      - name: Allow unfree
+        run: |
+          mkdir -p ~/.config/nixpkgs/
+          echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
+      - run: |
+          NIX_PATH=.. nix-build -E "with import <nixpkgs> {}; python3Packages.jaxlib-bin.override { cudaSupport = true; }"
+        working-directory: "./nixpkgs"
   jaxlibWithCuda:
     runs-on: ubuntu-latest
     steps:
@@ -638,6 +702,70 @@ jobs:
         run: |
           GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.tensorflow
         working-directory: "./nixpkgs-upkeep"
+  tensorflow-bin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: "cachix/install-nix-action@v16"
+        with:
+          extra_nix_config: experimental-features = nix-command flakes
+          nix_path: nixpkgs=channel:nixos-unstable
+      - uses: "cachix/cachix-action@v10"
+        with:
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          name: ploop
+      - name: Checkout nixpkgs-upkeep
+        uses: "actions/checkout@v2"
+        with:
+          path: nixpkgs-upkeep
+      - name: Checkout nixpkgs
+        uses: "actions/checkout@v2"
+        with:
+          path: nixpkgs
+          repository: NixOS/nixpkgs
+          token: "${{ secrets.GH_TOKEN }}"
+      - name: Allow unfree
+        run: |
+          mkdir -p ~/.config/nixpkgs/
+          echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
+      - name: Check current package version
+        run: |
+          PRE_VERSION="$(nix eval --raw -f . python3Packages.tensorflow-bin.version)"
+          echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
+        working-directory: "./nixpkgs"
+      - env:
+          GH_TOKEN: "${{ secrets.GH_TOKEN }}"
+        name: build canary
+        run: |
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.tensorflow-bin
+        working-directory: "./nixpkgs-upkeep"
+  tensorflow-bin-cuda:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: "cachix/install-nix-action@v16"
+        with:
+          extra_nix_config: experimental-features = nix-command flakes
+          nix_path: nixpkgs=channel:nixos-unstable
+      - uses: "cachix/cachix-action@v10"
+        with:
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          name: ploop
+      - name: Checkout nixpkgs-upkeep
+        uses: "actions/checkout@v2"
+        with:
+          path: nixpkgs-upkeep
+      - name: Checkout nixpkgs
+        uses: "actions/checkout@v2"
+        with:
+          path: nixpkgs
+          repository: NixOS/nixpkgs
+          token: "${{ secrets.GH_TOKEN }}"
+      - name: Allow unfree
+        run: |
+          mkdir -p ~/.config/nixpkgs/
+          echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
+      - run: |
+          NIX_PATH=.. nix-build -E "with import <nixpkgs> {}; python3Packages.tensorflow-bin.override { cudaSupport = true; }"
+        working-directory: "./nixpkgs"
   tensorflow-datasets:
     runs-on: ubuntu-latest
     steps:
@@ -673,42 +801,6 @@ jobs:
         name: build canary
         run: |
           GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.tensorflow-datasets
-        working-directory: "./nixpkgs-upkeep"
-  tensorflowWithCuda:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: "cachix/install-nix-action@v16"
-        with:
-          extra_nix_config: experimental-features = nix-command flakes
-          nix_path: nixpkgs=channel:nixos-unstable
-      - uses: "cachix/cachix-action@v10"
-        with:
-          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
-          name: ploop
-      - name: Checkout nixpkgs-upkeep
-        uses: "actions/checkout@v2"
-        with:
-          path: nixpkgs-upkeep
-      - name: Checkout nixpkgs
-        uses: "actions/checkout@v2"
-        with:
-          path: nixpkgs
-          repository: NixOS/nixpkgs
-          token: "${{ secrets.GH_TOKEN }}"
-      - name: Allow unfree
-        run: |
-          mkdir -p ~/.config/nixpkgs/
-          echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
-      - name: Check current package version
-        run: |
-          PRE_VERSION="$(nix eval --raw -f . python3Packages.tensorflowWithCuda.version)"
-          echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
-        working-directory: "./nixpkgs"
-      - env:
-          GH_TOKEN: "${{ secrets.GH_TOKEN }}"
-        name: build canary
-        run: |
-          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.tensorflowWithCuda
         working-directory: "./nixpkgs-upkeep"
   tqdm:
     runs-on: ubuntu-latest

@@ -187,6 +187,19 @@ in  { jobs =
               ]
         }
       , jaxlib = basicCanary "python3Packages.jaxlib"
+      , jaxlib-bin = basicCanary "python3Packages.jaxlib-bin"
+      , jaxlib-bin-cuda = Job::{
+        , steps =
+              intro
+            # [ Step::{
+                , run = Some
+                    ''
+                    NIX_PATH=.. nix-build -E "with import <nixpkgs> {}; python3Packages.jaxlib-bin.override { cudaSupport = true; }"
+                    ''
+                , working-directory = Some "./nixpkgs"
+                }
+              ]
+        }
       , jaxlibWithCuda = basicCanary "python3Packages.jaxlibWithCuda"
       , jmp = basicCanary "python3Packages.jmp"
       , julia_17-bin = Job::{
@@ -264,7 +277,19 @@ in  { jobs =
               ]
         }
       , tensorflow = basicCanary "python3Packages.tensorflow"
-      , tensorflowWithCuda = basicCanary "python3Packages.tensorflowWithCuda"
+      , tensorflow-bin = basicCanary "python3Packages.tensorflow-bin"
+      , tensorflow-bin-cuda = Job::{
+        , steps =
+              intro
+            # [ Step::{
+                , run = Some
+                    ''
+                    NIX_PATH=.. nix-build -E "with import <nixpkgs> {}; python3Packages.tensorflow-bin.override { cudaSupport = true; }"
+                    ''
+                , working-directory = Some "./nixpkgs"
+                }
+              ]
+        }
       , tensorflow-datasets = basicCanary "python3Packages.tensorflow-datasets"
       , tqdm = basicCanary "python3Packages.tqdm"
       , treeo = basicCanary "python3Packages.treeo"
