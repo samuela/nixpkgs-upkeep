@@ -37,6 +37,7 @@ attr_version = subprocess.run(
         "nix-instantiate", "--eval", "-E",
         f"with import ./. {{}}; lib.getVersion {attr}"
     ],
+    cwd=args.nixpkgs,
     stdout=subprocess.PIPE).stdout.decode("utf-8").strip()
 # Note that we don't include the nixpkgs commit or the /nix/store/xxx hash here,
 # since those change very frequently and would likely create duplicate issues.
@@ -56,12 +57,14 @@ if existing_issues > 0:
     sys.exit(build_returncode)
 
 commit = subprocess.run(["git", "log", "-1", "--pretty=format:%H"],
+                        cwd=args.nixpkgs,
                         stdout=subprocess.PIPE).stdout.decode("utf-8").strip()
 
 maintainers_json = json.loads(
     subprocess.run([
         "nix", "eval", "--json", f"(import ./. {{}}).{attr}.meta.maintainers"
     ],
+                   cwd=args.nixpkgs,
                    stdout=subprocess.PIPE).stdout.decode("utf-8").strip())
 maintainers = [m["github"] for m in maintainers_json]
 
