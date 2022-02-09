@@ -72,6 +72,7 @@ let checkVersion =
         , run = Some
             ''
             PRE_VERSION="$(nix eval --raw -f . ${attr}.version)"
+            echo "Current version: $PRE_VERSION"
             echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
             ''
         , working-directory = Some "./nixpkgs"
