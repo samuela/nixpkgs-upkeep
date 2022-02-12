@@ -47,6 +47,12 @@ let installNix =
         }
       }
 
+let nixInfo =
+      Step::{
+      , name = Some "nix-info"
+      , run = Some "nix-shell -p nix-info --run 'nix-info -m'"
+      }
+
 let checkoutNixpkgsUpkeep =
       Step::{
       , name = Some "Checkout nixpkgs-upkeep"
@@ -71,7 +77,7 @@ let checkVersion =
         , name = Some "Check current package version"
         , run = Some
             ''
-            PRE_VERSION="$(nix eval --raw -f . ${attr}.version)"
+            PRE_VERSION="$(nix eval --raw --file . ${attr}.version)"
             echo "Current version: $PRE_VERSION"
             echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
             ''
@@ -126,6 +132,7 @@ let cachix =
 
 let intro =
       [ installNix
+      , nixInfo
       , cachix
       , checkoutNixpkgsUpkeep
       , checkoutNixpkgs

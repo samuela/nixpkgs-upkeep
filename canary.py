@@ -62,10 +62,11 @@ commit = subprocess.run(["git", "log", "-1", "--pretty=format:%H"],
 
 maintainers_json = json.loads(
     subprocess.run([
-        "nix", "eval", "--json", f"(import ./. {{}}).{attr}.meta.maintainers"
+        "nix", "eval", "--json", "--file", args.nixpkgs,
+        f"{attr}.meta.maintainers"
     ],
-                   cwd=args.nixpkgs,
-                   stdout=subprocess.PIPE).stdout.decode("utf-8").strip())
+                   stdout=subprocess.PIPE,
+                   check=True).stdout.decode("utf-8").strip())
 maintainers = [m["github"] for m in maintainers_json]
 
 nix_info = subprocess.run(

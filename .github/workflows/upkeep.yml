@@ -7,6 +7,8 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - name: nix-info
+        run: "nix-shell -p nix-info --run 'nix-info -m'"
       - uses: "cachix/cachix-action@v10"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
@@ -27,7 +29,7 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PRE_VERSION="$(nix eval --raw -f . python3Packages.dm-haiku.version)"
+          PRE_VERSION="$(nix eval --raw --file . python3Packages.dm-haiku.version)"
           echo "Current version: $PRE_VERSION"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
@@ -44,6 +46,8 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - name: nix-info
+        run: "nix-shell -p nix-info --run 'nix-info -m'"
       - uses: "cachix/cachix-action@v10"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
@@ -64,7 +68,7 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PRE_VERSION="$(nix eval --raw -f . python3Packages.elegy.version)"
+          PRE_VERSION="$(nix eval --raw --file . python3Packages.elegy.version)"
           echo "Current version: $PRE_VERSION"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
@@ -81,6 +85,8 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - name: nix-info
+        run: "nix-shell -p nix-info --run 'nix-info -m'"
       - uses: "cachix/cachix-action@v10"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
@@ -101,7 +107,7 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PRE_VERSION="$(nix eval --raw -f . python3Packages.flax.version)"
+          PRE_VERSION="$(nix eval --raw --file . python3Packages.flax.version)"
           echo "Current version: $PRE_VERSION"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
@@ -118,6 +124,8 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - name: nix-info
+        run: "nix-shell -p nix-info --run 'nix-info -m'"
       - uses: "cachix/cachix-action@v10"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
@@ -138,7 +146,7 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PRE_VERSION="$(nix eval --raw -f . python3Packages.ipython.version)"
+          PRE_VERSION="$(nix eval --raw --file . python3Packages.ipython.version)"
           echo "Current version: $PRE_VERSION"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
@@ -155,6 +163,8 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - name: nix-info
+        run: "nix-shell -p nix-info --run 'nix-info -m'"
       - uses: "cachix/cachix-action@v10"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
@@ -175,7 +185,7 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PRE_VERSION="$(nix eval --raw -f . python3Packages.jax.version)"
+          PRE_VERSION="$(nix eval --raw --file . python3Packages.jax.version)"
           echo "Current version: $PRE_VERSION"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
@@ -214,6 +224,8 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - name: nix-info
+        run: "nix-shell -p nix-info --run 'nix-info -m'"
       - uses: "cachix/cachix-action@v10"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
@@ -234,7 +246,7 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PRE_VERSION="$(nix eval --raw -f . python3Packages.jaxlib.version)"
+          PRE_VERSION="$(nix eval --raw --file . python3Packages.jaxlib.version)"
           echo "Current version: $PRE_VERSION"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
@@ -251,6 +263,8 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - name: nix-info
+        run: "nix-shell -p nix-info --run 'nix-info -m'"
       - uses: "cachix/cachix-action@v10"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
@@ -271,7 +285,7 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PRE_VERSION="$(nix eval --raw -f . python3Packages.jaxlib-bin.version)"
+          PRE_VERSION="$(nix eval --raw --file . python3Packages.jaxlib-bin.version)"
           echo "Current version: $PRE_VERSION"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
@@ -288,6 +302,8 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - name: nix-info
+        run: "nix-shell -p nix-info --run 'nix-info -m'"
       - uses: "cachix/cachix-action@v10"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
@@ -316,6 +332,8 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - name: nix-info
+        run: "nix-shell -p nix-info --run 'nix-info -m'"
       - uses: "cachix/cachix-action@v10"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
@@ -336,7 +354,7 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PRE_VERSION="$(nix eval --raw -f . python3Packages.jaxlibWithCuda.version)"
+          PRE_VERSION="$(nix eval --raw --file . python3Packages.jaxlibWithCuda.version)"
           echo "Current version: $PRE_VERSION"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
@@ -353,6 +371,8 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - name: nix-info
+        run: "nix-shell -p nix-info --run 'nix-info -m'"
       - uses: "cachix/cachix-action@v10"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
@@ -373,7 +393,7 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PRE_VERSION="$(nix eval --raw -f . python3Packages.jmp.version)"
+          PRE_VERSION="$(nix eval --raw --file . python3Packages.jmp.version)"
           echo "Current version: $PRE_VERSION"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
@@ -390,6 +410,8 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - name: nix-info
+        run: "nix-shell -p nix-info --run 'nix-info -m'"
       - uses: "cachix/cachix-action@v10"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
@@ -410,7 +432,7 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PRE_VERSION="$(nix eval --raw -f . julia_17-bin.version)"
+          PRE_VERSION="$(nix eval --raw --file . julia_17-bin.version)"
           echo "Current version: $PRE_VERSION"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
@@ -449,6 +471,8 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - name: nix-info
+        run: "nix-shell -p nix-info --run 'nix-info -m'"
       - uses: "cachix/cachix-action@v10"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
@@ -469,7 +493,7 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PRE_VERSION="$(nix eval --raw -f . python3Packages.matplotlib.version)"
+          PRE_VERSION="$(nix eval --raw --file . python3Packages.matplotlib.version)"
           echo "Current version: $PRE_VERSION"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
@@ -508,6 +532,8 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - name: nix-info
+        run: "nix-shell -p nix-info --run 'nix-info -m'"
       - uses: "cachix/cachix-action@v10"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
@@ -528,7 +554,7 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PRE_VERSION="$(nix eval --raw -f . python3Packages.optax.version)"
+          PRE_VERSION="$(nix eval --raw --file . python3Packages.optax.version)"
           echo "Current version: $PRE_VERSION"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
@@ -545,6 +571,8 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - name: nix-info
+        run: "nix-shell -p nix-info --run 'nix-info -m'"
       - uses: "cachix/cachix-action@v10"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
@@ -592,6 +620,8 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - name: nix-info
+        run: "nix-shell -p nix-info --run 'nix-info -m'"
       - uses: "cachix/cachix-action@v10"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
@@ -612,7 +642,7 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PRE_VERSION="$(nix eval --raw -f . python3Packages.plotly.version)"
+          PRE_VERSION="$(nix eval --raw --file . python3Packages.plotly.version)"
           echo "Current version: $PRE_VERSION"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
@@ -629,6 +659,8 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - name: nix-info
+        run: "nix-shell -p nix-info --run 'nix-info -m'"
       - uses: "cachix/cachix-action@v10"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
@@ -649,7 +681,7 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PRE_VERSION="$(nix eval --raw -f . spotify-unwrapped.version)"
+          PRE_VERSION="$(nix eval --raw --file . spotify-unwrapped.version)"
           echo "Current version: $PRE_VERSION"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
@@ -687,6 +719,8 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - name: nix-info
+        run: "nix-shell -p nix-info --run 'nix-info -m'"
       - uses: "cachix/cachix-action@v10"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
@@ -707,7 +741,7 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PRE_VERSION="$(nix eval --raw -f . python3Packages.tensorflow.version)"
+          PRE_VERSION="$(nix eval --raw --file . python3Packages.tensorflow.version)"
           echo "Current version: $PRE_VERSION"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
@@ -724,6 +758,8 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - name: nix-info
+        run: "nix-shell -p nix-info --run 'nix-info -m'"
       - uses: "cachix/cachix-action@v10"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
@@ -744,7 +780,7 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PRE_VERSION="$(nix eval --raw -f . python3Packages.tensorflow-bin.version)"
+          PRE_VERSION="$(nix eval --raw --file . python3Packages.tensorflow-bin.version)"
           echo "Current version: $PRE_VERSION"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
@@ -761,6 +797,8 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - name: nix-info
+        run: "nix-shell -p nix-info --run 'nix-info -m'"
       - uses: "cachix/cachix-action@v10"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
@@ -789,6 +827,8 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - name: nix-info
+        run: "nix-shell -p nix-info --run 'nix-info -m'"
       - uses: "cachix/cachix-action@v10"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
@@ -809,7 +849,7 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PRE_VERSION="$(nix eval --raw -f . python3Packages.tensorflow-datasets.version)"
+          PRE_VERSION="$(nix eval --raw --file . python3Packages.tensorflow-datasets.version)"
           echo "Current version: $PRE_VERSION"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
@@ -826,6 +866,8 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - name: nix-info
+        run: "nix-shell -p nix-info --run 'nix-info -m'"
       - uses: "cachix/cachix-action@v10"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
@@ -846,7 +888,7 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PRE_VERSION="$(nix eval --raw -f . python3Packages.tqdm.version)"
+          PRE_VERSION="$(nix eval --raw --file . python3Packages.tqdm.version)"
           echo "Current version: $PRE_VERSION"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
@@ -863,6 +905,8 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - name: nix-info
+        run: "nix-shell -p nix-info --run 'nix-info -m'"
       - uses: "cachix/cachix-action@v10"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
@@ -883,7 +927,7 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PRE_VERSION="$(nix eval --raw -f . python3Packages.treeo.version)"
+          PRE_VERSION="$(nix eval --raw --file . python3Packages.treeo.version)"
           echo "Current version: $PRE_VERSION"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
@@ -900,6 +944,8 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - name: nix-info
+        run: "nix-shell -p nix-info --run 'nix-info -m'"
       - uses: "cachix/cachix-action@v10"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
@@ -920,7 +966,7 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PRE_VERSION="$(nix eval --raw -f . python3Packages.treex.version)"
+          PRE_VERSION="$(nix eval --raw --file . python3Packages.treex.version)"
           echo "Current version: $PRE_VERSION"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
@@ -937,6 +983,8 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - name: nix-info
+        run: "nix-shell -p nix-info --run 'nix-info -m'"
       - uses: "cachix/cachix-action@v10"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
@@ -957,7 +1005,7 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PRE_VERSION="$(nix eval --raw -f . vscode.version)"
+          PRE_VERSION="$(nix eval --raw --file . vscode.version)"
           echo "Current version: $PRE_VERSION"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
@@ -985,6 +1033,8 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - name: nix-info
+        run: "nix-shell -p nix-info --run 'nix-info -m'"
       - uses: "cachix/cachix-action@v10"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
@@ -1005,7 +1055,7 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PRE_VERSION="$(nix eval --raw -f . vscodium.version)"
+          PRE_VERSION="$(nix eval --raw --file . vscodium.version)"
           echo "Current version: $PRE_VERSION"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
@@ -1033,6 +1083,8 @@ jobs:
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
+      - name: nix-info
+        run: "nix-shell -p nix-info --run 'nix-info -m'"
       - uses: "cachix/cachix-action@v10"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
@@ -1053,7 +1105,7 @@ jobs:
           echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PRE_VERSION="$(nix eval --raw -f . python3Packages.wandb.version)"
+          PRE_VERSION="$(nix eval --raw --file . python3Packages.wandb.version)"
           echo "Current version: $PRE_VERSION"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
