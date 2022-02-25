@@ -508,6 +508,49 @@ jobs:
             GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
             ./../nixpkgs-upkeep/create-pr.sh
         working-directory: "./nixpkgs"
+  jupyter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: "cachix/install-nix-action@v16"
+        with:
+          extra_nix_config: experimental-features = nix-command flakes
+          nix_path: nixpkgs=channel:nixos-unstable
+      - name: nix-info
+        run: "nix-shell -p nix-info --run 'nix-info -m'"
+      - uses: "cachix/cachix-action@v10"
+        with:
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          name: ploop
+      - name: Checkout nixpkgs-upkeep
+        uses: "actions/checkout@v2"
+        with:
+          path: nixpkgs-upkeep
+      - name: Checkout nixpkgs
+        uses: "actions/checkout@v2"
+        with:
+          path: nixpkgs
+          repository: NixOS/nixpkgs
+          token: "${{ secrets.GH_TOKEN }}"
+      - name: Add CUDA/MKL overlay
+        run: |
+          mkdir -p ~/.config/nixpkgs/overlays/
+          cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
+      - name: Allow unfree
+        run: |
+          mkdir -p ~/.config/nixpkgs/
+          echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
+      - name: Check current package version
+        run: |
+          PRE_VERSION="$(nix eval --raw --file . python3Packages.jupyter.version)"
+          echo "Current version: $PRE_VERSION"
+          echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
+        working-directory: "./nixpkgs"
+      - env:
+          GH_TOKEN: "${{ secrets.GH_TOKEN }}"
+        name: build canary
+        run: |
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.jupyter
+        working-directory: "./nixpkgs-upkeep"
   matplotlib:
     runs-on: ubuntu-latest
     steps:
@@ -616,6 +659,49 @@ jobs:
         run: |
           GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.optax
         working-directory: "./nixpkgs-upkeep"
+  pandas:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: "cachix/install-nix-action@v16"
+        with:
+          extra_nix_config: experimental-features = nix-command flakes
+          nix_path: nixpkgs=channel:nixos-unstable
+      - name: nix-info
+        run: "nix-shell -p nix-info --run 'nix-info -m'"
+      - uses: "cachix/cachix-action@v10"
+        with:
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          name: ploop
+      - name: Checkout nixpkgs-upkeep
+        uses: "actions/checkout@v2"
+        with:
+          path: nixpkgs-upkeep
+      - name: Checkout nixpkgs
+        uses: "actions/checkout@v2"
+        with:
+          path: nixpkgs
+          repository: NixOS/nixpkgs
+          token: "${{ secrets.GH_TOKEN }}"
+      - name: Add CUDA/MKL overlay
+        run: |
+          mkdir -p ~/.config/nixpkgs/overlays/
+          cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
+      - name: Allow unfree
+        run: |
+          mkdir -p ~/.config/nixpkgs/
+          echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
+      - name: Check current package version
+        run: |
+          PRE_VERSION="$(nix eval --raw --file . python3Packages.pandas.version)"
+          echo "Current version: $PRE_VERSION"
+          echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
+        working-directory: "./nixpkgs"
+      - env:
+          GH_TOKEN: "${{ secrets.GH_TOKEN }}"
+        name: build canary
+        run: |
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.pandas
+        working-directory: "./nixpkgs-upkeep"
   plexamp:
     runs-on: ubuntu-latest
     steps:
@@ -711,6 +797,92 @@ jobs:
         name: build canary
         run: |
           GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.plotly
+        working-directory: "./nixpkgs-upkeep"
+  pytorch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: "cachix/install-nix-action@v16"
+        with:
+          extra_nix_config: experimental-features = nix-command flakes
+          nix_path: nixpkgs=channel:nixos-unstable
+      - name: nix-info
+        run: "nix-shell -p nix-info --run 'nix-info -m'"
+      - uses: "cachix/cachix-action@v10"
+        with:
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          name: ploop
+      - name: Checkout nixpkgs-upkeep
+        uses: "actions/checkout@v2"
+        with:
+          path: nixpkgs-upkeep
+      - name: Checkout nixpkgs
+        uses: "actions/checkout@v2"
+        with:
+          path: nixpkgs
+          repository: NixOS/nixpkgs
+          token: "${{ secrets.GH_TOKEN }}"
+      - name: Add CUDA/MKL overlay
+        run: |
+          mkdir -p ~/.config/nixpkgs/overlays/
+          cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
+      - name: Allow unfree
+        run: |
+          mkdir -p ~/.config/nixpkgs/
+          echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
+      - name: Check current package version
+        run: |
+          PRE_VERSION="$(nix eval --raw --file . python3Packages.pytorch.version)"
+          echo "Current version: $PRE_VERSION"
+          echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
+        working-directory: "./nixpkgs"
+      - env:
+          GH_TOKEN: "${{ secrets.GH_TOKEN }}"
+        name: build canary
+        run: |
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.pytorch
+        working-directory: "./nixpkgs-upkeep"
+  pytorchWithCuda:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: "cachix/install-nix-action@v16"
+        with:
+          extra_nix_config: experimental-features = nix-command flakes
+          nix_path: nixpkgs=channel:nixos-unstable
+      - name: nix-info
+        run: "nix-shell -p nix-info --run 'nix-info -m'"
+      - uses: "cachix/cachix-action@v10"
+        with:
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          name: ploop
+      - name: Checkout nixpkgs-upkeep
+        uses: "actions/checkout@v2"
+        with:
+          path: nixpkgs-upkeep
+      - name: Checkout nixpkgs
+        uses: "actions/checkout@v2"
+        with:
+          path: nixpkgs
+          repository: NixOS/nixpkgs
+          token: "${{ secrets.GH_TOKEN }}"
+      - name: Add CUDA/MKL overlay
+        run: |
+          mkdir -p ~/.config/nixpkgs/overlays/
+          cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
+      - name: Allow unfree
+        run: |
+          mkdir -p ~/.config/nixpkgs/
+          echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
+      - name: Check current package version
+        run: |
+          PRE_VERSION="$(nix eval --raw --file . python3Packages.pytorchWithCuda.version)"
+          echo "Current version: $PRE_VERSION"
+          echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
+        working-directory: "./nixpkgs"
+      - env:
+          GH_TOKEN: "${{ secrets.GH_TOKEN }}"
+        name: build canary
+        run: |
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.pytorchWithCuda
         working-directory: "./nixpkgs-upkeep"
   spotify:
     runs-on: ubuntu-latest
@@ -938,6 +1110,49 @@ jobs:
         name: build canary
         run: |
           GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.tensorflow-datasets
+        working-directory: "./nixpkgs-upkeep"
+  torchvision:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: "cachix/install-nix-action@v16"
+        with:
+          extra_nix_config: experimental-features = nix-command flakes
+          nix_path: nixpkgs=channel:nixos-unstable
+      - name: nix-info
+        run: "nix-shell -p nix-info --run 'nix-info -m'"
+      - uses: "cachix/cachix-action@v10"
+        with:
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          name: ploop
+      - name: Checkout nixpkgs-upkeep
+        uses: "actions/checkout@v2"
+        with:
+          path: nixpkgs-upkeep
+      - name: Checkout nixpkgs
+        uses: "actions/checkout@v2"
+        with:
+          path: nixpkgs
+          repository: NixOS/nixpkgs
+          token: "${{ secrets.GH_TOKEN }}"
+      - name: Add CUDA/MKL overlay
+        run: |
+          mkdir -p ~/.config/nixpkgs/overlays/
+          cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
+      - name: Allow unfree
+        run: |
+          mkdir -p ~/.config/nixpkgs/
+          echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
+      - name: Check current package version
+        run: |
+          PRE_VERSION="$(nix eval --raw --file . python3Packages.torchvision.version)"
+          echo "Current version: $PRE_VERSION"
+          echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
+        working-directory: "./nixpkgs"
+      - env:
+          GH_TOKEN: "${{ secrets.GH_TOKEN }}"
+        name: build canary
+        run: |
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.torchvision
         working-directory: "./nixpkgs-upkeep"
   tqdm:
     runs-on: ubuntu-latest
@@ -1241,6 +1456,49 @@ jobs:
             GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
             ./../nixpkgs-upkeep/create-pr.sh
         working-directory: "./nixpkgs"
+  yapf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: "cachix/install-nix-action@v16"
+        with:
+          extra_nix_config: experimental-features = nix-command flakes
+          nix_path: nixpkgs=channel:nixos-unstable
+      - name: nix-info
+        run: "nix-shell -p nix-info --run 'nix-info -m'"
+      - uses: "cachix/cachix-action@v10"
+        with:
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          name: ploop
+      - name: Checkout nixpkgs-upkeep
+        uses: "actions/checkout@v2"
+        with:
+          path: nixpkgs-upkeep
+      - name: Checkout nixpkgs
+        uses: "actions/checkout@v2"
+        with:
+          path: nixpkgs
+          repository: NixOS/nixpkgs
+          token: "${{ secrets.GH_TOKEN }}"
+      - name: Add CUDA/MKL overlay
+        run: |
+          mkdir -p ~/.config/nixpkgs/overlays/
+          cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
+      - name: Allow unfree
+        run: |
+          mkdir -p ~/.config/nixpkgs/
+          echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
+      - name: Check current package version
+        run: |
+          PRE_VERSION="$(nix eval --raw --file . yapf.version)"
+          echo "Current version: $PRE_VERSION"
+          echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
+        working-directory: "./nixpkgs"
+      - env:
+          GH_TOKEN: "${{ secrets.GH_TOKEN }}"
+        name: build canary
+        run: |
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr yapf
+        working-directory: "./nixpkgs-upkeep"
 name: upkeep
 on:
   push:

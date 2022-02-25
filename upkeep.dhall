@@ -192,6 +192,7 @@ in  { jobs =
       , elegy = basicCanary "python3Packages.elegy"
       , flax = basicCanary "python3Packages.flax"
       , ipython = basicCanary "python3Packages.ipython"
+      , jupyter = basicCanary "python3Packages.jupyter"
       , jax = Job::{
         , steps =
               intro
@@ -248,6 +249,7 @@ in  { jobs =
               ]
         }
       , optax = basicCanary "python3Packages.optax"
+      , pandas = basicCanary "python3Packages.pandas"
       , plexamp = Job::{
         , steps =
               intro
@@ -271,6 +273,8 @@ in  { jobs =
               ]
         }
       , plotly = basicCanary "python3Packages.plotly"
+      , pytorch = basicCanary "python3Packages.pytorch"
+      , pytorchWithCuda = basicCanary "python3Packages.pytorchWithCuda"
       , spotify = Job::{
         , steps =
               intro
@@ -311,6 +315,7 @@ in  { jobs =
         }
       , tensorflow-datasets = basicCanary "python3Packages.tensorflow-datasets"
       , tqdm = basicCanary "python3Packages.tqdm"
+      , torchvision = basicCanary "python3Packages.torchvision"
       , treeo = basicCanary "python3Packages.treeo"
       , treex = basicCanary "python3Packages.treex"
       , vscode = Job::{
@@ -352,6 +357,7 @@ in  { jobs =
               , createPR "python3Packages.wandb" "master"
               ]
         }
+      , yapf = basicCanary "yapf"
       }
     , name = "upkeep"
     , on =
