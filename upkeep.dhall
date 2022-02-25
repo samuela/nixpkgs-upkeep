@@ -274,6 +274,7 @@ in  { jobs =
         }
       , plotly = basicCanary "python3Packages.plotly"
       , pytorch = basicCanary "python3Packages.pytorch"
+      , pytorch-bin = basicCanary "python3Packages.pytorch-bin"
       , pytorchWithCuda = basicCanary "python3Packages.pytorchWithCuda"
       , spotify = Job::{
         , steps =
