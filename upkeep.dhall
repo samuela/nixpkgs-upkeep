@@ -116,6 +116,16 @@ let allowUnfree =
           ''
       }
 
+let addOverlay =
+      Step::{
+      , name = Some "Add CUDA/MKL overlay"
+      , run = Some
+          ''
+          mkdir -p ~/.config/nixpkgs/overlays/
+          cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
+          ''
+      }
+
 let Job =
       { Type = { runs-on : Text, steps : List Step.Type }
       , default.runs-on = "ubuntu-latest"
@@ -136,6 +146,7 @@ let intro =
       , cachix
       , checkoutNixpkgsUpkeep
       , checkoutNixpkgs
+      , addOverlay
       , allowUnfree
       ]
 

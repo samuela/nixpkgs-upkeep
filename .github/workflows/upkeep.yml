@@ -23,6 +23,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Add CUDA/MKL overlay
+        run: |
+          mkdir -p ~/.config/nixpkgs/overlays/
+          cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
       - name: Allow unfree
         run: |
           mkdir -p ~/.config/nixpkgs/
@@ -62,6 +66,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Add CUDA/MKL overlay
+        run: |
+          mkdir -p ~/.config/nixpkgs/overlays/
+          cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
       - name: Allow unfree
         run: |
           mkdir -p ~/.config/nixpkgs/
@@ -101,6 +109,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Add CUDA/MKL overlay
+        run: |
+          mkdir -p ~/.config/nixpkgs/overlays/
+          cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
       - name: Allow unfree
         run: |
           mkdir -p ~/.config/nixpkgs/
@@ -140,6 +152,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Add CUDA/MKL overlay
+        run: |
+          mkdir -p ~/.config/nixpkgs/overlays/
+          cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
       - name: Allow unfree
         run: |
           mkdir -p ~/.config/nixpkgs/
@@ -179,6 +195,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Add CUDA/MKL overlay
+        run: |
+          mkdir -p ~/.config/nixpkgs/overlays/
+          cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
       - name: Allow unfree
         run: |
           mkdir -p ~/.config/nixpkgs/
@@ -240,6 +260,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Add CUDA/MKL overlay
+        run: |
+          mkdir -p ~/.config/nixpkgs/overlays/
+          cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
       - name: Allow unfree
         run: |
           mkdir -p ~/.config/nixpkgs/
@@ -279,6 +303,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Add CUDA/MKL overlay
+        run: |
+          mkdir -p ~/.config/nixpkgs/overlays/
+          cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
       - name: Allow unfree
         run: |
           mkdir -p ~/.config/nixpkgs/
@@ -318,6 +346,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Add CUDA/MKL overlay
+        run: |
+          mkdir -p ~/.config/nixpkgs/overlays/
+          cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
       - name: Allow unfree
         run: |
           mkdir -p ~/.config/nixpkgs/
@@ -348,6 +380,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Add CUDA/MKL overlay
+        run: |
+          mkdir -p ~/.config/nixpkgs/overlays/
+          cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
       - name: Allow unfree
         run: |
           mkdir -p ~/.config/nixpkgs/
@@ -387,6 +423,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Add CUDA/MKL overlay
+        run: |
+          mkdir -p ~/.config/nixpkgs/overlays/
+          cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
       - name: Allow unfree
         run: |
           mkdir -p ~/.config/nixpkgs/
@@ -426,6 +466,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Add CUDA/MKL overlay
+        run: |
+          mkdir -p ~/.config/nixpkgs/overlays/
+          cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
       - name: Allow unfree
         run: |
           mkdir -p ~/.config/nixpkgs/
@@ -487,6 +531,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Add CUDA/MKL overlay
+        run: |
+          mkdir -p ~/.config/nixpkgs/overlays/
+          cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
       - name: Allow unfree
         run: |
           mkdir -p ~/.config/nixpkgs/
@@ -548,6 +596,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Add CUDA/MKL overlay
+        run: |
+          mkdir -p ~/.config/nixpkgs/overlays/
+          cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
       - name: Allow unfree
         run: |
           mkdir -p ~/.config/nixpkgs/
@@ -587,6 +639,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Add CUDA/MKL overlay
+        run: |
+          mkdir -p ~/.config/nixpkgs/overlays/
+          cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
       - name: Allow unfree
         run: |
           mkdir -p ~/.config/nixpkgs/
@@ -636,6 +692,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Add CUDA/MKL overlay
+        run: |
+          mkdir -p ~/.config/nixpkgs/overlays/
+          cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
       - name: Allow unfree
         run: |
           mkdir -p ~/.config/nixpkgs/
@@ -675,6 +735,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Add CUDA/MKL overlay
+        run: |
+          mkdir -p ~/.config/nixpkgs/overlays/
+          cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
       - name: Allow unfree
         run: |
           mkdir -p ~/.config/nixpkgs/
@@ -735,6 +799,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Add CUDA/MKL overlay
+        run: |
+          mkdir -p ~/.config/nixpkgs/overlays/
+          cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
       - name: Allow unfree
         run: |
           mkdir -p ~/.config/nixpkgs/
@@ -774,6 +842,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Add CUDA/MKL overlay
+        run: |
+          mkdir -p ~/.config/nixpkgs/overlays/
+          cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
       - name: Allow unfree
         run: |
           mkdir -p ~/.config/nixpkgs/
@@ -813,6 +885,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Add CUDA/MKL overlay
+        run: |
+          mkdir -p ~/.config/nixpkgs/overlays/
+          cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
       - name: Allow unfree
         run: |
           mkdir -p ~/.config/nixpkgs/
@@ -843,6 +919,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Add CUDA/MKL overlay
+        run: |
+          mkdir -p ~/.config/nixpkgs/overlays/
+          cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
       - name: Allow unfree
         run: |
           mkdir -p ~/.config/nixpkgs/
@@ -882,6 +962,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Add CUDA/MKL overlay
+        run: |
+          mkdir -p ~/.config/nixpkgs/overlays/
+          cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
       - name: Allow unfree
         run: |
           mkdir -p ~/.config/nixpkgs/
@@ -921,6 +1005,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Add CUDA/MKL overlay
+        run: |
+          mkdir -p ~/.config/nixpkgs/overlays/
+          cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
       - name: Allow unfree
         run: |
           mkdir -p ~/.config/nixpkgs/
@@ -960,6 +1048,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Add CUDA/MKL overlay
+        run: |
+          mkdir -p ~/.config/nixpkgs/overlays/
+          cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
       - name: Allow unfree
         run: |
           mkdir -p ~/.config/nixpkgs/
@@ -999,6 +1091,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Add CUDA/MKL overlay
+        run: |
+          mkdir -p ~/.config/nixpkgs/overlays/
+          cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
       - name: Allow unfree
         run: |
           mkdir -p ~/.config/nixpkgs/
@@ -1049,6 +1145,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Add CUDA/MKL overlay
+        run: |
+          mkdir -p ~/.config/nixpkgs/overlays/
+          cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
       - name: Allow unfree
         run: |
           mkdir -p ~/.config/nixpkgs/
@@ -1099,6 +1199,10 @@ jobs:
           path: nixpkgs
           repository: NixOS/nixpkgs
           token: "${{ secrets.GH_TOKEN }}"
+      - name: Add CUDA/MKL overlay
+        run: |
+          mkdir -p ~/.config/nixpkgs/overlays/
+          cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
       - name: Allow unfree
         run: |
           mkdir -p ~/.config/nixpkgs/
