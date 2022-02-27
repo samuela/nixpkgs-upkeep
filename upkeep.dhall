@@ -141,7 +141,8 @@ let cachix =
       }
 
 let intro =
-      [ installNix
+      [ Step::{ run = Some "lscpu" }
+      , installNix
       , nixInfo
       , cachix
       , checkoutNixpkgsUpkeep

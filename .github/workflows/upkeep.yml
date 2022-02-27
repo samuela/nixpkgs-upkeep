@@ -3,6 +3,7 @@ jobs:
   dm-haiku:
     runs-on: ubuntu-latest
     steps:
+      - run: lscpu
       - uses: "cachix/install-nix-action@v16"
         with:
           extra_nix_config: experimental-features = nix-command flakes
@@ -46,6 +47,7 @@ jobs:
   elegy:
     runs-on: ubuntu-latest
     steps:
+      - run: lscpu
       - uses: "cachix/install-nix-action@v16"
         with:
           extra_nix_config: experimental-features = nix-command flakes
@@ -89,6 +91,7 @@ jobs:
   flax:
     runs-on: ubuntu-latest
     steps:
+      - run: lscpu
       - uses: "cachix/install-nix-action@v16"
         with:
           extra_nix_config: experimental-features = nix-command flakes
@@ -132,6 +135,7 @@ jobs:
   ipython:
     runs-on: ubuntu-latest
     steps:
+      - run: lscpu
       - uses: "cachix/install-nix-action@v16"
         with:
           extra_nix_config: experimental-features = nix-command flakes
@@ -175,6 +179,7 @@ jobs:
   jax:
     runs-on: ubuntu-latest
     steps:
+      - run: lscpu
       - uses: "cachix/install-nix-action@v16"
         with:
           extra_nix_config: experimental-features = nix-command flakes
@@ -240,6 +245,7 @@ jobs:
   jaxlib:
     runs-on: ubuntu-latest
     steps:
+      - run: lscpu
       - uses: "cachix/install-nix-action@v16"
         with:
           extra_nix_config: experimental-features = nix-command flakes
@@ -283,6 +289,7 @@ jobs:
   jaxlib-bin:
     runs-on: ubuntu-latest
     steps:
+      - run: lscpu
       - uses: "cachix/install-nix-action@v16"
         with:
           extra_nix_config: experimental-features = nix-command flakes
@@ -326,6 +333,7 @@ jobs:
   jaxlib-bin-cuda:
     runs-on: ubuntu-latest
     steps:
+      - run: lscpu
       - uses: "cachix/install-nix-action@v16"
         with:
           extra_nix_config: experimental-features = nix-command flakes
@@ -360,6 +368,7 @@ jobs:
   jaxlibWithCuda:
     runs-on: ubuntu-latest
     steps:
+      - run: lscpu
       - uses: "cachix/install-nix-action@v16"
         with:
           extra_nix_config: experimental-features = nix-command flakes
@@ -403,6 +412,7 @@ jobs:
   jmp:
     runs-on: ubuntu-latest
     steps:
+      - run: lscpu
       - uses: "cachix/install-nix-action@v16"
         with:
           extra_nix_config: experimental-features = nix-command flakes
@@ -446,6 +456,7 @@ jobs:
   julia_17-bin:
     runs-on: ubuntu-latest
     steps:
+      - run: lscpu
       - uses: "cachix/install-nix-action@v16"
         with:
           extra_nix_config: experimental-features = nix-command flakes
@@ -511,6 +522,7 @@ jobs:
   jupyter:
     runs-on: ubuntu-latest
     steps:
+      - run: lscpu
       - uses: "cachix/install-nix-action@v16"
         with:
           extra_nix_config: experimental-features = nix-command flakes
@@ -554,6 +566,7 @@ jobs:
   matplotlib:
     runs-on: ubuntu-latest
     steps:
+      - run: lscpu
       - uses: "cachix/install-nix-action@v16"
         with:
           extra_nix_config: experimental-features = nix-command flakes
@@ -619,6 +632,7 @@ jobs:
   optax:
     runs-on: ubuntu-latest
     steps:
+      - run: lscpu
       - uses: "cachix/install-nix-action@v16"
         with:
           extra_nix_config: experimental-features = nix-command flakes
@@ -662,6 +676,7 @@ jobs:
   pandas:
     runs-on: ubuntu-latest
     steps:
+      - run: lscpu
       - uses: "cachix/install-nix-action@v16"
         with:
           extra_nix_config: experimental-features = nix-command flakes
@@ -705,6 +720,7 @@ jobs:
   plexamp:
     runs-on: ubuntu-latest
     steps:
+      - run: lscpu
       - uses: "cachix/install-nix-action@v16"
         with:
           extra_nix_config: experimental-features = nix-command flakes
@@ -758,6 +774,7 @@ jobs:
   plotly:
     runs-on: ubuntu-latest
     steps:
+      - run: lscpu
       - uses: "cachix/install-nix-action@v16"
         with:
           extra_nix_config: experimental-features = nix-command flakes
@@ -801,6 +818,7 @@ jobs:
   pytorch:
     runs-on: ubuntu-latest
     steps:
+      - run: lscpu
       - uses: "cachix/install-nix-action@v16"
         with:
           extra_nix_config: experimental-features = nix-command flakes
@@ -844,6 +862,7 @@ jobs:
   pytorch-bin:
     runs-on: ubuntu-latest
     steps:
+      - run: lscpu
       - uses: "cachix/install-nix-action@v16"
         with:
           extra_nix_config: experimental-features = nix-command flakes
@@ -887,6 +906,7 @@ jobs:
   pytorchWithCuda:
     runs-on: ubuntu-latest
     steps:
+      - run: lscpu
       - uses: "cachix/install-nix-action@v16"
         with:
           extra_nix_config: experimental-features = nix-command flakes
@@ -930,6 +950,7 @@ jobs:
   spotify:
     runs-on: ubuntu-latest
     steps:
+      - run: lscpu
       - uses: "cachix/install-nix-action@v16"
         with:
           extra_nix_config: experimental-features = nix-command flakes
@@ -994,6 +1015,7 @@ jobs:
   tensorflow:
     runs-on: ubuntu-latest
     steps:
+      - run: lscpu
       - uses: "cachix/install-nix-action@v16"
         with:
           extra_nix_config: experimental-features = nix-command flakes
@@ -1037,6 +1059,7 @@ jobs:
   tensorflow-bin:
     runs-on: ubuntu-latest
     steps:
+      - run: lscpu
       - uses: "cachix/install-nix-action@v16"
         with:
           extra_nix_config: experimental-features = nix-command flakes
@@ -1080,6 +1103,7 @@ jobs:
   tensorflow-bin-cuda:
     runs-on: ubuntu-latest
     steps:
+      - run: lscpu
       - uses: "cachix/install-nix-action@v16"
         with:
           extra_nix_config: experimental-features = nix-command flakes
@@ -1114,6 +1138,7 @@ jobs:
   tensorflow-datasets:
     runs-on: ubuntu-latest
     steps:
+      - run: lscpu
       - uses: "cachix/install-nix-action@v16"
         with:
           extra_nix_config: experimental-features = nix-command flakes
@@ -1157,6 +1182,7 @@ jobs:
   torchvision:
     runs-on: ubuntu-latest
     steps:
+      - run: lscpu
       - uses: "cachix/install-nix-action@v16"
         with:
           extra_nix_config: experimental-features = nix-command flakes
@@ -1200,6 +1226,7 @@ jobs:
   tqdm:
     runs-on: ubuntu-latest
     steps:
+      - run: lscpu
       - uses: "cachix/install-nix-action@v16"
         with:
           extra_nix_config: experimental-features = nix-command flakes
@@ -1243,6 +1270,7 @@ jobs:
   treeo:
     runs-on: ubuntu-latest
     steps:
+      - run: lscpu
       - uses: "cachix/install-nix-action@v16"
         with:
           extra_nix_config: experimental-features = nix-command flakes
@@ -1286,6 +1314,7 @@ jobs:
   treex:
     runs-on: ubuntu-latest
     steps:
+      - run: lscpu
       - uses: "cachix/install-nix-action@v16"
         with:
           extra_nix_config: experimental-features = nix-command flakes
@@ -1329,6 +1358,7 @@ jobs:
   vscode:
     runs-on: ubuntu-latest
     steps:
+      - run: lscpu
       - uses: "cachix/install-nix-action@v16"
         with:
           extra_nix_config: experimental-features = nix-command flakes
@@ -1383,6 +1413,7 @@ jobs:
   vscodium:
     runs-on: ubuntu-latest
     steps:
+      - run: lscpu
       - uses: "cachix/install-nix-action@v16"
         with:
           extra_nix_config: experimental-features = nix-command flakes
@@ -1437,6 +1468,7 @@ jobs:
   wandb:
     runs-on: ubuntu-latest
     steps:
+      - run: lscpu
       - uses: "cachix/install-nix-action@v16"
         with:
           extra_nix_config: experimental-features = nix-command flakes
@@ -1502,6 +1534,7 @@ jobs:
   yapf:
     runs-on: ubuntu-latest
     steps:
+      - run: lscpu
       - uses: "cachix/install-nix-action@v16"
         with:
           extra_nix_config: experimental-features = nix-command flakes
