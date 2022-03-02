@@ -51,9 +51,10 @@ existing_issues = requests.get(
     },
     params={
         "q": f"{tag} org:NixOS repo:nixpkgs is:issue is:open author:samuela"
-    }).json()["total_count"]
-if existing_issues > 0:
-    print(f"{existing_issues} existing issue(s) found for tag {tag}")
+    }).json()
+existing_issues_count = existing_issues["total_count"]
+if existing_issues_count > 0:
+    print(f"{existing_issues_count} existing issue(s) found for tag {tag}: {existing_issues}")
     sys.exit(build_returncode)
 
 commit = subprocess.run(["git", "log", "-1", "--pretty=format:%H"],
