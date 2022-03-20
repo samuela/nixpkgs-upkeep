@@ -10,6 +10,14 @@ if git diff-index --quiet HEAD --; then
 fi
 
 newversion="$(nix-instantiate --eval -E "with import ./. {}; lib.getVersion $PACKAGE" --json | jq -r)"
+
+# Sometimes there's a diff but the version is still the same. For example this
+# happens when the hash has been changed to be in SRI format.
+if [ "$PRE_VERSION" == "$newversion" ]; then
+    echo "No change in version after running updater."
+    exit 0
+fi
+
 echo "Updating $PACKAGE from version $PRE_VERSION to version $newversion"
 
 # GitHub doesn't support exact matches in its Search thingy (https://stackoverflow.com/questions/26433561/how-to-search-on-github-to-get-exact-matches-like-what-quotes-do-for-google).
