@@ -189,11 +189,9 @@ let createPR =
         }
 
 in  { jobs =
-      { dm-haiku = basicCanary "python3Packages.dm-haiku"
-      , elegy = basicCanary "python3Packages.elegy"
+      { augmax = basicCanary "python3Packages.augmax"
       , flax = basicCanary "python3Packages.flax"
       , ipython = basicCanary "python3Packages.ipython"
-      , jupyter = basicCanary "python3Packages.jupyter"
       , jax = Job::{
         , steps =
               intro
@@ -222,20 +220,6 @@ in  { jobs =
               ]
         }
       , jaxlibWithCuda = basicCanary "python3Packages.jaxlibWithCuda"
-      , jmp = basicCanary "python3Packages.jmp"
-      , julia_17-bin = Job::{
-        , steps =
-              intro
-            # [ checkVersion "julia_17-bin"
-              , canary "julia_17-bin"
-              , customUpdateScript
-                  "update-julia-1.7.py"
-                  "pkgs/development/compilers/julia"
-              , gitDiff
-              , nixBuild "julia_17-bin"
-              , createPR "julia_17-bin" "master"
-              ]
-        }
       , matplotlib = Job::{
         , steps =
               intro
@@ -318,8 +302,6 @@ in  { jobs =
       , tensorflow-datasets = basicCanary "python3Packages.tensorflow-datasets"
       , tqdm = basicCanary "python3Packages.tqdm"
       , torchvision = basicCanary "python3Packages.torchvision"
-      , treeo = basicCanary "python3Packages.treeo"
-      , treex = basicCanary "python3Packages.treex"
       , vscode = Job::{
         , steps =
               intro
