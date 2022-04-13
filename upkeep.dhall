@@ -344,6 +344,5 @@ in  { jobs =
       , yapf = basicCanary "yapf"
       }
     , name = "upkeep"
-    , on =
-      { push.branches = [ "main" ], schedule = [ { cron = "0 0,12 * * *" } ] }
+    , on = { push.branches = [ "main" ], schedule = [ { cron = "0 0 * * *" } ] }
     }
