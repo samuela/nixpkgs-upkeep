@@ -192,19 +192,7 @@ in  { jobs =
       { augmax = basicCanary "python3Packages.augmax"
       , flax = basicCanary "python3Packages.flax"
       , ipython = basicCanary "python3Packages.ipython"
-      , jax = Job::{
-        , steps =
-              intro
-            # [ checkVersion "python3Packages.jax"
-              , canary "python3Packages.jax"
-              , customUpdateScript
-                  "update-jax.py"
-                  "pkgs/development/python-modules/jax"
-              , gitDiff
-              , nixBuild "python3Packages.jax"
-              , createPR "python3Packages.jax" "master"
-              ]
-        }
+      , jax = basicCanary "python3Packages.jax"
       , jaxlib = basicCanary "python3Packages.jaxlib"
       , jaxlib-bin = basicCanary "python3Packages.jaxlib-bin"
       , jaxlib-bin-cuda = Job::{
