@@ -173,7 +173,7 @@ nix_info = subprocess.run(
 github_workflow_url = f"https://github.com/{os.environ.get('GITHUB_REPOSITORY', '<GITHUB_REPOSITORY>')}/actions/runs/{os.environ.get('GITHUB_RUN_ID', '<GITHUB_RUN_ID>')}"
 issue_body = f"""
 ## Issue description
-Build of `{failing_attr}` failed on x86_64-linux as of {commit}. This is currently breaking {attr}.
+Build of `{failing_attr}` failed on x86_64-linux as of {commit}. This is currently breaking `{attr}`.
 
 ```
 {"".join(stderr_utf8[first_error_line_ix:]).strip()}
