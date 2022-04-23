@@ -107,7 +107,7 @@ existing_issues = requests.get(
         "Accept": "application/vnd.github.v3+json"
     },
     params={
-        "q": f"{tag} org:NixOS repo:nixpkgs is:issue is:open author:samuela"
+        "q": f"{tag} org:NixOS repo:nixpkgs is:issue author:samuela"
     }).json()
 existing_issues_count = existing_issues["total_count"]
 if existing_issues_count > 0:
