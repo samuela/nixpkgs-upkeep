@@ -94,8 +94,7 @@ last_10_log_lines = stderr_utf8[first_error_line_ix + 2:first_error_line_ix +
 # And the timing info will screw up our hash calculation, so we have to strip it
 # out.
 last_10_log_lines_pure = re.sub(r"\d+.\d+s", "", "".join(last_10_log_lines))
-last_10_log_lines_pure = re.sub(r"\d+:\d+:\d+", "",
-                                "".join(last_10_log_lines_pure))
+last_10_log_lines_pure = re.sub(r"\d+:\d+:\d+", "", last_10_log_lines_pure)
 
 # Note that we don't include the nixpkgs commit or the /nix/store/xxx hash here,
 # since those change very frequently and would likely create duplicate issues.
