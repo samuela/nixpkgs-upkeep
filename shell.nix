@@ -1,6 +1,7 @@
 let
-  # Last updated: 1/30/2022. Check for new commits at status.nixos.org.
-  pkgs = import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/5efc8ca954272c4376ac929f4c5ffefcc20551d5.tar.gz") { };
+  # Last updated: 2022-04-25. Check for new commits at status.nixos.org.
+  # Tracking nixos-21.11
+  pkgs = import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/c254b8c915ac912ae9ee9dc74eac555ccbf33795.tar.gz") { };
 in
 pkgs.mkShell {
   buildInputs = with pkgs; [
