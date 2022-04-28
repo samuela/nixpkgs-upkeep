@@ -44,6 +44,50 @@ jobs:
         run: |
           GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.augmax
         working-directory: "./nixpkgs-upkeep"
+  einops:
+    runs-on: ubuntu-latest
+    steps:
+      - run: lscpu
+      - uses: "cachix/install-nix-action@v16"
+        with:
+          extra_nix_config: experimental-features = nix-command flakes
+          nix_path: nixpkgs=channel:nixos-unstable
+      - name: nix-info
+        run: "nix-shell -p nix-info --run 'nix-info -m'"
+      - uses: "cachix/cachix-action@v10"
+        with:
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          name: ploop
+      - name: Checkout nixpkgs-upkeep
+        uses: "actions/checkout@v2"
+        with:
+          path: nixpkgs-upkeep
+      - name: Checkout nixpkgs
+        uses: "actions/checkout@v2"
+        with:
+          path: nixpkgs
+          repository: NixOS/nixpkgs
+          token: "${{ secrets.GH_TOKEN }}"
+      - name: Add CUDA/MKL overlay
+        run: |
+          mkdir -p ~/.config/nixpkgs/overlays/
+          cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
+      - name: Allow unfree
+        run: |
+          mkdir -p ~/.config/nixpkgs/
+          echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
+      - name: Check current package version
+        run: |
+          PRE_VERSION="$(nix eval --raw --file . python3Packages.einops.version)"
+          echo "Current version: $PRE_VERSION"
+          echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
+        working-directory: "./nixpkgs"
+      - env:
+          GH_TOKEN: "${{ secrets.GH_TOKEN }}"
+        name: build canary
+        run: |
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.einops
+        working-directory: "./nixpkgs-upkeep"
   flax:
     runs-on: ubuntu-latest
     steps:

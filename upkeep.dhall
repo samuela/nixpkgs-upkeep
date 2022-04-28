@@ -190,6 +190,7 @@ let createPR =
 
 in  { jobs =
       { augmax = basicCanary "python3Packages.augmax"
+      , einops = basicCanary "python3Packages.einops"
       , flax = basicCanary "python3Packages.flax"
       , ipython = basicCanary "python3Packages.ipython"
       , jax = basicCanary "python3Packages.jax"
