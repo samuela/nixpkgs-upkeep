@@ -98,6 +98,10 @@ last_10_log_lines = stderr_utf8[first_error_line_ix + 2:first_error_line_ix +
 last_10_log_lines_pure = re.sub(r"\d+.\d+s", "", "".join(last_10_log_lines))
 last_10_log_lines_pure = re.sub(r"\d+:\d+:\d+", "", last_10_log_lines_pure)
 
+# Nix store paths change quite frequently, so best to ignore those. See https://discourse.nixos.org/t/someones-bot-is-creating-multiple-repeated-issues-for-failing-packages/21054.
+last_10_log_lines_pure = re.sub(r"/nix/store/\w{32}", "",
+                                last_10_log_lines_pure)
+
 # Note that we don't include the nixpkgs commit, since that changes very
 # frequently and would likely create duplicate issues.
 logs_tag = hash(
