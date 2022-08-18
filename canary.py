@@ -4,10 +4,12 @@
 import argparse
 import json
 import os
+import random
 import re
 import select
 import subprocess
 import sys
+import time
 from typing import List, NamedTuple, Tuple
 
 import requests
@@ -125,6 +127,19 @@ def find_existing_issues(tag):
         )
         sys.exit(build_result.returncode)
 
+
+# At this point, we need to check if there's an existing issue and create one if
+# not. Best to sleep some random amount of time to mitigate race conditions with
+# other canary jobs. Note `time.sleep` takes seconds.
+#
+# Expected difference in times between two processes will be 1/3*max_time.
+# Setting max_time to 15 minutes should more than suffice.
+#
+# For context, see https://discourse.nixos.org/t/someones-bot-is-creating-multiple-repeated-issues-for-failing-packages/21054.
+print(
+    "Patience is a virtue, especially when dealing with concurrent processes..."
+)
+time.sleep(random.randint(0, 15 * 60))
 
 # Check if an issue already exists for this tag.
 print("Looking for existing issues with the same logs tag...")
