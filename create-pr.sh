@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#!nix-shell -i bash -p curl jq gitAndTools.hub
+#!nix-shell -i bash -p curl jq gitAndTools.hub semver-tool
 
 set -eou pipefail
 
@@ -12,9 +12,10 @@ fi
 newversion="$(nix-instantiate --eval -E "with import ./. {}; lib.getVersion $PACKAGE" --json | jq -r)"
 
 # Sometimes there's a diff but the version is still the same. For example this
-# happens when the hash has been changed to be in SRI format.
-if [ "$PRE_VERSION" == "$newversion" ]; then
-    echo "No change in version after running updater."
+# happens when the hash has been changed to be in SRI format. In other cases you
+# can even get downgrade suggestions as in https://github.com/NixOS/nixpkgs/pull/197638.
+if [[ $(semver compare "$PRE_VERSION" "$newversion") != "-1" ]]; then
+    echo "$newversion does not appear to be an upgrade from $PRE_VERSION"
     exit 0
 fi
 
