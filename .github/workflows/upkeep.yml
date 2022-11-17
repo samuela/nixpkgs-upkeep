@@ -431,28 +431,6 @@ jobs:
         run: |
           GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.matplotlib
         working-directory: "./nixpkgs-upkeep"
-      - name: Run custom update-script
-        run: |
-          cp ./nixpkgs-upkeep/update-matplotlib.py ./nixpkgs/pkgs/development/python-modules/matplotlib
-          chmod +x ./nixpkgs/pkgs/development/python-modules/matplotlib/update-matplotlib.py
-          ./nixpkgs/pkgs/development/python-modules/matplotlib/update-matplotlib.py
-          rm ./nixpkgs/pkgs/development/python-modules/matplotlib/update-matplotlib.py
-      - run: git diff
-        working-directory: "./nixpkgs"
-      - run: nix-build -A python3Packages.matplotlib
-        working-directory: "./nixpkgs"
-      - env:
-          GH_TOKEN: "${{ secrets.GH_TOKEN }}"
-        name: Create PR
-        run: |
-          GH_TOKEN="$GH_TOKEN" \
-            TARGET_BRANCH="staging" \
-            PACKAGE="python3Packages.matplotlib" \
-            PRE_VERSION="$PRE_VERSION" \
-            TESTED_OTHER_LINUX="true" \
-            GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
-            ./../nixpkgs-upkeep/create-pr.sh
-        working-directory: "./nixpkgs"
   optax:
     runs-on: ubuntu-latest
     steps:

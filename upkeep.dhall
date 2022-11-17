@@ -209,19 +209,7 @@ in  { jobs =
               ]
         }
       , jaxlibWithCuda = basicCanary "python3Packages.jaxlibWithCuda"
-      , matplotlib = Job::{
-        , steps =
-              intro
-            # [ checkVersion "python3Packages.matplotlib"
-              , canary "python3Packages.matplotlib"
-              , customUpdateScript
-                  "update-matplotlib.py"
-                  "pkgs/development/python-modules/matplotlib"
-              , gitDiff
-              , nixBuild "python3Packages.matplotlib"
-              , createPR "python3Packages.matplotlib" "staging"
-              ]
-        }
+      , matplotlib = basicCanary "python3Packages.matplotlib"
       , optax = basicCanary "python39Packages.optax"
       , pandas = basicCanary "python3Packages.pandas"
       , plexamp = Job::{
