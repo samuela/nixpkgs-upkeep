@@ -1,7 +1,7 @@
 let
-  # Last updated: 2022-04-25. Check for new commits at status.nixos.org.
+  # Last updated: 2022-11-17. Check for new commits at https://status.nixos.org.
   # Tracking nixos-21.11
-  pkgs = import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/c254b8c915ac912ae9ee9dc74eac555ccbf33795.tar.gz") { };
+  pkgs = import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/eabc38219184cc3e04a974fe31857d8e0eac098d.tar.gz") { };
 in
 pkgs.mkShell {
   buildInputs = with pkgs; [
@@ -13,6 +13,7 @@ pkgs.mkShell {
     gitAndTools.gh
     python3
     python3Packages.requests
+    unixtools.watch
     yapf
   ];
 }

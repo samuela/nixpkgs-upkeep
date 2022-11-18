@@ -106,13 +106,13 @@ let canary =
 let gitDiff =
       Step::{ run = Some "git diff", working-directory = Some "./nixpkgs" }
 
-let allowUnfree =
+let nixpkgsConfig =
       Step::{
-      , name = Some "Allow unfree"
+      , name = Some "allowUnfree, cudaSupport"
       , run = Some
           ''
           mkdir -p ~/.config/nixpkgs/
-          echo "{ allowUnfree = true; }" > ~/.config/nixpkgs/config.nix
+          echo "{ allowUnfree = true; cudaSupport = true; }" > ~/.config/nixpkgs/config.nix
           ''
       }
 
@@ -148,7 +148,7 @@ let intro =
       , checkoutNixpkgsUpkeep
       , checkoutNixpkgs
       , addOverlay
-      , allowUnfree
+      , nixpkgsConfig
       ]
 
 let basicCanary =
@@ -196,18 +196,6 @@ in  { jobs =
       , jax = basicCanary "python3Packages.jax"
       , jaxlib = basicCanary "python3Packages.jaxlib"
       , jaxlib-bin = basicCanary "python3Packages.jaxlib-bin"
-      , jaxlib-bin-cuda = Job::{
-        , steps =
-              intro
-            # [ Step::{
-                , run = Some
-                    ''
-                    NIX_PATH=.. nix-build -E "with import <nixpkgs> {}; python3Packages.jaxlib-bin.override { cudaSupport = true; }"
-                    ''
-                , working-directory = Some "./nixpkgs"
-                }
-              ]
-        }
       , jaxlibWithCuda = basicCanary "python3Packages.jaxlibWithCuda"
       , matplotlib = basicCanary "python3Packages.matplotlib"
       , optax = basicCanary "python39Packages.optax"
@@ -235,8 +223,8 @@ in  { jobs =
               ]
         }
       , plotly = basicCanary "python3Packages.plotly"
-      , pytorch = basicCanary "python3Packages.pytorch"
-      , pytorch-bin = basicCanary "python3Packages.pytorch-bin"
+      , torch = basicCanary "python3Packages.torch"
+      , torch-bin = basicCanary "python3Packages.torch-bin"
       , spotify = Job::{
         , steps =
               intro
@@ -263,18 +251,6 @@ in  { jobs =
         }
       , tensorflow = basicCanary "python3Packages.tensorflow"
       , tensorflow-bin = basicCanary "python39Packages.tensorflow-bin"
-      , tensorflow-bin-cuda = Job::{
-        , steps =
-              intro
-            # [ Step::{
-                , run = Some
-                    ''
-                    NIX_PATH=.. nix-build -E "with import <nixpkgs> {}; python39Packages.tensorflow-bin.override { cudaSupport = true; }"
-                    ''
-                , working-directory = Some "./nixpkgs"
-                }
-              ]
-        }
       , tensorflow-datasets = basicCanary "python39Packages.tensorflow-datasets"
       , tqdm = basicCanary "python3Packages.tqdm"
       , torchvision = basicCanary "python3Packages.torchvision"
