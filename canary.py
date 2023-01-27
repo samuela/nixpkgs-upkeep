@@ -100,6 +100,12 @@ last_10_log_lines = stderr_utf8[first_error_line_ix + 2:first_error_line_ix +
 last_10_log_lines_pure = re.sub(r"\d+.\d+s", "", "".join(last_10_log_lines))
 last_10_log_lines_pure = re.sub(r"\d+:\d+:\d+", "", last_10_log_lines_pure)
 
+# buildPhase has started outputting like
+#     buildPhase completed in 2 minutes 22 seconds
+# so we need to get rid of that stuff as well. See https://github.com/NixOS/nixpkgs/issues/212864.
+last_10_log_lines_pure = re.sub(r"\d+ minutes", "", last_10_log_lines_pure)
+last_10_log_lines_pure = re.sub(r"\d+ seconds", "", last_10_log_lines_pure)
+
 # Nix store paths change quite frequently, so best to ignore those. See https://discourse.nixos.org/t/someones-bot-is-creating-multiple-repeated-issues-for-failing-packages/21054.
 last_10_log_lines_pure = re.sub(r"/nix/store/\w{32}", "",
                                 last_10_log_lines_pure)
