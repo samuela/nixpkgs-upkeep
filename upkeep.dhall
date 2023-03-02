@@ -133,7 +133,7 @@ let Job =
 
 let cachix =
       Step::{
-      , uses = Some "cachix/cachix-action@v10"
+      , uses = Some "cachix/cachix-action@v12"
       , `with` = Some WithClause::{
         , name = Some "ploop"
         , authToken = Some "\${{ secrets.CACHIX_AUTH_TOKEN }}"

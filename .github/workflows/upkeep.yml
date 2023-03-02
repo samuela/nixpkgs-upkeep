@@ -10,7 +10,7 @@ jobs:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: nix-info
         run: "nix-shell -p nix-info --run 'nix-info -m'"
-      - uses: "cachix/cachix-action@v10"
+      - uses: "cachix/cachix-action@v12"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
@@ -54,7 +54,7 @@ jobs:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: nix-info
         run: "nix-shell -p nix-info --run 'nix-info -m'"
-      - uses: "cachix/cachix-action@v10"
+      - uses: "cachix/cachix-action@v12"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
@@ -98,7 +98,7 @@ jobs:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: nix-info
         run: "nix-shell -p nix-info --run 'nix-info -m'"
-      - uses: "cachix/cachix-action@v10"
+      - uses: "cachix/cachix-action@v12"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
@@ -142,7 +142,7 @@ jobs:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: nix-info
         run: "nix-shell -p nix-info --run 'nix-info -m'"
-      - uses: "cachix/cachix-action@v10"
+      - uses: "cachix/cachix-action@v12"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
@@ -186,7 +186,7 @@ jobs:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: nix-info
         run: "nix-shell -p nix-info --run 'nix-info -m'"
-      - uses: "cachix/cachix-action@v10"
+      - uses: "cachix/cachix-action@v12"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
@@ -230,7 +230,7 @@ jobs:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: nix-info
         run: "nix-shell -p nix-info --run 'nix-info -m'"
-      - uses: "cachix/cachix-action@v10"
+      - uses: "cachix/cachix-action@v12"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
@@ -274,7 +274,7 @@ jobs:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: nix-info
         run: "nix-shell -p nix-info --run 'nix-info -m'"
-      - uses: "cachix/cachix-action@v10"
+      - uses: "cachix/cachix-action@v12"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
@@ -318,7 +318,7 @@ jobs:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: nix-info
         run: "nix-shell -p nix-info --run 'nix-info -m'"
-      - uses: "cachix/cachix-action@v10"
+      - uses: "cachix/cachix-action@v12"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
@@ -362,7 +362,7 @@ jobs:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: nix-info
         run: "nix-shell -p nix-info --run 'nix-info -m'"
-      - uses: "cachix/cachix-action@v10"
+      - uses: "cachix/cachix-action@v12"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
@@ -406,7 +406,7 @@ jobs:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: nix-info
         run: "nix-shell -p nix-info --run 'nix-info -m'"
-      - uses: "cachix/cachix-action@v10"
+      - uses: "cachix/cachix-action@v12"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
@@ -450,7 +450,7 @@ jobs:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: nix-info
         run: "nix-shell -p nix-info --run 'nix-info -m'"
-      - uses: "cachix/cachix-action@v10"
+      - uses: "cachix/cachix-action@v12"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
@@ -494,7 +494,7 @@ jobs:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: nix-info
         run: "nix-shell -p nix-info --run 'nix-info -m'"
-      - uses: "cachix/cachix-action@v10"
+      - uses: "cachix/cachix-action@v12"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
@@ -548,7 +548,7 @@ jobs:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: nix-info
         run: "nix-shell -p nix-info --run 'nix-info -m'"
-      - uses: "cachix/cachix-action@v10"
+      - uses: "cachix/cachix-action@v12"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
@@ -592,7 +592,7 @@ jobs:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: nix-info
         run: "nix-shell -p nix-info --run 'nix-info -m'"
-      - uses: "cachix/cachix-action@v10"
+      - uses: "cachix/cachix-action@v12"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
@@ -657,7 +657,7 @@ jobs:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: nix-info
         run: "nix-shell -p nix-info --run 'nix-info -m'"
-      - uses: "cachix/cachix-action@v10"
+      - uses: "cachix/cachix-action@v12"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
@@ -701,7 +701,7 @@ jobs:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: nix-info
         run: "nix-shell -p nix-info --run 'nix-info -m'"
-      - uses: "cachix/cachix-action@v10"
+      - uses: "cachix/cachix-action@v12"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
@@ -745,7 +745,7 @@ jobs:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: nix-info
         run: "nix-shell -p nix-info --run 'nix-info -m'"
-      - uses: "cachix/cachix-action@v10"
+      - uses: "cachix/cachix-action@v12"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
@@ -789,7 +789,7 @@ jobs:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: nix-info
         run: "nix-shell -p nix-info --run 'nix-info -m'"
-      - uses: "cachix/cachix-action@v10"
+      - uses: "cachix/cachix-action@v12"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
@@ -833,7 +833,7 @@ jobs:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: nix-info
         run: "nix-shell -p nix-info --run 'nix-info -m'"
-      - uses: "cachix/cachix-action@v10"
+      - uses: "cachix/cachix-action@v12"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
@@ -877,7 +877,7 @@ jobs:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: nix-info
         run: "nix-shell -p nix-info --run 'nix-info -m'"
-      - uses: "cachix/cachix-action@v10"
+      - uses: "cachix/cachix-action@v12"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
@@ -921,7 +921,7 @@ jobs:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: nix-info
         run: "nix-shell -p nix-info --run 'nix-info -m'"
-      - uses: "cachix/cachix-action@v10"
+      - uses: "cachix/cachix-action@v12"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
@@ -965,7 +965,7 @@ jobs:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: nix-info
         run: "nix-shell -p nix-info --run 'nix-info -m'"
-      - uses: "cachix/cachix-action@v10"
+      - uses: "cachix/cachix-action@v12"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
@@ -1020,7 +1020,7 @@ jobs:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: nix-info
         run: "nix-shell -p nix-info --run 'nix-info -m'"
-      - uses: "cachix/cachix-action@v10"
+      - uses: "cachix/cachix-action@v12"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
@@ -1075,7 +1075,7 @@ jobs:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: nix-info
         run: "nix-shell -p nix-info --run 'nix-info -m'"
-      - uses: "cachix/cachix-action@v10"
+      - uses: "cachix/cachix-action@v12"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
@@ -1141,7 +1141,7 @@ jobs:
           nix_path: nixpkgs=channel:nixos-unstable
       - name: nix-info
         run: "nix-shell -p nix-info --run 'nix-info -m'"
-      - uses: "cachix/cachix-action@v10"
+      - uses: "cachix/cachix-action@v12"
         with:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
