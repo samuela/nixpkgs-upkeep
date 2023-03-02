@@ -4,7 +4,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: lscpu
-      - uses: "cachix/install-nix-action@v16"
+      - uses: "cachix/install-nix-action@v20"
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
@@ -48,7 +48,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: lscpu
-      - uses: "cachix/install-nix-action@v16"
+      - uses: "cachix/install-nix-action@v20"
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
@@ -92,7 +92,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: lscpu
-      - uses: "cachix/install-nix-action@v16"
+      - uses: "cachix/install-nix-action@v20"
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
@@ -136,7 +136,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: lscpu
-      - uses: "cachix/install-nix-action@v16"
+      - uses: "cachix/install-nix-action@v20"
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
@@ -180,7 +180,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: lscpu
-      - uses: "cachix/install-nix-action@v16"
+      - uses: "cachix/install-nix-action@v20"
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
@@ -224,7 +224,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: lscpu
-      - uses: "cachix/install-nix-action@v16"
+      - uses: "cachix/install-nix-action@v20"
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
@@ -268,7 +268,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: lscpu
-      - uses: "cachix/install-nix-action@v16"
+      - uses: "cachix/install-nix-action@v20"
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
@@ -312,7 +312,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: lscpu
-      - uses: "cachix/install-nix-action@v16"
+      - uses: "cachix/install-nix-action@v20"
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
@@ -356,7 +356,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: lscpu
-      - uses: "cachix/install-nix-action@v16"
+      - uses: "cachix/install-nix-action@v20"
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
@@ -400,7 +400,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: lscpu
-      - uses: "cachix/install-nix-action@v16"
+      - uses: "cachix/install-nix-action@v20"
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
@@ -444,7 +444,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: lscpu
-      - uses: "cachix/install-nix-action@v16"
+      - uses: "cachix/install-nix-action@v20"
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
@@ -488,7 +488,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: lscpu
-      - uses: "cachix/install-nix-action@v16"
+      - uses: "cachix/install-nix-action@v20"
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
@@ -542,7 +542,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: lscpu
-      - uses: "cachix/install-nix-action@v16"
+      - uses: "cachix/install-nix-action@v20"
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
@@ -586,7 +586,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: lscpu
-      - uses: "cachix/install-nix-action@v16"
+      - uses: "cachix/install-nix-action@v20"
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
@@ -651,7 +651,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: lscpu
-      - uses: "cachix/install-nix-action@v16"
+      - uses: "cachix/install-nix-action@v20"
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
@@ -695,7 +695,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: lscpu
-      - uses: "cachix/install-nix-action@v16"
+      - uses: "cachix/install-nix-action@v20"
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
@@ -739,7 +739,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: lscpu
-      - uses: "cachix/install-nix-action@v16"
+      - uses: "cachix/install-nix-action@v20"
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
@@ -783,7 +783,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: lscpu
-      - uses: "cachix/install-nix-action@v16"
+      - uses: "cachix/install-nix-action@v20"
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
@@ -827,7 +827,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: lscpu
-      - uses: "cachix/install-nix-action@v16"
+      - uses: "cachix/install-nix-action@v20"
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
@@ -871,7 +871,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: lscpu
-      - uses: "cachix/install-nix-action@v16"
+      - uses: "cachix/install-nix-action@v20"
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
@@ -915,7 +915,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: lscpu
-      - uses: "cachix/install-nix-action@v16"
+      - uses: "cachix/install-nix-action@v20"
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
@@ -959,7 +959,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: lscpu
-      - uses: "cachix/install-nix-action@v16"
+      - uses: "cachix/install-nix-action@v20"
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
@@ -1014,7 +1014,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: lscpu
-      - uses: "cachix/install-nix-action@v16"
+      - uses: "cachix/install-nix-action@v20"
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
@@ -1069,7 +1069,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: lscpu
-      - uses: "cachix/install-nix-action@v16"
+      - uses: "cachix/install-nix-action@v20"
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
@@ -1135,7 +1135,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: lscpu
-      - uses: "cachix/install-nix-action@v16"
+      - uses: "cachix/install-nix-action@v20"
         with:
           extra_nix_config: experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable

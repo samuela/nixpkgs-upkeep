@@ -40,7 +40,7 @@ let Step =
 
 let installNix =
       Step::{
-      , uses = Some "cachix/install-nix-action@v16"
+      , uses = Some "cachix/install-nix-action@v20"
       , `with` = Some WithClause::{
         , extra_nix_config = Some "experimental-features = nix-command flakes"
         , nix_path = Some "nixpkgs=channel:nixos-unstable"
