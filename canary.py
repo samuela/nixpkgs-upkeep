@@ -131,7 +131,12 @@ def find_existing_issues(tag):
         print(
             f"{existing_issues_count} existing issue(s) found for tag {logs_tag}: {existing_issues}"
         )
-        sys.exit(build_result.returncode)
+
+        # Fail with the exit code from the build
+        # sys.exit(build_result.returncode)
+
+        # Pass the test to avoid notification spam
+        sys.exit(0)
 
 
 # At this point, we need to check if there's an existing issue and create one if
