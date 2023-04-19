@@ -28,10 +28,10 @@ jobs:
         run: |
           mkdir -p ~/.config/nixpkgs/overlays/
           cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
-      - name: "allowUnfree, cudaSupport"
+      - name: "Set ~/.config/nixpkgs/config.nix"
         run: |
           mkdir -p ~/.config/nixpkgs/
-          echo "{ allowUnfree = true; cudaSupport = true; }" > ~/.config/nixpkgs/config.nix
+          echo '{ allowUnfree = true; cudaSupport = true; cudaCapabilities = ["8.0"]; }' > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PRE_VERSION="$(nix eval --raw --file . python3Packages.augmax.version)"
@@ -72,10 +72,10 @@ jobs:
         run: |
           mkdir -p ~/.config/nixpkgs/overlays/
           cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
-      - name: "allowUnfree, cudaSupport"
+      - name: "Set ~/.config/nixpkgs/config.nix"
         run: |
           mkdir -p ~/.config/nixpkgs/
-          echo "{ allowUnfree = true; cudaSupport = true; }" > ~/.config/nixpkgs/config.nix
+          echo '{ allowUnfree = true; cudaSupport = true; cudaCapabilities = ["8.0"]; }' > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PRE_VERSION="$(nix eval --raw --file . python3Packages.einops.version)"
@@ -116,10 +116,10 @@ jobs:
         run: |
           mkdir -p ~/.config/nixpkgs/overlays/
           cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
-      - name: "allowUnfree, cudaSupport"
+      - name: "Set ~/.config/nixpkgs/config.nix"
         run: |
           mkdir -p ~/.config/nixpkgs/
-          echo "{ allowUnfree = true; cudaSupport = true; }" > ~/.config/nixpkgs/config.nix
+          echo '{ allowUnfree = true; cudaSupport = true; cudaCapabilities = ["8.0"]; }' > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PRE_VERSION="$(nix eval --raw --file . python39Packages.flax.version)"
@@ -160,10 +160,10 @@ jobs:
         run: |
           mkdir -p ~/.config/nixpkgs/overlays/
           cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
-      - name: "allowUnfree, cudaSupport"
+      - name: "Set ~/.config/nixpkgs/config.nix"
         run: |
           mkdir -p ~/.config/nixpkgs/
-          echo "{ allowUnfree = true; cudaSupport = true; }" > ~/.config/nixpkgs/config.nix
+          echo '{ allowUnfree = true; cudaSupport = true; cudaCapabilities = ["8.0"]; }' > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PRE_VERSION="$(nix eval --raw --file . python3Packages.ipython.version)"
@@ -204,10 +204,10 @@ jobs:
         run: |
           mkdir -p ~/.config/nixpkgs/overlays/
           cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
-      - name: "allowUnfree, cudaSupport"
+      - name: "Set ~/.config/nixpkgs/config.nix"
         run: |
           mkdir -p ~/.config/nixpkgs/
-          echo "{ allowUnfree = true; cudaSupport = true; }" > ~/.config/nixpkgs/config.nix
+          echo '{ allowUnfree = true; cudaSupport = true; cudaCapabilities = ["8.0"]; }' > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PRE_VERSION="$(nix eval --raw --file . python3Packages.jax.version)"
@@ -248,10 +248,10 @@ jobs:
         run: |
           mkdir -p ~/.config/nixpkgs/overlays/
           cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
-      - name: "allowUnfree, cudaSupport"
+      - name: "Set ~/.config/nixpkgs/config.nix"
         run: |
           mkdir -p ~/.config/nixpkgs/
-          echo "{ allowUnfree = true; cudaSupport = true; }" > ~/.config/nixpkgs/config.nix
+          echo '{ allowUnfree = true; cudaSupport = true; cudaCapabilities = ["8.0"]; }' > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PRE_VERSION="$(nix eval --raw --file . python3Packages.jaxlib.version)"
@@ -292,10 +292,10 @@ jobs:
         run: |
           mkdir -p ~/.config/nixpkgs/overlays/
           cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
-      - name: "allowUnfree, cudaSupport"
+      - name: "Set ~/.config/nixpkgs/config.nix"
         run: |
           mkdir -p ~/.config/nixpkgs/
-          echo "{ allowUnfree = true; cudaSupport = true; }" > ~/.config/nixpkgs/config.nix
+          echo '{ allowUnfree = true; cudaSupport = true; cudaCapabilities = ["8.0"]; }' > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PRE_VERSION="$(nix eval --raw --file . python3Packages.jaxlib-bin.version)"
@@ -336,10 +336,10 @@ jobs:
         run: |
           mkdir -p ~/.config/nixpkgs/overlays/
           cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
-      - name: "allowUnfree, cudaSupport"
+      - name: "Set ~/.config/nixpkgs/config.nix"
         run: |
           mkdir -p ~/.config/nixpkgs/
-          echo "{ allowUnfree = true; cudaSupport = true; }" > ~/.config/nixpkgs/config.nix
+          echo '{ allowUnfree = true; cudaSupport = true; cudaCapabilities = ["8.0"]; }' > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PRE_VERSION="$(nix eval --raw --file . python3Packages.jaxlibWithCuda.version)"
@@ -380,10 +380,10 @@ jobs:
         run: |
           mkdir -p ~/.config/nixpkgs/overlays/
           cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
-      - name: "allowUnfree, cudaSupport"
+      - name: "Set ~/.config/nixpkgs/config.nix"
         run: |
           mkdir -p ~/.config/nixpkgs/
-          echo "{ allowUnfree = true; cudaSupport = true; }" > ~/.config/nixpkgs/config.nix
+          echo '{ allowUnfree = true; cudaSupport = true; cudaCapabilities = ["8.0"]; }' > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PRE_VERSION="$(nix eval --raw --file . python3Packages.matplotlib.version)"
@@ -424,10 +424,10 @@ jobs:
         run: |
           mkdir -p ~/.config/nixpkgs/overlays/
           cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
-      - name: "allowUnfree, cudaSupport"
+      - name: "Set ~/.config/nixpkgs/config.nix"
         run: |
           mkdir -p ~/.config/nixpkgs/
-          echo "{ allowUnfree = true; cudaSupport = true; }" > ~/.config/nixpkgs/config.nix
+          echo '{ allowUnfree = true; cudaSupport = true; cudaCapabilities = ["8.0"]; }' > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PRE_VERSION="$(nix eval --raw --file . python39Packages.optax.version)"
@@ -468,10 +468,10 @@ jobs:
         run: |
           mkdir -p ~/.config/nixpkgs/overlays/
           cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
-      - name: "allowUnfree, cudaSupport"
+      - name: "Set ~/.config/nixpkgs/config.nix"
         run: |
           mkdir -p ~/.config/nixpkgs/
-          echo "{ allowUnfree = true; cudaSupport = true; }" > ~/.config/nixpkgs/config.nix
+          echo '{ allowUnfree = true; cudaSupport = true; cudaCapabilities = ["8.0"]; }' > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PRE_VERSION="$(nix eval --raw --file . python3Packages.pandas.version)"
@@ -512,10 +512,10 @@ jobs:
         run: |
           mkdir -p ~/.config/nixpkgs/overlays/
           cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
-      - name: "allowUnfree, cudaSupport"
+      - name: "Set ~/.config/nixpkgs/config.nix"
         run: |
           mkdir -p ~/.config/nixpkgs/
-          echo "{ allowUnfree = true; cudaSupport = true; }" > ~/.config/nixpkgs/config.nix
+          echo '{ allowUnfree = true; cudaSupport = true; cudaCapabilities = ["8.0"]; }' > ~/.config/nixpkgs/config.nix
       - name: Check current package version before update script
         run: |
           PRE_VERSION="$(nix-instantiate --eval -E "with import ./. {}; lib.getVersion plexamp" --json | jq -r)"
@@ -566,10 +566,10 @@ jobs:
         run: |
           mkdir -p ~/.config/nixpkgs/overlays/
           cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
-      - name: "allowUnfree, cudaSupport"
+      - name: "Set ~/.config/nixpkgs/config.nix"
         run: |
           mkdir -p ~/.config/nixpkgs/
-          echo "{ allowUnfree = true; cudaSupport = true; }" > ~/.config/nixpkgs/config.nix
+          echo '{ allowUnfree = true; cudaSupport = true; cudaCapabilities = ["8.0"]; }' > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PRE_VERSION="$(nix eval --raw --file . python3Packages.plotly.version)"
@@ -610,10 +610,10 @@ jobs:
         run: |
           mkdir -p ~/.config/nixpkgs/overlays/
           cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
-      - name: "allowUnfree, cudaSupport"
+      - name: "Set ~/.config/nixpkgs/config.nix"
         run: |
           mkdir -p ~/.config/nixpkgs/
-          echo "{ allowUnfree = true; cudaSupport = true; }" > ~/.config/nixpkgs/config.nix
+          echo '{ allowUnfree = true; cudaSupport = true; cudaCapabilities = ["8.0"]; }' > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PRE_VERSION="$(nix eval --raw --file . spotify-unwrapped.version)"
@@ -675,10 +675,10 @@ jobs:
         run: |
           mkdir -p ~/.config/nixpkgs/overlays/
           cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
-      - name: "allowUnfree, cudaSupport"
+      - name: "Set ~/.config/nixpkgs/config.nix"
         run: |
           mkdir -p ~/.config/nixpkgs/
-          echo "{ allowUnfree = true; cudaSupport = true; }" > ~/.config/nixpkgs/config.nix
+          echo '{ allowUnfree = true; cudaSupport = true; cudaCapabilities = ["8.0"]; }' > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PRE_VERSION="$(nix eval --raw --file . python3Packages.tensorflow.version)"
@@ -719,10 +719,10 @@ jobs:
         run: |
           mkdir -p ~/.config/nixpkgs/overlays/
           cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
-      - name: "allowUnfree, cudaSupport"
+      - name: "Set ~/.config/nixpkgs/config.nix"
         run: |
           mkdir -p ~/.config/nixpkgs/
-          echo "{ allowUnfree = true; cudaSupport = true; }" > ~/.config/nixpkgs/config.nix
+          echo '{ allowUnfree = true; cudaSupport = true; cudaCapabilities = ["8.0"]; }' > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PRE_VERSION="$(nix eval --raw --file . python39Packages.tensorflow-bin.version)"
@@ -763,10 +763,10 @@ jobs:
         run: |
           mkdir -p ~/.config/nixpkgs/overlays/
           cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
-      - name: "allowUnfree, cudaSupport"
+      - name: "Set ~/.config/nixpkgs/config.nix"
         run: |
           mkdir -p ~/.config/nixpkgs/
-          echo "{ allowUnfree = true; cudaSupport = true; }" > ~/.config/nixpkgs/config.nix
+          echo '{ allowUnfree = true; cudaSupport = true; cudaCapabilities = ["8.0"]; }' > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PRE_VERSION="$(nix eval --raw --file . python39Packages.tensorflow-datasets.version)"
@@ -807,10 +807,10 @@ jobs:
         run: |
           mkdir -p ~/.config/nixpkgs/overlays/
           cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
-      - name: "allowUnfree, cudaSupport"
+      - name: "Set ~/.config/nixpkgs/config.nix"
         run: |
           mkdir -p ~/.config/nixpkgs/
-          echo "{ allowUnfree = true; cudaSupport = true; }" > ~/.config/nixpkgs/config.nix
+          echo '{ allowUnfree = true; cudaSupport = true; cudaCapabilities = ["8.0"]; }' > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PRE_VERSION="$(nix eval --raw --file . python3Packages.torch.version)"
@@ -851,10 +851,10 @@ jobs:
         run: |
           mkdir -p ~/.config/nixpkgs/overlays/
           cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
-      - name: "allowUnfree, cudaSupport"
+      - name: "Set ~/.config/nixpkgs/config.nix"
         run: |
           mkdir -p ~/.config/nixpkgs/
-          echo "{ allowUnfree = true; cudaSupport = true; }" > ~/.config/nixpkgs/config.nix
+          echo '{ allowUnfree = true; cudaSupport = true; cudaCapabilities = ["8.0"]; }' > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PRE_VERSION="$(nix eval --raw --file . python3Packages.torch-bin.version)"
@@ -895,10 +895,10 @@ jobs:
         run: |
           mkdir -p ~/.config/nixpkgs/overlays/
           cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
-      - name: "allowUnfree, cudaSupport"
+      - name: "Set ~/.config/nixpkgs/config.nix"
         run: |
           mkdir -p ~/.config/nixpkgs/
-          echo "{ allowUnfree = true; cudaSupport = true; }" > ~/.config/nixpkgs/config.nix
+          echo '{ allowUnfree = true; cudaSupport = true; cudaCapabilities = ["8.0"]; }' > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PRE_VERSION="$(nix eval --raw --file . python3Packages.torchvision.version)"
@@ -939,10 +939,10 @@ jobs:
         run: |
           mkdir -p ~/.config/nixpkgs/overlays/
           cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
-      - name: "allowUnfree, cudaSupport"
+      - name: "Set ~/.config/nixpkgs/config.nix"
         run: |
           mkdir -p ~/.config/nixpkgs/
-          echo "{ allowUnfree = true; cudaSupport = true; }" > ~/.config/nixpkgs/config.nix
+          echo '{ allowUnfree = true; cudaSupport = true; cudaCapabilities = ["8.0"]; }' > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PRE_VERSION="$(nix eval --raw --file . python3Packages.tqdm.version)"
@@ -983,10 +983,10 @@ jobs:
         run: |
           mkdir -p ~/.config/nixpkgs/overlays/
           cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
-      - name: "allowUnfree, cudaSupport"
+      - name: "Set ~/.config/nixpkgs/config.nix"
         run: |
           mkdir -p ~/.config/nixpkgs/
-          echo "{ allowUnfree = true; cudaSupport = true; }" > ~/.config/nixpkgs/config.nix
+          echo '{ allowUnfree = true; cudaSupport = true; cudaCapabilities = ["8.0"]; }' > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PRE_VERSION="$(nix eval --raw --file . vscode.version)"
@@ -1038,10 +1038,10 @@ jobs:
         run: |
           mkdir -p ~/.config/nixpkgs/overlays/
           cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
-      - name: "allowUnfree, cudaSupport"
+      - name: "Set ~/.config/nixpkgs/config.nix"
         run: |
           mkdir -p ~/.config/nixpkgs/
-          echo "{ allowUnfree = true; cudaSupport = true; }" > ~/.config/nixpkgs/config.nix
+          echo '{ allowUnfree = true; cudaSupport = true; cudaCapabilities = ["8.0"]; }' > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PRE_VERSION="$(nix eval --raw --file . vscodium.version)"
@@ -1093,10 +1093,10 @@ jobs:
         run: |
           mkdir -p ~/.config/nixpkgs/overlays/
           cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
-      - name: "allowUnfree, cudaSupport"
+      - name: "Set ~/.config/nixpkgs/config.nix"
         run: |
           mkdir -p ~/.config/nixpkgs/
-          echo "{ allowUnfree = true; cudaSupport = true; }" > ~/.config/nixpkgs/config.nix
+          echo '{ allowUnfree = true; cudaSupport = true; cudaCapabilities = ["8.0"]; }' > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PRE_VERSION="$(nix eval --raw --file . python3Packages.wandb.version)"
@@ -1159,10 +1159,10 @@ jobs:
         run: |
           mkdir -p ~/.config/nixpkgs/overlays/
           cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
-      - name: "allowUnfree, cudaSupport"
+      - name: "Set ~/.config/nixpkgs/config.nix"
         run: |
           mkdir -p ~/.config/nixpkgs/
-          echo "{ allowUnfree = true; cudaSupport = true; }" > ~/.config/nixpkgs/config.nix
+          echo '{ allowUnfree = true; cudaSupport = true; cudaCapabilities = ["8.0"]; }' > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
           PRE_VERSION="$(nix eval --raw --file . yapf.version)"

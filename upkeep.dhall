@@ -108,11 +108,11 @@ let gitDiff =
 
 let nixpkgsConfig =
       Step::{
-      , name = Some "allowUnfree, cudaSupport"
+      , name = Some "Set ~/.config/nixpkgs/config.nix"
       , run = Some
           ''
           mkdir -p ~/.config/nixpkgs/
-          echo "{ allowUnfree = true; cudaSupport = true; }" > ~/.config/nixpkgs/config.nix
+          echo '{ allowUnfree = true; cudaSupport = true; cudaCapabilities = ["8.0"]; }' > ~/.config/nixpkgs/config.nix
           ''
       }
 
