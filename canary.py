@@ -173,6 +173,10 @@ def pname_to_attr(pname: str) -> str:
         return f"python39Packages.{pname[10:]}"
     elif pname.startswith("python3.10-"):
         return f"python310Packages.{pname[11:]}"
+    elif pname.startswith("python3.11-"):
+        return f"python311Packages.{pname[11:]}"
+    elif pname.startswith("python3.12-"):
+        return f"python312Packages.{pname[11:]}"
     # jaxlib has an "internal" package for the bazel build. Annoying to hardcode
     # but better UX this way.
     elif pname == "bazel-build-jaxlib":
