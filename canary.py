@@ -209,6 +209,8 @@ def get_maintainers(attr: str) -> List[str]:
 attr_maintainers = get_maintainers(attr)
 failing_attr_maintainers = get_maintainers(failing_attr)
 
+nixpkgs_config = open(os.path.expanduser("~/.config/nixpkgs/config.nix"), "r").read().strip()
+
 nix_info = subprocess.run(
     ["nix-shell", "-p", "nix-info", "--run", "nix-info -m"],
     stdout=subprocess.PIPE).stdout.decode("utf-8").strip()
@@ -237,6 +239,11 @@ Other cc: {" ".join([f"@{m}" for m in cc]) if len(cc) > 0 else "n/a"}
 ## Technical details
 ```
  {nix_info}
+```
+
+Contents of `~/.config/nixpkgs/config.nix`:
+```
+{nixpkgs_config}
 ```
 
 ## Misc.
