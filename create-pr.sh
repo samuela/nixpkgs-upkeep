@@ -90,7 +90,7 @@ _EOM_
 )
 
 echo "Creating a new draft PR on NixOS/nixpkgs..."
-pr_url=$(GITHUB_USER=samuela GITHUB_PASSWORD=$GH_TOKEN gh pr create \
+pr_url=$(gh pr create \
     --head samuela:"$branch" \
     --base NixOS:"$TARGET_BRANCH" \
     --title "$PACKAGE: $PRE_VERSION -> $newversion" \
