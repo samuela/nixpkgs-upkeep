@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#!nix-shell -i bash -p curl jq gitAndTools.hub semver-tool
+#!nix-shell -i bash -p curl gh jq semver-tool
 
 set -eou pipefail
 
@@ -64,9 +64,7 @@ fi
 # Note: we cannot put the tag into a comment because GitHub search apparently does not index them.
 # Also we need to escape backticks for code blocks because otherwise they turn into string interpolation, running the
 # commands. See https://stackoverflow.com/a/2310284/3880977.
-message=$(cat <<-_EOM_
-${PACKAGE}: ${PRE_VERSION} -> ${newversion}
-
+body=$(cat <<-_EOM_
 ###### Motivation for this change
 Upgrades ${PACKAGE} from ${PRE_VERSION} to ${newversion}
 
@@ -94,7 +92,8 @@ _EOM_
 )
 
 echo "Creating a new PR on NixOS/nixpkgs..."
-GITHUB_USER=samuela GITHUB_PASSWORD=$GH_TOKEN hub pull-request \
+GITHUB_USER=samuela GITHUB_PASSWORD=$GH_TOKEN gh pr create \
     --head samuela:"$branch" \
     --base NixOS:"$TARGET_BRANCH" \
-    --message "$message"
+    --title "${PACKAGE}: ${PRE_VERSION} -> ${newversion}" \
+    --body "$body"
