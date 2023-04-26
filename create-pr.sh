@@ -113,8 +113,8 @@ ${build_log}
 
 _EOM_
 )
-  gh pr comment "$pr_url" --body "$body"
-  gh pr ready "$pr_url"
+    gh pr comment "$pr_url" --body "$body"
+    gh pr ready "$pr_url"
 else
     abbreviated_build_log=$(tail -n15 < "$build_log")
     body=$(cat <<-_EOM_
@@ -139,7 +139,7 @@ ${build_log}
 
 _EOM_
 )
-  gh pr comment "$pr_url" --body "$body"
+    gh pr comment "$pr_url" --body "$body"
 fi
 
 # TODO: run nixpkgs-review as well if nix-build succeeds
