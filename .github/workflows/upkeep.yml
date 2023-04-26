@@ -529,7 +529,6 @@ jobs:
         name: Create PR
         run: |
           GH_TOKEN="$GH_TOKEN" \
-            TARGET_BRANCH="master" \
             PACKAGE="plexamp" \
             PRE_VERSION="$PRE_VERSION" \
             GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
@@ -635,7 +634,6 @@ jobs:
         name: Create PR
         run: |
           GH_TOKEN="$GH_TOKEN" \
-            TARGET_BRANCH="master" \
             PACKAGE="spotify-unwrapped" \
             PRE_VERSION="$PRE_VERSION" \
             GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
@@ -995,7 +993,6 @@ jobs:
         name: Create PR
         run: |
           GH_TOKEN="$GH_TOKEN" \
-            TARGET_BRANCH="master" \
             PACKAGE="vscode" \
             PRE_VERSION="$PRE_VERSION" \
             GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
@@ -1047,7 +1044,6 @@ jobs:
         name: Create PR
         run: |
           GH_TOKEN="$GH_TOKEN" \
-            TARGET_BRANCH="master" \
             PACKAGE="vscodium" \
             PRE_VERSION="$PRE_VERSION" \
             GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
@@ -1110,7 +1106,6 @@ jobs:
         name: Create PR
         run: |
           GH_TOKEN="$GH_TOKEN" \
-            TARGET_BRANCH="master" \
             PACKAGE="python3Packages.wandb" \
             PRE_VERSION="$PRE_VERSION" \
             GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \

@@ -3,6 +3,9 @@
 
 set -eou pipefail
 
+# Note: for the time being all PRs target master, but this is configurable should the need arise to target eg staging.
+TARGET_BRANCH="master"
+
 # Check that there's a diff from the updater script. See https://stackoverflow.com/questions/3878624/how-do-i-programmatically-determine-if-there-are-uncommitted-changes.
 if git diff-index --quiet HEAD --; then
     echo "No diff after running updater."

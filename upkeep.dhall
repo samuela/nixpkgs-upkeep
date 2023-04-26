@@ -164,13 +164,11 @@ let customUpdateScript =
 
 let createPR =
       \(attr : Text) ->
-      \(targetBranch : Text) ->
         Step::{
         , name = Some "Create PR"
         , run = Some
             ''
             GH_TOKEN="$GH_TOKEN" \
-              TARGET_BRANCH="${targetBranch}" \
               PACKAGE="${attr}" \
               PRE_VERSION="$PRE_VERSION" \
               GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
@@ -210,7 +208,7 @@ in  { jobs =
                     "./nixpkgs/pkgs/applications/audio/plexamp/update-plexamp.sh"
                 }
               , gitDiff
-              , createPR "plexamp" "master"
+              , createPR "plexamp"
               ]
         }
       , plotly = basicCanary "python3Packages.plotly"
@@ -236,7 +234,7 @@ in  { jobs =
                 , working-directory = Some "./nixpkgs"
                 }
               , gitDiff
-              , createPR "spotify-unwrapped" "master"
+              , createPR "spotify-unwrapped"
               ]
         }
       , tensorflow = basicCanary "python3Packages.tensorflow"
@@ -253,7 +251,7 @@ in  { jobs =
                     "./nixpkgs/pkgs/applications/editors/vscode/update-vscode.sh"
                 }
               , gitDiff
-              , createPR "vscode" "master"
+              , createPR "vscode"
               ]
         }
       , vscodium = Job::{
@@ -265,7 +263,7 @@ in  { jobs =
                     "./nixpkgs/pkgs/applications/editors/vscode/update-vscodium.sh"
                 }
               , gitDiff
-              , createPR "vscodium" "master"
+              , createPR "vscodium"
               ]
         }
       , wandb = Job::{
@@ -277,7 +275,7 @@ in  { jobs =
                   "update-wandb.py"
                   "pkgs/development/python-modules/wandb"
               , gitDiff
-              , createPR "python3Packages.wandb" "master"
+              , createPR "python3Packages.wandb"
               ]
         }
       , yapf = basicCanary "yapf"
