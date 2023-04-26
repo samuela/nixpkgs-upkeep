@@ -84,13 +84,6 @@ let checkVersion =
         , working-directory = Some "./nixpkgs"
         }
 
-let nixBuild =
-      \(attr : Text) ->
-        Step::{
-        , run = Some "nix-build -A ${attr}"
-        , working-directory = Some "./nixpkgs"
-        }
-
 let canary =
       \(attr : Text) ->
         Step::{
@@ -180,7 +173,6 @@ let createPR =
               TARGET_BRANCH="${targetBranch}" \
               PACKAGE="${attr}" \
               PRE_VERSION="$PRE_VERSION" \
-              TESTED_OTHER_LINUX="true" \
               GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
               ./../nixpkgs-upkeep/create-pr.sh
             ''
@@ -218,7 +210,6 @@ in  { jobs =
                     "./nixpkgs/pkgs/applications/audio/plexamp/update-plexamp.sh"
                 }
               , gitDiff
-              , nixBuild "plexamp"
               , createPR "plexamp" "master"
               ]
         }
@@ -245,7 +236,6 @@ in  { jobs =
                 , working-directory = Some "./nixpkgs"
                 }
               , gitDiff
-              , nixBuild "spotify"
               , createPR "spotify-unwrapped" "master"
               ]
         }
@@ -263,7 +253,6 @@ in  { jobs =
                     "./nixpkgs/pkgs/applications/editors/vscode/update-vscode.sh"
                 }
               , gitDiff
-              , nixBuild "vscode"
               , createPR "vscode" "master"
               ]
         }
@@ -276,7 +265,6 @@ in  { jobs =
                     "./nixpkgs/pkgs/applications/editors/vscode/update-vscodium.sh"
                 }
               , gitDiff
-              , nixBuild "vscodium"
               , createPR "vscodium" "master"
               ]
         }
@@ -289,7 +277,6 @@ in  { jobs =
                   "update-wandb.py"
                   "pkgs/development/python-modules/wandb"
               , gitDiff
-              , nixBuild "python3Packages.wandb"
               , createPR "python3Packages.wandb" "master"
               ]
         }

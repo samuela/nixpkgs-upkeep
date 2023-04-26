@@ -524,8 +524,6 @@ jobs:
       - run: "./nixpkgs/pkgs/applications/audio/plexamp/update-plexamp.sh"
       - run: git diff
         working-directory: "./nixpkgs"
-      - run: nix-build -A plexamp
-        working-directory: "./nixpkgs"
       - env:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
         name: Create PR
@@ -534,7 +532,6 @@ jobs:
             TARGET_BRANCH="master" \
             PACKAGE="plexamp" \
             PRE_VERSION="$PRE_VERSION" \
-            TESTED_OTHER_LINUX="true" \
             GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
             ./../nixpkgs-upkeep/create-pr.sh
         working-directory: "./nixpkgs"
@@ -633,8 +630,6 @@ jobs:
         working-directory: "./nixpkgs"
       - run: git diff
         working-directory: "./nixpkgs"
-      - run: nix-build -A spotify
-        working-directory: "./nixpkgs"
       - env:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
         name: Create PR
@@ -643,7 +638,6 @@ jobs:
             TARGET_BRANCH="master" \
             PACKAGE="spotify-unwrapped" \
             PRE_VERSION="$PRE_VERSION" \
-            TESTED_OTHER_LINUX="true" \
             GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
             ./../nixpkgs-upkeep/create-pr.sh
         working-directory: "./nixpkgs"
@@ -996,8 +990,6 @@ jobs:
       - run: "./nixpkgs/pkgs/applications/editors/vscode/update-vscode.sh"
       - run: git diff
         working-directory: "./nixpkgs"
-      - run: nix-build -A vscode
-        working-directory: "./nixpkgs"
       - env:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
         name: Create PR
@@ -1006,7 +998,6 @@ jobs:
             TARGET_BRANCH="master" \
             PACKAGE="vscode" \
             PRE_VERSION="$PRE_VERSION" \
-            TESTED_OTHER_LINUX="true" \
             GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
             ./../nixpkgs-upkeep/create-pr.sh
         working-directory: "./nixpkgs"
@@ -1051,8 +1042,6 @@ jobs:
       - run: "./nixpkgs/pkgs/applications/editors/vscode/update-vscodium.sh"
       - run: git diff
         working-directory: "./nixpkgs"
-      - run: nix-build -A vscodium
-        working-directory: "./nixpkgs"
       - env:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
         name: Create PR
@@ -1061,7 +1050,6 @@ jobs:
             TARGET_BRANCH="master" \
             PACKAGE="vscodium" \
             PRE_VERSION="$PRE_VERSION" \
-            TESTED_OTHER_LINUX="true" \
             GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
             ./../nixpkgs-upkeep/create-pr.sh
         working-directory: "./nixpkgs"
@@ -1117,8 +1105,6 @@ jobs:
           rm ./nixpkgs/pkgs/development/python-modules/wandb/update-wandb.py
       - run: git diff
         working-directory: "./nixpkgs"
-      - run: nix-build -A python3Packages.wandb
-        working-directory: "./nixpkgs"
       - env:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
         name: Create PR
@@ -1127,7 +1113,6 @@ jobs:
             TARGET_BRANCH="master" \
             PACKAGE="python3Packages.wandb" \
             PRE_VERSION="$PRE_VERSION" \
-            TESTED_OTHER_LINUX="true" \
             GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
             ./../nixpkgs-upkeep/create-pr.sh
         working-directory: "./nixpkgs"
