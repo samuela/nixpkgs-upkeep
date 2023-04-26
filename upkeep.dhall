@@ -56,14 +56,14 @@ let nixInfo =
 let checkoutNixpkgsUpkeep =
       Step::{
       , name = Some "Checkout nixpkgs-upkeep"
-      , uses = Some "actions/checkout@v2"
+      , uses = Some "actions/checkout@v3"
       , `with` = Some WithClause::{ path = Some "nixpkgs-upkeep" }
       }
 
 let checkoutNixpkgs =
       Step::{
       , name = Some "Checkout nixpkgs"
-      , uses = Some "actions/checkout@v2"
+      , uses = Some "actions/checkout@v3"
       , `with` = Some WithClause::{
         , path = Some "nixpkgs"
         , repository = Some "NixOS/nixpkgs"
