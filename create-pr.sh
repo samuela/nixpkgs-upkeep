@@ -90,9 +90,12 @@ _EOM_
 )
 
 echo "Creating a new draft PR on NixOS/nixpkgs..."
+# For some reason specifying the repo works and is necessary for `--head` but is not accepted by `--base`. Instead we
+# specify `--repo` just to be explicit.
 pr_url=$(gh pr create \
-    --head samuela:"$branch" \
-    --base NixOS:"$TARGET_BRANCH" \
+    --repo "NixOS/nixpkgs" \
+    --head "samuela:$branch" \
+    --base "$TARGET_BRANCH" \
     --title "$PACKAGE: $PRE_VERSION -> $newversion" \
     --body "$body" \
     --draft)
