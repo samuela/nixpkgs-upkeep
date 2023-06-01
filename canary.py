@@ -79,6 +79,12 @@ if build_result.returncode == 0:
 
 # Find the error lines in the stderr...
 stderr_utf8 = [line.decode("utf-8") for line in build_result.stderr]
+
+# See https://github.com/NixOS/nixpkgs/issues/235313.
+if "no space left on device" in "".join(stderr_utf8).lower():
+    print("Failed due to 'No space left on device', exiting")
+    sys.exit(0)
+
 first_error_line_re = r"error: builder for '/nix/store/(\w{32})-(.*).drv' failed with exit code \d+;"
 first_error_line_ = [(ix, re.match(first_error_line_re, line))
                      for ix, line in enumerate(stderr_utf8)
