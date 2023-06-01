@@ -85,6 +85,11 @@ if "no space left on device" in "".join(stderr_utf8).lower():
     print("Failed due to 'No space left on device', exiting")
     sys.exit(0)
 
+# See https://github.com/NixOS/nixpkgs/issues/235426.
+if "Killed" in "".join(stderr_utf8):
+    print("Failed due to 'Killed', exiting")
+    sys.exit(0)
+
 first_error_line_re = r"error: builder for '/nix/store/(\w{32})-(.*).drv' failed with exit code \d+;"
 first_error_line_ = [(ix, re.match(first_error_line_re, line))
                      for ix, line in enumerate(stderr_utf8)
