@@ -74,7 +74,8 @@ def run(cmd_args) -> ProcessResult:
             return ProcessResult(p.poll(), stdout, stderr)
 
 
-build_result = run(["nix-build", "-A", attr])
+# Use --fallback to prevent errors like https://github.com/samuela/nixpkgs-upkeep/actions/runs/5581874789/jobs/10200511969
+build_result = run(["nix-build", "--fallback", "-A", attr])
 
 if build_result.returncode == 0:
     print("Build succeeded")
