@@ -181,14 +181,14 @@ let createPR =
 in  { jobs =
       { augmax = basicCanary "python3Packages.augmax"
       , einops = basicCanary "python3Packages.einops"
-      , flax = basicCanary "python39Packages.flax"
+      , flax = basicCanary "python3Packages.flax"
       , ipython = basicCanary "python3Packages.ipython"
       , jax = basicCanary "python3Packages.jax"
       , jaxlib = basicCanary "python3Packages.jaxlib"
       , jaxlib-bin = basicCanary "python3Packages.jaxlib-bin"
       , jaxlibWithCuda = basicCanary "python3Packages.jaxlibWithCuda"
       , matplotlib = basicCanary "python3Packages.matplotlib"
-      , optax = basicCanary "python39Packages.optax"
+      , optax = basicCanary "python3Packages.optax"
       , pandas = basicCanary "python3Packages.pandas"
       , plexamp = Job::{
         , steps =
@@ -238,8 +238,8 @@ in  { jobs =
               ]
         }
       , tensorflow = basicCanary "python3Packages.tensorflow"
-      , tensorflow-bin = basicCanary "python39Packages.tensorflow-bin"
-      , tensorflow-datasets = basicCanary "python39Packages.tensorflow-datasets"
+      , tensorflow-bin = basicCanary "python3Packages.tensorflow-bin"
+      , tensorflow-datasets = basicCanary "python3Packages.tensorflow-datasets"
       , tqdm = basicCanary "python3Packages.tqdm"
       , torchvision = basicCanary "python3Packages.torchvision"
       , vscode = Job::{

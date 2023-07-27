@@ -122,7 +122,7 @@ jobs:
           echo '{ allowUnfree = true; cudaSupport = true; cudaCapabilities = ["8.0"]; }' > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PRE_VERSION="$(nix eval --raw --file . python39Packages.flax.version)"
+          PRE_VERSION="$(nix eval --raw --file . python3Packages.flax.version)"
           echo "Current version: $PRE_VERSION"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
@@ -130,7 +130,7 @@ jobs:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
         name: build canary
         run: |
-          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python39Packages.flax
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.flax
         working-directory: "./nixpkgs-upkeep"
   ipython:
     runs-on: ubuntu-latest
@@ -430,7 +430,7 @@ jobs:
           echo '{ allowUnfree = true; cudaSupport = true; cudaCapabilities = ["8.0"]; }' > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PRE_VERSION="$(nix eval --raw --file . python39Packages.optax.version)"
+          PRE_VERSION="$(nix eval --raw --file . python3Packages.optax.version)"
           echo "Current version: $PRE_VERSION"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
@@ -438,7 +438,7 @@ jobs:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
         name: build canary
         run: |
-          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python39Packages.optax
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.optax
         working-directory: "./nixpkgs-upkeep"
   pandas:
     runs-on: ubuntu-latest
@@ -717,7 +717,7 @@ jobs:
           echo '{ allowUnfree = true; cudaSupport = true; cudaCapabilities = ["8.0"]; }' > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PRE_VERSION="$(nix eval --raw --file . python39Packages.tensorflow-bin.version)"
+          PRE_VERSION="$(nix eval --raw --file . python3Packages.tensorflow-bin.version)"
           echo "Current version: $PRE_VERSION"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
@@ -725,7 +725,7 @@ jobs:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
         name: build canary
         run: |
-          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python39Packages.tensorflow-bin
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.tensorflow-bin
         working-directory: "./nixpkgs-upkeep"
   tensorflow-datasets:
     runs-on: ubuntu-latest
@@ -761,7 +761,7 @@ jobs:
           echo '{ allowUnfree = true; cudaSupport = true; cudaCapabilities = ["8.0"]; }' > ~/.config/nixpkgs/config.nix
       - name: Check current package version
         run: |
-          PRE_VERSION="$(nix eval --raw --file . python39Packages.tensorflow-datasets.version)"
+          PRE_VERSION="$(nix eval --raw --file . python3Packages.tensorflow-datasets.version)"
           echo "Current version: $PRE_VERSION"
           echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
         working-directory: "./nixpkgs"
@@ -769,7 +769,7 @@ jobs:
           GH_TOKEN: "${{ secrets.GH_TOKEN }}"
         name: build canary
         run: |
-          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python39Packages.tensorflow-datasets
+          GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.tensorflow-datasets
         working-directory: "./nixpkgs-upkeep"
   torch:
     runs-on: ubuntu-latest
