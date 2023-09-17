@@ -125,6 +125,11 @@ last_10_log_lines_pure = re.sub(r"\d+ seconds", "", last_10_log_lines_pure)
 last_10_log_lines_pure = re.sub(r"/nix/store/\w{32}", "",
                                 last_10_log_lines_pure)
 
+# Skip Bazel intermediate, non-deterministic log output. See https://github.com/NixOS/nixpkgs/issues/255049.
+last_10_log_lines_pure = re.sub(r"> \[[,\d+]* / [,\d+]*\] .*", "",
+                                last_10_log_lines_pure)
+last_10_log_lines_pure = re.sub(r"> INFO:.*", "", last_10_log_lines_pure)
+
 # Note that we don't include the nixpkgs commit, since that changes very
 # frequently and would likely create duplicate issues.
 logs_tag = hash(
