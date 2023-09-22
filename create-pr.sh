@@ -99,10 +99,14 @@ pr_url=$(gh pr create \
     --title "$PACKAGE: $PRE_VERSION -> $newversion" \
     --body "$body" \
     --draft)
+echo "Created PR: $pr_url"
 
 echo "Running nix-build..."
 if build_log=$(nix-build -A "$PACKAGE" 2>&1); then
-    body=$(cat <<-_EOM_
+    # Use --body-file to work around "Argument list too long" errors.
+    body_file=$(mktemp)
+
+    cat <<-_EOM_ > "$body_file"
 nix-build was successful! Marking this PR as ready for review.
 
 <details>
@@ -113,14 +117,15 @@ nix-build was successful! Marking this PR as ready for review.
 ${build_log}
 \`\`\`
 </details>
-
 _EOM_
-)
-    gh pr comment "$pr_url" --body "$body"
+
+    gh pr comment "$pr_url" --body-file "$body_file"
     gh pr ready "$pr_url"
+    rm -f "$body_file"
 else
     abbreviated_build_log=$(tail -n15 < "$build_log")
-    body=$(cat <<-_EOM_
+    body_file=$(mktemp)
+    cat <<-_EOM_ > "$body_file"
 nix-build failed. Leaving this PR as a draft for now. Push commits to this branch and mark as "ready for review" once
 the build issues have been resolved.
 
@@ -139,10 +144,10 @@ ${abbreviated_build_log}
 ${build_log}
 \`\`\`
 </details>
-
 _EOM_
-)
-    gh pr comment "$pr_url" --body "$body"
+
+    gh pr comment "$pr_url" --body-file "$body_file"
+    rm -f "$body_file"
 fi
 
 # TODO: run nixpkgs-review as well if nix-build succeeds
