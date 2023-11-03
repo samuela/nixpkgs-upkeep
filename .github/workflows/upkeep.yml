@@ -3,13 +3,13 @@ jobs:
   augmax:
     runs-on: ubuntu-latest
     steps:
-      - uses: "easimon/maximize-build-space@master"
-        with:
-          remove-android: 'true'
-          remove-codeql: 'true'
-          remove-docker-images: 'true'
-          remove-dotnet: 'true'
-          remove-haskell: 'true'
+      - name: Maximize disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+          sudo docker image prune --all --force
       - run: lscpu
       - uses: "cachix/install-nix-action@v22"
         with:
@@ -54,13 +54,13 @@ jobs:
   einops:
     runs-on: ubuntu-latest
     steps:
-      - uses: "easimon/maximize-build-space@master"
-        with:
-          remove-android: 'true'
-          remove-codeql: 'true'
-          remove-docker-images: 'true'
-          remove-dotnet: 'true'
-          remove-haskell: 'true'
+      - name: Maximize disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+          sudo docker image prune --all --force
       - run: lscpu
       - uses: "cachix/install-nix-action@v22"
         with:
@@ -105,13 +105,13 @@ jobs:
   flax:
     runs-on: ubuntu-latest
     steps:
-      - uses: "easimon/maximize-build-space@master"
-        with:
-          remove-android: 'true'
-          remove-codeql: 'true'
-          remove-docker-images: 'true'
-          remove-dotnet: 'true'
-          remove-haskell: 'true'
+      - name: Maximize disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+          sudo docker image prune --all --force
       - run: lscpu
       - uses: "cachix/install-nix-action@v22"
         with:
@@ -156,13 +156,13 @@ jobs:
   ipython:
     runs-on: ubuntu-latest
     steps:
-      - uses: "easimon/maximize-build-space@master"
-        with:
-          remove-android: 'true'
-          remove-codeql: 'true'
-          remove-docker-images: 'true'
-          remove-dotnet: 'true'
-          remove-haskell: 'true'
+      - name: Maximize disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+          sudo docker image prune --all --force
       - run: lscpu
       - uses: "cachix/install-nix-action@v22"
         with:
@@ -207,13 +207,13 @@ jobs:
   jax:
     runs-on: ubuntu-latest
     steps:
-      - uses: "easimon/maximize-build-space@master"
-        with:
-          remove-android: 'true'
-          remove-codeql: 'true'
-          remove-docker-images: 'true'
-          remove-dotnet: 'true'
-          remove-haskell: 'true'
+      - name: Maximize disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+          sudo docker image prune --all --force
       - run: lscpu
       - uses: "cachix/install-nix-action@v22"
         with:
@@ -258,13 +258,13 @@ jobs:
   jaxlib:
     runs-on: ubuntu-latest
     steps:
-      - uses: "easimon/maximize-build-space@master"
-        with:
-          remove-android: 'true'
-          remove-codeql: 'true'
-          remove-docker-images: 'true'
-          remove-dotnet: 'true'
-          remove-haskell: 'true'
+      - name: Maximize disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+          sudo docker image prune --all --force
       - run: lscpu
       - uses: "cachix/install-nix-action@v22"
         with:
@@ -309,13 +309,13 @@ jobs:
   jaxlib-bin:
     runs-on: ubuntu-latest
     steps:
-      - uses: "easimon/maximize-build-space@master"
-        with:
-          remove-android: 'true'
-          remove-codeql: 'true'
-          remove-docker-images: 'true'
-          remove-dotnet: 'true'
-          remove-haskell: 'true'
+      - name: Maximize disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+          sudo docker image prune --all --force
       - run: lscpu
       - uses: "cachix/install-nix-action@v22"
         with:
@@ -360,13 +360,13 @@ jobs:
   jaxlibWithCuda:
     runs-on: ubuntu-latest
     steps:
-      - uses: "easimon/maximize-build-space@master"
-        with:
-          remove-android: 'true'
-          remove-codeql: 'true'
-          remove-docker-images: 'true'
-          remove-dotnet: 'true'
-          remove-haskell: 'true'
+      - name: Maximize disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+          sudo docker image prune --all --force
       - run: lscpu
       - uses: "cachix/install-nix-action@v22"
         with:
@@ -411,13 +411,13 @@ jobs:
   matplotlib:
     runs-on: ubuntu-latest
     steps:
-      - uses: "easimon/maximize-build-space@master"
-        with:
-          remove-android: 'true'
-          remove-codeql: 'true'
-          remove-docker-images: 'true'
-          remove-dotnet: 'true'
-          remove-haskell: 'true'
+      - name: Maximize disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+          sudo docker image prune --all --force
       - run: lscpu
       - uses: "cachix/install-nix-action@v22"
         with:
@@ -462,13 +462,13 @@ jobs:
   optax:
     runs-on: ubuntu-latest
     steps:
-      - uses: "easimon/maximize-build-space@master"
-        with:
-          remove-android: 'true'
-          remove-codeql: 'true'
-          remove-docker-images: 'true'
-          remove-dotnet: 'true'
-          remove-haskell: 'true'
+      - name: Maximize disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+          sudo docker image prune --all --force
       - run: lscpu
       - uses: "cachix/install-nix-action@v22"
         with:
@@ -513,13 +513,13 @@ jobs:
   pandas:
     runs-on: ubuntu-latest
     steps:
-      - uses: "easimon/maximize-build-space@master"
-        with:
-          remove-android: 'true'
-          remove-codeql: 'true'
-          remove-docker-images: 'true'
-          remove-dotnet: 'true'
-          remove-haskell: 'true'
+      - name: Maximize disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+          sudo docker image prune --all --force
       - run: lscpu
       - uses: "cachix/install-nix-action@v22"
         with:
@@ -564,13 +564,13 @@ jobs:
   plexamp:
     runs-on: ubuntu-latest
     steps:
-      - uses: "easimon/maximize-build-space@master"
-        with:
-          remove-android: 'true'
-          remove-codeql: 'true'
-          remove-docker-images: 'true'
-          remove-dotnet: 'true'
-          remove-haskell: 'true'
+      - name: Maximize disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+          sudo docker image prune --all --force
       - run: lscpu
       - uses: "cachix/install-nix-action@v22"
         with:
@@ -621,13 +621,13 @@ jobs:
   plotly:
     runs-on: ubuntu-latest
     steps:
-      - uses: "easimon/maximize-build-space@master"
-        with:
-          remove-android: 'true'
-          remove-codeql: 'true'
-          remove-docker-images: 'true'
-          remove-dotnet: 'true'
-          remove-haskell: 'true'
+      - name: Maximize disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+          sudo docker image prune --all --force
       - run: lscpu
       - uses: "cachix/install-nix-action@v22"
         with:
@@ -672,13 +672,13 @@ jobs:
   spotify:
     runs-on: ubuntu-latest
     steps:
-      - uses: "easimon/maximize-build-space@master"
-        with:
-          remove-android: 'true'
-          remove-codeql: 'true'
-          remove-docker-images: 'true'
-          remove-dotnet: 'true'
-          remove-haskell: 'true'
+      - name: Maximize disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+          sudo docker image prune --all --force
       - run: lscpu
       - uses: "cachix/install-nix-action@v22"
         with:
@@ -740,13 +740,13 @@ jobs:
   tensorflow:
     runs-on: ubuntu-latest
     steps:
-      - uses: "easimon/maximize-build-space@master"
-        with:
-          remove-android: 'true'
-          remove-codeql: 'true'
-          remove-docker-images: 'true'
-          remove-dotnet: 'true'
-          remove-haskell: 'true'
+      - name: Maximize disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+          sudo docker image prune --all --force
       - run: lscpu
       - uses: "cachix/install-nix-action@v22"
         with:
@@ -791,13 +791,13 @@ jobs:
   tensorflow-bin:
     runs-on: ubuntu-latest
     steps:
-      - uses: "easimon/maximize-build-space@master"
-        with:
-          remove-android: 'true'
-          remove-codeql: 'true'
-          remove-docker-images: 'true'
-          remove-dotnet: 'true'
-          remove-haskell: 'true'
+      - name: Maximize disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+          sudo docker image prune --all --force
       - run: lscpu
       - uses: "cachix/install-nix-action@v22"
         with:
@@ -842,13 +842,13 @@ jobs:
   tensorflow-datasets:
     runs-on: ubuntu-latest
     steps:
-      - uses: "easimon/maximize-build-space@master"
-        with:
-          remove-android: 'true'
-          remove-codeql: 'true'
-          remove-docker-images: 'true'
-          remove-dotnet: 'true'
-          remove-haskell: 'true'
+      - name: Maximize disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+          sudo docker image prune --all --force
       - run: lscpu
       - uses: "cachix/install-nix-action@v22"
         with:
@@ -893,13 +893,13 @@ jobs:
   torch:
     runs-on: ubuntu-latest
     steps:
-      - uses: "easimon/maximize-build-space@master"
-        with:
-          remove-android: 'true'
-          remove-codeql: 'true'
-          remove-docker-images: 'true'
-          remove-dotnet: 'true'
-          remove-haskell: 'true'
+      - name: Maximize disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+          sudo docker image prune --all --force
       - run: lscpu
       - uses: "cachix/install-nix-action@v22"
         with:
@@ -944,13 +944,13 @@ jobs:
   torch-bin:
     runs-on: ubuntu-latest
     steps:
-      - uses: "easimon/maximize-build-space@master"
-        with:
-          remove-android: 'true'
-          remove-codeql: 'true'
-          remove-docker-images: 'true'
-          remove-dotnet: 'true'
-          remove-haskell: 'true'
+      - name: Maximize disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+          sudo docker image prune --all --force
       - run: lscpu
       - uses: "cachix/install-nix-action@v22"
         with:
@@ -995,13 +995,13 @@ jobs:
   torchvision:
     runs-on: ubuntu-latest
     steps:
-      - uses: "easimon/maximize-build-space@master"
-        with:
-          remove-android: 'true'
-          remove-codeql: 'true'
-          remove-docker-images: 'true'
-          remove-dotnet: 'true'
-          remove-haskell: 'true'
+      - name: Maximize disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+          sudo docker image prune --all --force
       - run: lscpu
       - uses: "cachix/install-nix-action@v22"
         with:
@@ -1046,13 +1046,13 @@ jobs:
   tqdm:
     runs-on: ubuntu-latest
     steps:
-      - uses: "easimon/maximize-build-space@master"
-        with:
-          remove-android: 'true'
-          remove-codeql: 'true'
-          remove-docker-images: 'true'
-          remove-dotnet: 'true'
-          remove-haskell: 'true'
+      - name: Maximize disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+          sudo docker image prune --all --force
       - run: lscpu
       - uses: "cachix/install-nix-action@v22"
         with:
@@ -1097,13 +1097,13 @@ jobs:
   vscode:
     runs-on: ubuntu-latest
     steps:
-      - uses: "easimon/maximize-build-space@master"
-        with:
-          remove-android: 'true'
-          remove-codeql: 'true'
-          remove-docker-images: 'true'
-          remove-dotnet: 'true'
-          remove-haskell: 'true'
+      - name: Maximize disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+          sudo docker image prune --all --force
       - run: lscpu
       - uses: "cachix/install-nix-action@v22"
         with:
@@ -1155,13 +1155,13 @@ jobs:
   vscodium:
     runs-on: ubuntu-latest
     steps:
-      - uses: "easimon/maximize-build-space@master"
-        with:
-          remove-android: 'true'
-          remove-codeql: 'true'
-          remove-docker-images: 'true'
-          remove-dotnet: 'true'
-          remove-haskell: 'true'
+      - name: Maximize disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+          sudo docker image prune --all --force
       - run: lscpu
       - uses: "cachix/install-nix-action@v22"
         with:
@@ -1213,13 +1213,13 @@ jobs:
   wandb:
     runs-on: ubuntu-latest
     steps:
-      - uses: "easimon/maximize-build-space@master"
-        with:
-          remove-android: 'true'
-          remove-codeql: 'true'
-          remove-docker-images: 'true'
-          remove-dotnet: 'true'
-          remove-haskell: 'true'
+      - name: Maximize disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+          sudo docker image prune --all --force
       - run: lscpu
       - uses: "cachix/install-nix-action@v22"
         with:
@@ -1282,13 +1282,13 @@ jobs:
   yapf:
     runs-on: ubuntu-latest
     steps:
-      - uses: "easimon/maximize-build-space@master"
-        with:
-          remove-android: 'true'
-          remove-codeql: 'true'
-          remove-docker-images: 'true'
-          remove-dotnet: 'true'
-          remove-haskell: 'true'
+      - name: Maximize disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+          sudo docker image prune --all --force
       - run: lscpu
       - uses: "cachix/install-nix-action@v22"
         with:

@@ -3,13 +3,6 @@ let WithClause =
       | Cachix : { name : Text, authToken : Text }
       | Checkout :
           { path : Text, repository : Optional Text, token : Optional Text }
-      | MaximizeBuildSpace :
-          { remove-dotnet : Text
-          , remove-android : Text
-          , remove-haskell : Text
-          , remove-codeql : Text
-          , remove-docker-images : Text
-          }
       >
 
 let Step =
@@ -140,16 +133,15 @@ let cachix =
 
 let maximize-build-space =
       Step::{
-      , uses = Some "easimon/maximize-build-space@master"
-      , `with` = Some
-          ( WithClause.MaximizeBuildSpace
-              { remove-dotnet = "true"
-              , remove-android = "true"
-              , remove-haskell = "true"
-              , remove-codeql = "true"
-              , remove-docker-images = "true"
-              }
-          )
+      , name = Some "Maximize disk space"
+      , run = Some
+          ''
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+          sudo docker image prune --all --force
+          ''
       }
 
 let intro =
