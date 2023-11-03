@@ -1,23 +1,16 @@
 let WithClause =
-      { Type =
-          { extra_nix_config : Optional Text
-          , nix_path : Optional Text
-          , path : Optional Text
-          , repository : Optional Text
-          , token : Optional Text
-          , name : Optional Text
-          , authToken : Optional Text
+      < InstallNix : { extra_nix_config : Text, nix_path : Text }
+      | Cachix : { name : Text, authToken : Text }
+      | Checkout :
+          { path : Text, repository : Optional Text, token : Optional Text }
+      | MaximizeBuildSpace :
+          { remove-dotnet : Text
+          , remove-android : Text
+          , remove-haskell : Text
+          , remove-codeql : Text
+          , remove-docker-images : Text
           }
-      , default =
-        { extra_nix_config = None Text
-        , nix_path = None Text
-        , path = None Text
-        , repository = None Text
-        , token = None Text
-        , name = None Text
-        , authToken = None Text
-        }
-      }
+      >
 
 let Step =
       { Type =
@@ -25,7 +18,7 @@ let Step =
           , name : Optional Text
           , run : Optional Text
           , uses : Optional Text
-          , `with` : Optional WithClause.Type
+          , `with` : Optional WithClause
           , working-directory : Optional Text
           }
       , default =
@@ -33,7 +26,7 @@ let Step =
         , name = None Text
         , run = None Text
         , uses = None Text
-        , `with` = None WithClause.Type
+        , `with` = None WithClause
         , working-directory = None Text
         }
       }
@@ -41,10 +34,12 @@ let Step =
 let installNix =
       Step::{
       , uses = Some "cachix/install-nix-action@v22"
-      , `with` = Some WithClause::{
-        , extra_nix_config = Some "experimental-features = nix-command flakes"
-        , nix_path = Some "nixpkgs=channel:nixos-unstable"
-        }
+      , `with` = Some
+          ( WithClause.InstallNix
+              { extra_nix_config = "experimental-features = nix-command flakes"
+              , nix_path = "nixpkgs=channel:nixos-unstable"
+              }
+          )
       }
 
 let nixInfo =
@@ -57,18 +52,26 @@ let checkoutNixpkgsUpkeep =
       Step::{
       , name = Some "Checkout nixpkgs-upkeep"
       , uses = Some "actions/checkout@v3"
-      , `with` = Some WithClause::{ path = Some "nixpkgs-upkeep" }
+      , `with` = Some
+          ( WithClause.Checkout
+              { path = "nixpkgs-upkeep"
+              , token = None Text
+              , repository = None Text
+              }
+          )
       }
 
 let checkoutNixpkgs =
       Step::{
       , name = Some "Checkout nixpkgs"
       , uses = Some "actions/checkout@v3"
-      , `with` = Some WithClause::{
-        , path = Some "nixpkgs"
-        , repository = Some "NixOS/nixpkgs"
-        , token = Some "\${{ secrets.GH_TOKEN }}"
-        }
+      , `with` = Some
+          ( WithClause.Checkout
+              { path = "nixpkgs"
+              , repository = Some "NixOS/nixpkgs"
+              , token = Some "\${{ secrets.GH_TOKEN }}"
+              }
+          )
       }
 
 let checkVersion =
@@ -127,14 +130,31 @@ let Job =
 let cachix =
       Step::{
       , uses = Some "cachix/cachix-action@v12"
-      , `with` = Some WithClause::{
-        , name = Some "ploop"
-        , authToken = Some "\${{ secrets.CACHIX_AUTH_TOKEN }}"
-        }
+      , `with` = Some
+          ( WithClause.Cachix
+              { name = "ploop"
+              , authToken = "\${{ secrets.CACHIX_AUTH_TOKEN }}"
+              }
+          )
+      }
+
+let maximize-build-space =
+      Step::{
+      , uses = Some "easimon/maximize-build-space@master"
+      , `with` = Some
+          ( WithClause.MaximizeBuildSpace
+              { remove-dotnet = "true"
+              , remove-android = "true"
+              , remove-haskell = "true"
+              , remove-codeql = "true"
+              , remove-docker-images = "true"
+              }
+          )
       }
 
 let intro =
-      [ Step::{ run = Some "lscpu" }
+      [ maximize-build-space
+      , Step::{ run = Some "lscpu" }
       , installNix
       , nixInfo
       , cachix
