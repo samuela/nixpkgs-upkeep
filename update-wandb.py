@@ -8,7 +8,7 @@ import subprocess
 import requests
 
 gh_owner = "wandb"
-gh_repo = "client"
+gh_repo = "wandb"
 
 release = requests.get(
     f"https://api.github.com/repos/{gh_owner}/{gh_repo}/releases/latest").json(
