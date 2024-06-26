@@ -22,11 +22,11 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
       - name: Checkout nixpkgs-upkeep
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs-upkeep
       - name: Checkout nixpkgs
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs
           repository: NixOS/nixpkgs
@@ -73,11 +73,11 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
       - name: Checkout nixpkgs-upkeep
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs-upkeep
       - name: Checkout nixpkgs
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs
           repository: NixOS/nixpkgs
@@ -124,11 +124,11 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
       - name: Checkout nixpkgs-upkeep
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs-upkeep
       - name: Checkout nixpkgs
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs
           repository: NixOS/nixpkgs
@@ -175,11 +175,11 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
       - name: Checkout nixpkgs-upkeep
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs-upkeep
       - name: Checkout nixpkgs
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs
           repository: NixOS/nixpkgs
@@ -226,11 +226,11 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
       - name: Checkout nixpkgs-upkeep
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs-upkeep
       - name: Checkout nixpkgs
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs
           repository: NixOS/nixpkgs
@@ -277,11 +277,11 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
       - name: Checkout nixpkgs-upkeep
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs-upkeep
       - name: Checkout nixpkgs
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs
           repository: NixOS/nixpkgs
@@ -328,11 +328,11 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
       - name: Checkout nixpkgs-upkeep
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs-upkeep
       - name: Checkout nixpkgs
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs
           repository: NixOS/nixpkgs
@@ -379,11 +379,11 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
       - name: Checkout nixpkgs-upkeep
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs-upkeep
       - name: Checkout nixpkgs
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs
           repository: NixOS/nixpkgs
@@ -430,11 +430,11 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
       - name: Checkout nixpkgs-upkeep
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs-upkeep
       - name: Checkout nixpkgs
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs
           repository: NixOS/nixpkgs
@@ -481,11 +481,11 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
       - name: Checkout nixpkgs-upkeep
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs-upkeep
       - name: Checkout nixpkgs
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs
           repository: NixOS/nixpkgs
@@ -532,11 +532,11 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
       - name: Checkout nixpkgs-upkeep
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs-upkeep
       - name: Checkout nixpkgs
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs
           repository: NixOS/nixpkgs
@@ -583,11 +583,11 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
       - name: Checkout nixpkgs-upkeep
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs-upkeep
       - name: Checkout nixpkgs
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs
           repository: NixOS/nixpkgs
@@ -640,11 +640,11 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
       - name: Checkout nixpkgs-upkeep
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs-upkeep
       - name: Checkout nixpkgs
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs
           repository: NixOS/nixpkgs
@@ -691,11 +691,11 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
       - name: Checkout nixpkgs-upkeep
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs-upkeep
       - name: Checkout nixpkgs
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs
           repository: NixOS/nixpkgs
@@ -759,11 +759,11 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
       - name: Checkout nixpkgs-upkeep
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs-upkeep
       - name: Checkout nixpkgs
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs
           repository: NixOS/nixpkgs
@@ -810,11 +810,11 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
       - name: Checkout nixpkgs-upkeep
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs-upkeep
       - name: Checkout nixpkgs
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs
           repository: NixOS/nixpkgs
@@ -861,11 +861,11 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
       - name: Checkout nixpkgs-upkeep
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs-upkeep
       - name: Checkout nixpkgs
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs
           repository: NixOS/nixpkgs
@@ -912,11 +912,11 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
       - name: Checkout nixpkgs-upkeep
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs-upkeep
       - name: Checkout nixpkgs
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs
           repository: NixOS/nixpkgs
@@ -963,11 +963,11 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
       - name: Checkout nixpkgs-upkeep
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs-upkeep
       - name: Checkout nixpkgs
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs
           repository: NixOS/nixpkgs
@@ -1014,11 +1014,11 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
       - name: Checkout nixpkgs-upkeep
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs-upkeep
       - name: Checkout nixpkgs
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs
           repository: NixOS/nixpkgs
@@ -1065,11 +1065,11 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
       - name: Checkout nixpkgs-upkeep
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs-upkeep
       - name: Checkout nixpkgs
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs
           repository: NixOS/nixpkgs
@@ -1116,11 +1116,11 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
       - name: Checkout nixpkgs-upkeep
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs-upkeep
       - name: Checkout nixpkgs
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs
           repository: NixOS/nixpkgs
@@ -1174,11 +1174,11 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
       - name: Checkout nixpkgs-upkeep
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs-upkeep
       - name: Checkout nixpkgs
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs
           repository: NixOS/nixpkgs
@@ -1232,11 +1232,11 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
       - name: Checkout nixpkgs-upkeep
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs-upkeep
       - name: Checkout nixpkgs
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs
           repository: NixOS/nixpkgs
@@ -1301,11 +1301,11 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
           name: ploop
       - name: Checkout nixpkgs-upkeep
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs-upkeep
       - name: Checkout nixpkgs
-        uses: "actions/checkout@v3"
+        uses: "actions/checkout@v4"
         with:
           path: nixpkgs
           repository: NixOS/nixpkgs

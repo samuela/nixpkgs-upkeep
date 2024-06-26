@@ -44,7 +44,7 @@ let nixInfo =
 let checkoutNixpkgsUpkeep =
       Step::{
       , name = Some "Checkout nixpkgs-upkeep"
-      , uses = Some "actions/checkout@v3"
+      , uses = Some "actions/checkout@v4"
       , `with` = Some
           ( WithClause.Checkout
               { path = "nixpkgs-upkeep"
@@ -57,7 +57,7 @@ let checkoutNixpkgsUpkeep =
 let checkoutNixpkgs =
       Step::{
       , name = Some "Checkout nixpkgs"
-      , uses = Some "actions/checkout@v3"
+      , uses = Some "actions/checkout@v4"
       , `with` = Some
           ( WithClause.Checkout
               { path = "nixpkgs"
