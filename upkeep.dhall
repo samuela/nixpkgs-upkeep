@@ -122,7 +122,7 @@ let Job =
 
 let cachix =
       Step::{
-      , uses = Some "cachix/cachix-action@v12"
+      , uses = Some "cachix/cachix-action@v15"
       , `with` = Some
           ( WithClause.Cachix
               { name = "ploop"
