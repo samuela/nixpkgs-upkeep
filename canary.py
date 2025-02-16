@@ -98,7 +98,16 @@ first_error_line_re = r"error: builder for '/nix/store/(\w{32})-(.*).drv' failed
 first_error_line_ = [(ix, re.match(first_error_line_re, line))
                      for ix, line in enumerate(stderr_utf8)
                      if re.match(first_error_line_re, line) is not None]
-assert len(first_error_line_) == 1
+
+if len(first_error_line_) != 1:
+    # This can happen when eg there's an error like
+    # 
+    #     error: tensorflow-gpu-2.13.0 not supported for interpreter python3.12
+    # 
+    # See https://github.com/samuela/nixpkgs-upkeep/actions/runs/10436219344/job/28901009934.
+    print("Failed to find error line, exiting")
+    sys.exit(build_result.returncode)
+
 first_error_line_ix, match = first_error_line_[0]
 failing_drv_hash = match.group(1)
 failing_pname_version = match.group(2)
