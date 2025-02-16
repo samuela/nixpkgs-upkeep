@@ -23,11 +23,13 @@ parser.add_argument(
     "--cc",
     action="append",
     default=[],
-    help="non-maintainer GitHub username(s) to cc, option can be repeated")
+    help="non-maintainer GitHub username(s) to cc, option can be repeated",
+)
 parser.add_argument(
     "--nixpkgs",
     default=".",
-    help="Path to nixpkgs directory, default is current working directory")
+    help="Path to nixpkgs directory, default is current working directory",
+)
 
 args = parser.parse_args()
 attr = args.attr
@@ -43,10 +45,9 @@ class ProcessResult(NamedTuple):
 def run(cmd_args) -> ProcessResult:
     """Run a command, piping stdout and stderr through while also capturing them."""
     print(f">>> {' '.join(cmd_args)}")
-    p = subprocess.Popen(cmd_args,
-                         stdout=subprocess.PIPE,
-                         stderr=subprocess.PIPE,
-                         cwd=args.nixpkgs)
+    p = subprocess.Popen(
+        cmd_args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=args.nixpkgs
+    )
     stdout = []
     stderr = []
     while True:
@@ -94,16 +95,20 @@ if "Killed" in "".join(stderr_utf8):
     print("Failed due to 'Killed', exiting")
     sys.exit(0)
 
-first_error_line_re = r"error: builder for '/nix/store/(\w{32})-(.*).drv' failed with exit code \d+;"
-first_error_line_ = [(ix, re.match(first_error_line_re, line))
-                     for ix, line in enumerate(stderr_utf8)
-                     if re.match(first_error_line_re, line) is not None]
+first_error_line_re = (
+    r"error: builder for '/nix/store/(\w{32})-(.*).drv' failed with exit code \d+;"
+)
+first_error_line_ = [
+    (ix, re.match(first_error_line_re, line))
+    for ix, line in enumerate(stderr_utf8)
+    if re.match(first_error_line_re, line) is not None
+]
 
 if len(first_error_line_) != 1:
     # This can happen when eg there's an error like
-    # 
+    #
     #     error: tensorflow-gpu-2.13.0 not supported for interpreter python3.12
-    # 
+    #
     # See https://github.com/samuela/nixpkgs-upkeep/actions/runs/10436219344/job/28901009934.
     print("Failed to find error line, exiting")
     sys.exit(build_result.returncode)
@@ -114,8 +119,7 @@ failing_pname_version = match.group(2)
 
 # Note that after `first_error_line_ix` there's the "last 10 log lines:" and
 # then, starts 10 lines of logs.
-last_10_log_lines = stderr_utf8[first_error_line_ix + 2:first_error_line_ix +
-                                12]
+last_10_log_lines = stderr_utf8[first_error_line_ix + 2 : first_error_line_ix + 12]
 
 # Pytest will output things like
 #     ==== 17 failed, 2164 passed, 53 skipped, 598 warnings in 604.22s (0:10:04) =====
@@ -131,12 +135,12 @@ last_10_log_lines_pure = re.sub(r"\d+ minutes", "", last_10_log_lines_pure)
 last_10_log_lines_pure = re.sub(r"\d+ seconds", "", last_10_log_lines_pure)
 
 # Nix store paths change quite frequently, so best to ignore those. See https://discourse.nixos.org/t/someones-bot-is-creating-multiple-repeated-issues-for-failing-packages/21054.
-last_10_log_lines_pure = re.sub(r"/nix/store/\w{32}", "",
-                                last_10_log_lines_pure)
+last_10_log_lines_pure = re.sub(r"/nix/store/\w{32}", "", last_10_log_lines_pure)
 
 # Skip Bazel intermediate, non-deterministic log output. See https://github.com/NixOS/nixpkgs/issues/255049.
-last_10_log_lines_pure = re.sub(r"> \[[,\d+]* / [,\d+]*\] .*", "",
-                                last_10_log_lines_pure)
+last_10_log_lines_pure = re.sub(
+    r"> \[[,\d+]* / [,\d+]*\] .*", "", last_10_log_lines_pure
+)
 last_10_log_lines_pure = re.sub(r"> INFO:.*", "", last_10_log_lines_pure)
 
 # Remove semantic versions (x.y.z) from log lines. See https://github.com/NixOS/nixpkgs/issues/352755.
@@ -144,20 +148,16 @@ last_10_log_lines_pure = re.sub(r"\d+\.\d+\.\d+", "", last_10_log_lines_pure)
 
 # Note that we don't include the nixpkgs commit, since that changes very
 # frequently and would likely create duplicate issues.
-logs_tag = hash(
-    f"nixpkgs-upkeep {failing_pname_version} {last_10_log_lines_pure}")
+logs_tag = hash(f"nixpkgs-upkeep {failing_pname_version} {last_10_log_lines_pure}")
 drv_tag = hash(f"nixpkgs-upkeep {failing_drv_hash}")
 
 
 def find_existing_issues(tag):
     existing_issues = requests.get(
         "https://api.github.com/search/issues",
-        headers={
-            "Accept": "application/vnd.github.v3+json"
-        },
-        params={
-            "q": f"{tag} org:NixOS repo:nixpkgs is:issue author:samuela"
-        }).json()
+        headers={"Accept": "application/vnd.github.v3+json"},
+        params={"q": f"{tag} org:NixOS repo:nixpkgs is:issue author:samuela"},
+    ).json()
     existing_issues_count = existing_issues["total_count"]
     if existing_issues_count > 0:
         print(
@@ -179,9 +179,7 @@ def find_existing_issues(tag):
 # Setting max_time to 15 minutes should more than suffice.
 #
 # For context, see https://discourse.nixos.org/t/someones-bot-is-creating-multiple-repeated-issues-for-failing-packages/21054.
-print(
-    "Patience is a virtue, especially when dealing with concurrent processes..."
-)
+print("Patience is a virtue, especially when dealing with concurrent processes...")
 time.sleep(random.randint(0, 15 * 60))
 
 # Check if an issue already exists for this tag.
@@ -219,17 +217,22 @@ def pname_to_attr(pname: str) -> str:
 
 failing_attr = pname_to_attr(failing_pname)
 
-commit = subprocess.run(["git", "log", "-1", "--pretty=format:%H"],
-                        cwd=args.nixpkgs,
-                        stdout=subprocess.PIPE).stdout.decode("utf-8").strip()
+commit = (
+    subprocess.run(
+        ["git", "log", "-1", "--pretty=format:%H"],
+        cwd=args.nixpkgs,
+        stdout=subprocess.PIPE,
+    )
+    .stdout.decode("utf-8")
+    .strip()
+)
 
 
 def get_maintainers(attr: str) -> List[str]:
-    p = subprocess.run([
-        "nix", "eval", "--json", "--file", args.nixpkgs,
-        f"{attr}.meta.maintainers"
-    ],
-                       stdout=subprocess.PIPE)
+    p = subprocess.run(
+        ["nix", "eval", "--json", "--file", args.nixpkgs, f"{attr}.meta.maintainers"],
+        stdout=subprocess.PIPE,
+    )
     if p.returncode == 0:
         maintainers_json = json.loads(p.stdout.decode("utf-8").strip())
         return [m["github"] for m in maintainers_json]
@@ -241,12 +244,17 @@ def get_maintainers(attr: str) -> List[str]:
 attr_maintainers = get_maintainers(attr)
 failing_attr_maintainers = get_maintainers(failing_attr)
 
-nixpkgs_config = open(os.path.expanduser("~/.config/nixpkgs/config.nix"),
-                      "r").read().strip()
+nixpkgs_config = (
+    open(os.path.expanduser("~/.config/nixpkgs/config.nix"), "r").read().strip()
+)
 
-nix_info = subprocess.run(
-    ["nix-shell", "-p", "nix-info", "--run", "nix-info -m"],
-    stdout=subprocess.PIPE).stdout.decode("utf-8").strip()
+nix_info = (
+    subprocess.run(
+        ["nix-shell", "-p", "nix-info", "--run", "nix-info -m"], stdout=subprocess.PIPE
+    )
+    .stdout.decode("utf-8")
+    .strip()
+)
 
 # We provide defaults to the env var lookup just so that it's easier in
 # development.
@@ -286,13 +294,23 @@ This issue was automatically generated by [nixpkgs-upkeep](https://github.com/sa
 """
 
 # Create issue
-subprocess.run([
-    "gh", "issue", "create", "--repo", "NixOS/nixpkgs", "--label", "0.kind: build failure", "--assignee", ",".join(
-        [x for x in failing_attr_maintainers if x not in DONT_ASSIGN
-         ]), "--title",
-    f"`{failing_attr}` build failure on x86_64-linux as of `{commit[:8]}`",
-    "--body", issue_body
-],
-               check=True)
+subprocess.run(
+    [
+        "gh",
+        "issue",
+        "create",
+        "--repo",
+        "NixOS/nixpkgs",
+        "--label",
+        "0.kind: build failure",
+        "--assignee",
+        ",".join([x for x in failing_attr_maintainers if x not in DONT_ASSIGN]),
+        "--title",
+        f"`{failing_attr}` build failure on x86_64-linux as of `{commit[:8]}`",
+        "--body",
+        issue_body,
+    ],
+    check=True,
+)
 
 sys.exit(build_result.returncode)
