@@ -139,6 +139,9 @@ last_10_log_lines_pure = re.sub(r"> \[[,\d+]* / [,\d+]*\] .*", "",
                                 last_10_log_lines_pure)
 last_10_log_lines_pure = re.sub(r"> INFO:.*", "", last_10_log_lines_pure)
 
+# Remove semantic versions (x.y.z) from log lines. See https://github.com/NixOS/nixpkgs/issues/352755.
+last_10_log_lines_pure = re.sub(r"\d+\.\d+\.\d+", "", last_10_log_lines_pure)
+
 # Note that we don't include the nixpkgs commit, since that changes very
 # frequently and would likely create duplicate issues.
 logs_tag = hash(
