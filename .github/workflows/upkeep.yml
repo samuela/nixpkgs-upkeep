@@ -153,6 +153,64 @@ jobs:
         run: |
           GH_TOKEN=$GH_TOKEN ./canary.py --nixpkgs ../nixpkgs --attr python3Packages.flax
         working-directory: "./nixpkgs-upkeep"
+  google-chrome:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Maximize disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+          sudo docker image prune --all --force
+      - run: lscpu
+      - uses: "cachix/install-nix-action@v22"
+        with:
+          extra_nix_config: experimental-features = nix-command flakes
+          nix_path: nixpkgs=channel:nixos-unstable
+      - name: nix-info
+        run: "nix-shell -p nix-info --run 'nix-info -m'"
+      - uses: "cachix/cachix-action@v15"
+        with:
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          name: ploop
+      - name: Checkout nixpkgs-upkeep
+        uses: "actions/checkout@v4"
+        with:
+          path: nixpkgs-upkeep
+      - name: Checkout nixpkgs
+        uses: "actions/checkout@v4"
+        with:
+          path: nixpkgs
+          repository: NixOS/nixpkgs
+          token: "${{ secrets.GH_TOKEN }}"
+      - name: Add CUDA/MKL overlay
+        run: |
+          mkdir -p ~/.config/nixpkgs/overlays/
+          cp ./nixpkgs-upkeep/overlay.nix ~/.config/nixpkgs/overlays/
+      - name: "Set ~/.config/nixpkgs/config.nix"
+        run: |
+          mkdir -p ~/.config/nixpkgs/
+          echo '{ allowUnfree = true; cudaSupport = true; cudaCapabilities = ["8.0"]; }' > ~/.config/nixpkgs/config.nix
+      - name: Check current package version
+        run: |
+          PRE_VERSION="$(nix eval --raw --file . google-chrome.version)"
+          echo "Current version: $PRE_VERSION"
+          echo "PRE_VERSION=$PRE_VERSION" >> $GITHUB_ENV
+        working-directory: "./nixpkgs"
+      - run: "./nixpkgs/pkgs/by-name/go/google-chrome/update.sh"
+      - run: git diff
+        working-directory: "./nixpkgs"
+      - env:
+          GH_TOKEN: "${{ secrets.GH_TOKEN }}"
+        name: Create PR
+        run: |
+          GH_TOKEN="$GH_TOKEN" \
+            PACKAGE="google-chrome" \
+            PRE_VERSION="$PRE_VERSION" \
+            GITHUB_WORKFLOW_URL="https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
+            ./../nixpkgs-upkeep/create-pr.sh
+        working-directory: "./nixpkgs"
   ipython:
     runs-on: ubuntu-latest
     steps:

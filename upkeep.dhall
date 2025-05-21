@@ -194,6 +194,17 @@ in  { jobs =
       { augmax = basicCanary "python3Packages.augmax"
       , einops = basicCanary "python3Packages.einops"
       , flax = basicCanary "python3Packages.flax"
+      , google-chrome = Job::{
+        , steps =
+              intro
+            # [ checkVersion "google-chrome"
+              , Step::{
+                , run = Some "./nixpkgs/pkgs/by-name/go/google-chrome/update.sh"
+                }
+              , gitDiff
+              , createPR "google-chrome"
+              ]
+        }
       , ipython = basicCanary "python3Packages.ipython"
       , jax = basicCanary "python3Packages.jax"
       , jaxlib = basicCanary "python3Packages.jaxlib"
